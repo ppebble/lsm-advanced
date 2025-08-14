@@ -4,7 +4,8 @@
 		"baseUrl": "./",
 		"paths": {
 			"@/*": ["src/*"],
-			"react-scripts/*": ["node_modules/react-scripts/*"]
+			"react-scripts/*": ["node_modules/react-scripts/*"],
+			"styled-system/*": ["./styled-system/*"]
 		},
 		"typeRoots": ["node_modules/@types", "src/@types"],
 		"lib": ["dom", "dom.iterable", "esnext"],
@@ -20,23 +21,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"jsx": "react-jsx",
-		"emitDeclarationOnly": true, // 선언 파일만 생성
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noImplicitReturns": true,
-		"noImplicitAny": true,
-		"strictNullChecks": true,
-		"strictFunctionTypes": true,
-		"strictBindCallApply": true,
-		"strictPropertyInitialization": true,
-		"downlevelIteration": true,
-		"incremental": true,
-		"composite": true,
-		"declaration": true,
-		"declarationMap": false,
-		"sourceMap": true,
-		"outDir": "./dist"
+		"jsx": "react-jsx"
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "build", "dist"]
