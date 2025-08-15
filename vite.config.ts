@@ -3,8 +3,18 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
 	plugins: [react()],
+	build: {
+		outDir: 'dist',
+	},
+	resolve: {
+		alias: {
+			'styled-system': '/styled-system', // 절대 경로 추가
+		},
+	},
 	css: {
-		postcss: './postcss.config.js',
+		postcss: {
+			plugins: [require('@pandacss/dev/postcss')],
+		},
 	},
 	server: {
 		port: 3000,

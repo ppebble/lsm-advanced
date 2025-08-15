@@ -1,31 +1,30 @@
 import { defineConfig } from '@pandacss/dev';
 
 export default defineConfig({
-	// Whether to use css reset
-	preflight: true,
+	outdir: 'styled-system',
+	include: ['./src/**/*.{ts,tsx}'],
 
-	// Where to look for your css declarations
-	include: ['./src/**/*.{js,jsx,ts,tsx}', './pages/**/*.{js,jsx,ts,tsx}'],
-
-	// Files to exclude
-	exclude: [],
-
-	// Useful for theme customization
-	theme: {
-		extend: {},
+	// ▼ 모든 유틸리티 클래스 강제 생성
+	staticCss: {
+		css: [
+			{
+				properties: {
+					// ▼ 필수: 사용할 모든 CSS 속성 범위 지정
+					color: ['*'],
+					fontSize: ['*'],
+					backgroundColor: ['*'],
+					fontFamily: ['*'],
+					minHeight: ['*'],
+					// ... 기타 필요한 속성
+				},
+			},
+		],
 	},
 
-	// The output directory for your css system
-	outdir: 'styled-system',
-
+	// ▼ 글로벌 CSS 주입 (선택)
 	globalCss: {
-		'html, body': {
-			fontFamily: 'Noto Sans, Noto Sans KR, sans-serif',
-			lineHeight: '1.5',
-			color: 'gray.900',
-		},
-		':lang(ko)': {
-			fontFamily: 'Noto Sans KR, sans-serif',
+		':root': {
+			'--font-sans': 'Your Sans Font',
 		},
 	},
 });
