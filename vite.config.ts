@@ -6,8 +6,15 @@ export default defineConfig({
 	build: {
 		outDir: 'dist',
 	},
+	resolve: {
+		alias: {
+			'styled-system': '/styled-system', // 절대 경로 추가
+		},
+	},
 	css: {
-		postcss: './postcss.config.js',
+		postcss: {
+			plugins: [require('@pandacss/dev/postcss')],
+		},
 	},
 	server: {
 		port: 3000,

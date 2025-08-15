@@ -16,3 +16,6 @@
 # 운영체제/에디터 별 설정
 .idea/
 .vscode/
+## Panda
+styled-system
+styled-system-studio
