@@ -8,7 +8,9 @@
 
 
 # 빌드 출력물 (Vite/PandaCSS)
-dist/               # Vite 빌드 결과물 무시
+/dist/               # Vite 빌드 결과물 무시
+/dist
+/dist/*
 /.vite              # Vite 캐시
 
 # 운영체제/에디터 별 설정
