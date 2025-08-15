@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
 	plugins: [react()],
@@ -9,6 +10,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'styled-system': '/styled-system', // 절대 경로 추가
+			'@/components': path.resolve(__dirname, './src/components'),
 		},
 	},
 	css: {

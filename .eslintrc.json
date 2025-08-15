@@ -36,6 +36,14 @@
 			"node": {
 				"extensions": [".js", ".jsx", ".ts", ".tsx"],
 				"paths": ["src"]
+			},
+			"alias": {
+				"map": [
+					["@", "./src"],
+					["@/components", "./src/components"],
+					["styled-system", "./styled-system"]
+				],
+				"extensions": [".ts", ".tsx", ".js", ".jsx"]
 			}
 		}
 	},

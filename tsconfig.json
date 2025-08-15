@@ -4,6 +4,7 @@
 		"baseUrl": "./",
 		"paths": {
 			"@/*": ["src/*"],
+			"@/components/*": ["src/components/*"],
 			"react-scripts/*": ["node_modules/react-scripts/*"],
 			"styled-system/*": ["./styled-system/*"]
 		},

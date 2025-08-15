@@ -23,8 +23,11 @@ export default defineConfig({
 
 	// ▼ 글로벌 CSS 주입 (선택)
 	globalCss: {
-		':root': {
-			'--font-sans': 'Your Sans Font',
+		':lang(ko)': {
+			fontFamily: '{fonts.sansKr}',
+		},
+		':lang(en)': {
+			'--font-sans': '{fonts.sans}',
 		},
 	},
 });
