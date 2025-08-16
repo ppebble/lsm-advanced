@@ -3,6 +3,16 @@ import { defineConfig } from '@pandacss/dev';
 export default defineConfig({
 	outdir: 'styled-system',
 	include: ['./src/**/*.{ts,tsx}'],
+	theme: {
+		extend: {
+			breakpoints: {
+				sm: '640px',
+				md: '768px',
+				lg: '1024px',
+				xl: '1280px',
+			},
+		},
+	},
 
 	// ▼ 모든 유틸리티 클래스 강제 생성
 	staticCss: {
