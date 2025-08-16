@@ -2,10 +2,9 @@ import { css } from 'styled-system/css';
 
 function Banner() {
 	return (
-		<div className={css({ fontFamily: 'sans', minHeight: '100vh', bg: 'gray.50' })}>
-			<section
+		<div className={css({ minHeight: '100vh', bg: 'gray.50' })}>
+			<div
 				className={css({
-					height: '500px',
 					bgImage: 'url(/asset/img/id01.jpg)',
 					bgSize: 'cover',
 					display: 'flex',
@@ -43,7 +42,7 @@ function Banner() {
 						무료 상담 신청
 					</button>
 				</div>
-			</section>
+			</div>
 		</div>
 	);
 }

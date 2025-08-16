@@ -1,12 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import Banner from './components/Banner';
+import Home from './pages/Home';
 
 function App() {
 	return (
 		<>
-			<div></div>
-			<Banner />
+			<Home />
 		</>
 	);
 }
