@@ -10,7 +10,9 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'styled-system': '/styled-system', // 절대 경로 추가
+			'styled-system/patterns': './styled-system/patterns',
 			'@/components': path.resolve(__dirname, './src/components'),
+			'@/pages': path.resolve(__dirname, './src/pages'),
 		},
 	},
 	css: {
