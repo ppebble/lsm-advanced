@@ -1,29 +1,11 @@
 import Banner from '@/components/Banner';
+import Navigation from '@/components/Navigation';
 import { css } from 'styled-system/css';
 
 function Home() {
 	const category = ['All', 'bed', 'bath', 'kitchen', 'living'];
 	return (
 		<>
-			<div>
-				{/* 네비바 섹션 */}
-				<nav
-					className={css({
-						position: 'fixed',
-						top: '0',
-						width: '100%',
-						height: '80px',
-						bg: 'white',
-						boxShadow: 'sm',
-						display: 'flex',
-						alignItems: 'center',
-						px: '6',
-						zIndex: '1000',
-					})}
-				>
-					네비바
-				</nav>
-			</div>
 			{/* 메인 배너 섹션 */}
 			<section
 				className={css({

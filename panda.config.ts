@@ -8,7 +8,7 @@ export default defineConfig({
 			breakpoints: {
 				sm: '640px',
 				md: '768px',
-				lg: '1024px',
+				lg: '1065px',
 				xl: '1280px',
 			},
 		},
@@ -38,6 +38,9 @@ export default defineConfig({
 		},
 		':lang(en)': {
 			'--font-sans': '{fonts.sans}',
+		},
+		a: {
+			textDecoration: 'none',
 		},
 	},
 });
