@@ -12,7 +12,7 @@ function Banner() {
 					justifyContent: 'center',
 					color: 'white',
 					textAlign: 'center',
-					height: '500px',
+					height: { base: '300px', md: '500px' },
 				})}
 			>
 				<div>
