@@ -12,7 +12,7 @@ function Banner() {
 					justifyContent: 'center',
 					color: 'white',
 					textAlign: 'center',
-					height: { base: '300px', md: '500px' },
+					height: '500px',
 				})}
 			>
 				<div>
@@ -27,7 +27,7 @@ function Banner() {
 						당신의 공간을 변화시키세요
 					</h1>
 					<p className={css({ fontSize: 'xl', mt: '4' })}>
-						n+ 전문 업체와 연결되는 인테리어 플랫폼
+						300+ 전문 업체와 연결되는 인테리어 플랫폼
 					</p>
 					<button
 						className={css({

@@ -10,7 +10,6 @@ export default defineConfig({
 				md: '768px',
 				lg: '1065px',
 				xl: '1280px',
-				'2xl': '1536px',
 			},
 		},
 	},
