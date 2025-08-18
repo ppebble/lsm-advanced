@@ -6,7 +6,8 @@
 			"@/*": ["src/*"],
 			"@/components/*": ["src/components/*"],
 			"react-scripts/*": ["node_modules/react-scripts/*"],
-			"styled-system/*": ["./styled-system/*"]
+			"styled-system/*": ["./styled-system/*"],
+			"@assets/*": ["src/assets/*"]
 		},
 		"typeRoots": ["node_modules/@types", "src/@types"],
 		"lib": ["dom", "dom.iterable", "esnext"],
