@@ -35,12 +35,6 @@ function Category() {
 				{ id: 'sink', name: '세면대', route: '/category/bathroom/sink' },
 				{ id: 'bathtub', name: '욕조', route: '/category/bathroom/bathtub' },
 				{ id: 'plumbing', name: '수도 배관', route: '/category/bathroom/plumbing' },
-				{ id: 'bathtub', name: '욕조', route: '/category/bathroom/bathtub' },
-				{ id: 'plumbing', name: '수도 배관', route: '/category/bathroom/plumbing' },
-				{ id: 'bathtub', name: '욕조', route: '/category/bathroom/bathtub' },
-				{ id: 'plumbing', name: '수도 배관', route: '/category/bathroom/plumbing' },
-				{ id: 'bathtub', name: '욕조', route: '/category/bathroom/bathtub' },
-				{ id: 'plumbing', name: '수도 배관', route: '/category/bathroom/plumbing' },
 			],
 		},
 		{

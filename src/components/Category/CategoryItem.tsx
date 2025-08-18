@@ -5,8 +5,6 @@ import { Category } from '.';
 
 function CategoryItem({ category }: { category: Category }) {
 	const [isActive, setIsActive] = useState(false);
-	console.log('category', category);
-
 	return (
 		<div
 			className={css({
