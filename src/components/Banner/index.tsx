@@ -1,11 +1,11 @@
 import { css } from 'styled-system/css';
-
 function Banner() {
 	return (
-		<div className={css({ minHeight: '100vh', bg: 'gray.50' })}>
+		<>
 			<div
 				className={css({
-					bgImage: 'url(/asset/img/id01.jpg)',
+					// bgImage: `url(${id01})`,
+					bgImage: `url(@assets/img/id01.jpg)`,
 					bgSize: 'cover',
 					display: 'flex',
 					alignItems: 'center',
@@ -44,7 +44,7 @@ function Banner() {
 					</button>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 export default Banner;

@@ -6,6 +6,7 @@ export default defineConfig({
 	plugins: [react()],
 	build: {
 		outDir: 'dist',
+		assetsInlineLimit: 0,
 	},
 	resolve: {
 		alias: {
@@ -13,6 +14,9 @@ export default defineConfig({
 			'styled-system/patterns': './styled-system/patterns',
 			'@/components': path.resolve(__dirname, './src/components'),
 			'@/pages': path.resolve(__dirname, './src/pages'),
+			'@': '/src',
+			'@assets': '/src/assets',
+			'@assets/img': '/src/assets/img',
 		},
 	},
 	css: {

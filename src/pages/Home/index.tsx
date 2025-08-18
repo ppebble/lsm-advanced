@@ -1,5 +1,6 @@
 import Banner from '@/components/Banner';
 import Category from '@/components/Category';
+import Trend from '@/components/Trend';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
@@ -9,7 +10,10 @@ function Home() {
 		<>
 			<div
 				className={css({
+					display: 'grid',
+					gridTemplateRows: 'auto auto auto auto', // 4개 섹션 명시
 					maxWidth: '100vw',
+					gap: '24px', // 섹션 간 간격 고정
 					overflowX: 'hidden',
 				})}
 			>
@@ -22,13 +26,24 @@ function Home() {
 				>
 					<Banner />
 				</section>
+				{/* 트렌드 섹션 ( 추가 ) */}
+				<section
+					className={flex({
+						height: { base: '400px', md: '600px' }, // maxHeight → height
+						minHeight: '500px', // 최소 높이 보장
+						flexDirection: 'column',
+						position: 'relative', // 자식 요소 제어용
+						overflow: 'hidden', // 내용물 넘침 방지
+					})}
+				>
+					<Trend />
+				</section>
 				{/* 카테고리 섹션 */}
 				<section
 					className={flex({
 						height: '240px',
 						py: { base: '12', md: '20' },
 						px: { base: '4', md: '6' },
-						bg: 'gray.50',
 						justifyContent: 'center',
 					})}
 				>
@@ -37,7 +52,6 @@ function Home() {
 				{/* 작업물 탭폴더 섹션 */}
 				<section
 					className={css({
-						bg: 'gray.50',
 						mx: 'auto',
 						py: { base: '8', md: '16' },
 						px: { base: '4', md: '6' },
