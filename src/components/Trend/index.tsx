@@ -53,9 +53,9 @@ function Trend() {
 				className={css({
 					fontSize: { base: 'xl', md: '2xl' },
 					fontWeight: 'bold',
-					mb: '8',
+					mb: '4',
 					textAlign: { base: 'start', md: 'center' },
-					ml: { base: '8' },
+					ml: { base: '2' },
 					height: '30px',
 				})}
 			>
@@ -66,27 +66,28 @@ function Trend() {
 				className={css({
 					display: 'grid',
 					gridTemplateColumns: {
-						base: 'repeat(1, minmax(280px, 1fr))', // 모바일: 1줄에 1-2개
+						base: 'repeat(1, minmax(100vw, 1fr))', // 모바일: 1줄에 1-2개
 						md: 'repeat(2, minmax(320px, 1fr))',
-						xl: 'repeat(2, minmax(480px, 1fr))',
+						xl: 'repeat(3, minmax(480px, 1fr))',
 						'2xl': 'repeat(3, minmax(480px, 1fr))',
 					},
-					gap: { base: '2', md: '4', '2xl': '3' },
+					gap: { base: '0', md: '4', '2xl': '2' },
 					// width: 'calc(100% + 12px)',
-					width: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
-					marginLeft: '-6px',
-					justifyItems: 'center',
-					justifyContent: 'space-evenly',
+					width: { base: '100%', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
+					justifyItems: { base: 'flex-start', md: 'center' },
+					justifyContent: { base: 'flex-start', '2xl': 'space-evenly' },
+					// alignSelf: { base: 'flex-start', '2xl': 'center' },
+					alignSelf: 'center',
 					// justifyItems: 'start',
 					// alignItems: 'center',
 					// alignContent: 'center',
-					maxWidth: '80vw',
+					maxWidth: { base: '100vw', md: '80vw' },
 					// maxWidth: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
 					height: '600px',
 					// mx: 'auto',
 					mx: { base: '0, 6px', md: 'auto' },
 					overflowX: 'hidden',
-					overflowY: { base: 'auto', '2xl': 'hidden' }, // 모바일에서 스크롤 가능
+					overflowY: { base: 'auto', '2xl': 'hidden' },
 					scrollbar: 'hidden',
 					WebkitOverflowScrolling: 'touch',
 					scrollSnapType: 'none',
@@ -98,11 +99,13 @@ function Trend() {
 					<div
 						key={item.id}
 						className={css({
+							ml: { base: '3', md: '0' },
 							bg: 'white',
 							mt: '4',
+							mb: '4',
 							minH: '350px',
-							width: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
-							maxWidth: '480px',
+							width: { base: '80vw', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
+							maxWidth: '80vw',
 							height: { base: '350px', md: '360px' },
 							borderRadius: 'xl',
 							overflow: 'hidden',
@@ -117,7 +120,7 @@ function Trend() {
 							className={css({
 								width: '100%',
 								bgSize: 'cover',
-								height: '200px',
+								height: 'calc(58% - 2px)',
 								objectFit: 'cover',
 							})}
 						/>
@@ -161,7 +164,7 @@ function Trend() {
 					</div>
 				))}
 			</div>
-			<div className={flex({ justify: 'center', mt: '6' })}>
+			<div className={flex({ justify: 'center', mt: '4' })}>
 				<button
 					className={css({
 						px: '6',
