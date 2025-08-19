@@ -70,7 +70,8 @@ function Trend() {
 					height: '400px',
 					mx: 'auto',
 					overflowX: 'hidden',
-					overflowY: { base: 'auto', md: 'hidden' }, // 모바일에서 스크롤 가능
+					overflowY: { base: 'auto', xl: 'hidden' }, // 모바일에서 스크롤 가능
+					scrollbar: 'hidden',
 				})}
 			>
 				{trends.map((item) => (
@@ -80,6 +81,7 @@ function Trend() {
 							bg: 'white',
 							minH: '350px',
 							width: { base: '100vw', md: 'calc(100% - 12px)' },
+							maxWidth: '640px',
 							height: { base: '400px', md: '360px' },
 							borderRadius: 'xl',
 							overflow: 'hidden',
