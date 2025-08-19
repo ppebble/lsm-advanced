@@ -13,5 +13,6 @@ npm install
 
 ## start
 ```bash
+npm prepare (husky&&panda generate)
 npm run dev
 ```
