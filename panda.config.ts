@@ -40,8 +40,5 @@ export default defineConfig({
 		':lang(en)': {
 			'--font-sans': '{fonts.sans}',
 		},
-		a: {
-			textDecoration: 'none',
-		},
 	},
 });
