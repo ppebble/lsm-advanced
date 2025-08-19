@@ -3,6 +3,7 @@ import { flex } from 'styled-system/patterns';
 import bed01 from '@assets/img/bed01.jpg';
 import bed02 from '@assets/img/bed02.jpg';
 import bed03 from '@assets/img/bed03.jpg';
+import { Link, useNavigate } from 'react-router-dom';
 
 export type TrendProps = {
 	id: string;
@@ -21,35 +22,40 @@ const trends: TrendProps[] = [
 		color: 'gray.800',
 		img: bed01,
 		likes: 15,
-		company: '',
+		company: 'A',
+		location: '서울 광진구',
 	},
 	{
 		id: '123',
-		title: '소형 원룸을 넓어 보이게 리모델링',
+		title: '트렌드 아이템 2',
 		color: 'gray.800',
 		img: bed02,
 		likes: 15,
-		company: '',
+		company: 'B',
+		location: '경기도 수원시',
 	},
 	{
-		id: '123',
-		title: '소형 원룸을 넓어 보이게 리모델링',
+		id: '456',
+		title: '트렌드 아이템 3',
 		color: 'gray.800',
 		img: bed03,
 		likes: 15,
-		company: '',
+		company: 'C',
+		location: '전라북도 전주시',
 	},
 ];
 
 function Trend() {
+	const navigate = useNavigate();
 	return (
 		<>
 			<h2
 				className={css({
-					fontSize: '2xl',
+					fontSize: { base: 'xl', md: '2xl' },
 					fontWeight: 'bold',
-					mb: '8',
-					textAlign: 'center',
+					mb: '4',
+					textAlign: { base: 'start', md: 'center' },
+					ml: { base: '2' },
 					height: '30px',
 				})}
 			>
@@ -60,27 +66,47 @@ function Trend() {
 				className={css({
 					display: 'grid',
 					gridTemplateColumns: {
-						base: 'repeat(1, minmax(280px, 1fr))', // 모바일: 1줄에 1-2개
+						base: 'repeat(1, minmax(100vw, 1fr))', // 모바일: 1줄에 1-2개
 						md: 'repeat(2, minmax(320px, 1fr))',
-						xl: 'repeat(auto-fit, minmax(320px, 1fr))',
+						xl: 'repeat(3, minmax(480px, 1fr))',
+						'2xl': 'repeat(3, minmax(480px, 1fr))',
 					},
-					gap: '6',
-					width: '100%',
-					maxWidth: '1440px',
-					height: '400px',
-					mx: 'auto',
+					gap: { base: '0', md: '4', '2xl': '2' },
+					// width: 'calc(100% + 12px)',
+					width: { base: '100%', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
+					justifyItems: { base: 'flex-start', md: 'center' },
+					justifyContent: { base: 'flex-start', '2xl': 'space-evenly' },
+					// alignSelf: { base: 'flex-start', '2xl': 'center' },
+					alignSelf: 'center',
+					// justifyItems: 'start',
+					// alignItems: 'center',
+					// alignContent: 'center',
+					maxWidth: { base: '100vw', md: '80vw' },
+					// maxWidth: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
+					height: '600px',
+					// mx: 'auto',
+					mx: { base: '0, 6px', md: 'auto' },
 					overflowX: 'hidden',
-					overflowY: { base: 'auto', md: 'hidden' }, // 모바일에서 스크롤 가능
+					overflowY: { base: 'auto', '2xl': 'hidden' },
+					scrollbar: 'hidden',
+					WebkitOverflowScrolling: 'touch',
+					scrollSnapType: 'none',
+					willChange: 'transform',
+					scrollBehavior: 'smooth',
 				})}
 			>
 				{trends.map((item) => (
 					<div
 						key={item.id}
 						className={css({
+							ml: { base: '3', md: '0' },
 							bg: 'white',
+							mt: '4',
+							mb: '4',
 							minH: '350px',
-							width: { base: '100vw', md: 'calc(100% - 12px)' },
-							height: { base: '400px', md: '360px' },
+							width: { base: '80vw', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
+							maxWidth: '80vw',
+							height: { base: '350px', md: '360px' },
 							borderRadius: 'xl',
 							overflow: 'hidden',
 							border: '1px solid token(colors.gray.200)',
@@ -94,7 +120,7 @@ function Trend() {
 							className={css({
 								width: '100%',
 								bgSize: 'cover',
-								height: '200px',
+								height: 'calc(58% - 2px)',
 								objectFit: 'cover',
 							})}
 						/>
@@ -125,9 +151,11 @@ function Trend() {
 										bg: 'blue.500',
 										color: 'white',
 										borderRadius: 'full',
+										border: 'none',
 										fontSize: 'sm',
-										_hover: { bg: 'blue.600' },
+										_hover: { bg: 'blue.600', cursor: 'pointer' },
 									})}
+									onClick={() => navigate(`/trend/${item.id}`)}
 								>
 									상세보기
 								</button>
@@ -136,16 +164,19 @@ function Trend() {
 					</div>
 				))}
 			</div>
-			<div className={flex({ justify: 'center', mt: '6' })}>
+			<div className={flex({ justify: 'center', mt: '4' })}>
 				<button
 					className={css({
 						px: '6',
 						border: '1px solid token(colors.gray.300)',
 						borderRadius: 'full',
 						fontWeight: 'medium',
-						_hover: { bg: 'gray.100' },
+						_hover: { bg: 'gray.100', cursor: 'pointer' },
 						height: '40px',
 					})}
+					onClick={() => {
+						navigate('/trends');
+					}}
 				>
 					더 많은 사례 보기 →
 				</button>

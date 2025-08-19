@@ -29,11 +29,8 @@ function Home() {
 				{/* 트렌드 섹션 ( 추가 ) */}
 				<section
 					className={flex({
-						height: { base: '400px', md: '600px' }, // maxHeight → height
-						minHeight: '500px', // 최소 높이 보장
 						flexDirection: 'column',
 						position: 'relative', // 자식 요소 제어용
-						overflow: 'hidden', // 내용물 넘침 방지
 					})}
 				>
 					<Trend />
@@ -54,6 +51,7 @@ function Home() {
 					className={css({
 						mx: 'auto',
 						py: { base: '8', md: '16' },
+						width: '100vw',
 						px: { base: '4', md: '6' },
 					})}
 				>

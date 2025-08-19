@@ -15,11 +15,11 @@ function CategoryItem({ category }: { category: Category }) {
 				},
 				position: 'relative',
 				aspectRatio: '1/1',
-				minWidth: {
-					base: '140px',
-					md: '160px',
-					lg: '180px',
-				},
+				// minWidth: {
+				// 	base: '140px',
+				// 	md: '160px',
+				// 	lg: '180px',
+				// },
 				width: '100%',
 				zIndex: isActive ? '20' : 'auto',
 				transform: 'none',
@@ -84,7 +84,7 @@ function CategoryItem({ category }: { category: Category }) {
 					<div
 						className={css({
 							position: 'absolute',
-							width: '150%',
+							width: '101%',
 							minH: '200px',
 							height: `calc(${category.subCategories.length} * 48px + 80px)`, // 동적 높이 계산
 							maxHeight: {
@@ -114,13 +114,15 @@ function CategoryItem({ category }: { category: Category }) {
 							gap: '8px',
 						})}
 					>
-						<div
+						<Link
+							to={category.route}
 							className={css({
 								display: 'flex',
 								alignItems: 'center',
+								_hover: { bg: 'gray.100' },
 								gap: '12px',
 								pb: '8px',
-								borderBottom: '1px solid #f3f4f6', // 구분선
+								borderBottom: '1px solid #f3f4f6',
 							})}
 						>
 							<div
@@ -144,7 +146,7 @@ function CategoryItem({ category }: { category: Category }) {
 							>
 								{category.name}
 							</span>
-						</div>
+						</Link>
 						{category.subCategories.map((sub) => (
 							<Link
 								key={sub.id}
