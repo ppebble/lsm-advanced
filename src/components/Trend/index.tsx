@@ -68,7 +68,7 @@ function Trend() {
 					gridTemplateColumns: {
 						base: 'repeat(1, minmax(100vw, 1fr))', // 모바일: 1줄에 1-2개
 						md: 'repeat(2, minmax(320px, 1fr))',
-						xl: 'repeat(3, minmax(480px, 1fr))',
+						xl: 'repeat(2, minmax(480px, 1fr))',
 						'2xl': 'repeat(3, minmax(480px, 1fr))',
 					},
 					gap: { base: '0', md: '4', '2xl': '2' },
@@ -81,7 +81,7 @@ function Trend() {
 					// justifyItems: 'start',
 					// alignItems: 'center',
 					// alignContent: 'center',
-					maxWidth: { base: '100vw', md: '80vw' },
+					maxWidth: { base: '100vw', md: '80vw', '2xl': '90vw' },
 					// maxWidth: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
 					height: '600px',
 					// mx: 'auto',
