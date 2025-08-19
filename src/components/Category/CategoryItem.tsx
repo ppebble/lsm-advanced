@@ -114,13 +114,15 @@ function CategoryItem({ category }: { category: Category }) {
 							gap: '8px',
 						})}
 					>
-						<div
+						<Link
+							to={category.route}
 							className={css({
 								display: 'flex',
 								alignItems: 'center',
+								_hover: { bg: 'gray.100' },
 								gap: '12px',
 								pb: '8px',
-								borderBottom: '1px solid #f3f4f6', // 구분선
+								borderBottom: '1px solid #f3f4f6',
 							})}
 						>
 							<div
@@ -144,7 +146,7 @@ function CategoryItem({ category }: { category: Category }) {
 							>
 								{category.name}
 							</span>
-						</div>
+						</Link>
 						{category.subCategories.map((sub) => (
 							<Link
 								key={sub.id}
