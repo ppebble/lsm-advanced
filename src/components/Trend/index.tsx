@@ -3,6 +3,7 @@ import { flex } from 'styled-system/patterns';
 import bed01 from '@assets/img/bed01.jpg';
 import bed02 from '@assets/img/bed02.jpg';
 import bed03 from '@assets/img/bed03.jpg';
+import { Link, useNavigate } from 'react-router-dom';
 
 export type TrendProps = {
 	id: string;
@@ -21,7 +22,8 @@ const trends: TrendProps[] = [
 		color: 'gray.800',
 		img: bed01,
 		likes: 15,
-		company: '',
+		company: 'A',
+		location: '서울 광진구',
 	},
 	{
 		id: '123',
@@ -29,7 +31,8 @@ const trends: TrendProps[] = [
 		color: 'gray.800',
 		img: bed02,
 		likes: 15,
-		company: '',
+		company: 'B',
+		location: '경기도 수원시',
 	},
 	{
 		id: '456',
@@ -37,11 +40,13 @@ const trends: TrendProps[] = [
 		color: 'gray.800',
 		img: bed03,
 		likes: 15,
-		company: '',
+		company: 'C',
+		location: '전라북도 전주시',
 	},
 ];
 
 function Trend() {
+	const navigate = useNavigate();
 	return (
 		<>
 			<h2
@@ -66,16 +71,17 @@ function Trend() {
 						xl: 'repeat(2, minmax(480px, 1fr))',
 						'2xl': 'repeat(3, minmax(480px, 1fr))',
 					},
-					gap: { base: '2', md: '4', lg: '6' },
-					width: 'calc(100% + 12px)',
+					gap: { base: '2', md: '4', '2xl': '3' },
+					// width: 'calc(100% + 12px)',
+					width: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
 					marginLeft: '-6px',
 					justifyItems: 'center',
 					justifyContent: 'space-evenly',
 					// justifyItems: 'start',
-
 					// alignItems: 'center',
 					// alignContent: 'center',
-					maxWidth: '1580px',
+					maxWidth: '80vw',
+					// maxWidth: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
 					height: '600px',
 					// mx: 'auto',
 					mx: { base: '0, 6px', md: 'auto' },
@@ -93,8 +99,9 @@ function Trend() {
 						key={item.id}
 						className={css({
 							bg: 'white',
+							mt: '4',
 							minH: '350px',
-							width: { base: '350px', md: 'calc(100% - 24px)', lg: 'calc(100% - 12px)' },
+							width: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
 							maxWidth: '480px',
 							height: { base: '350px', md: '360px' },
 							borderRadius: 'xl',
@@ -141,9 +148,11 @@ function Trend() {
 										bg: 'blue.500',
 										color: 'white',
 										borderRadius: 'full',
+										border: 'none',
 										fontSize: 'sm',
-										_hover: { bg: 'blue.600' },
+										_hover: { bg: 'blue.600', cursor: 'pointer' },
 									})}
+									onClick={() => navigate(`/trend/${item.id}`)}
 								>
 									상세보기
 								</button>
@@ -159,9 +168,12 @@ function Trend() {
 						border: '1px solid token(colors.gray.300)',
 						borderRadius: 'full',
 						fontWeight: 'medium',
-						_hover: { bg: 'gray.100' },
+						_hover: { bg: 'gray.100', cursor: 'pointer' },
 						height: '40px',
 					})}
+					onClick={() => {
+						navigate('/trends');
+					}}
 				>
 					더 많은 사례 보기 →
 				</button>
