@@ -24,7 +24,7 @@
 		"preview": "vite preview --mode dev",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"prepare": "husky&&panda codegen"
+		"prepare": "husky&&panda generate"
 	},
 	"eslintConfig": {
 		"extends": [
