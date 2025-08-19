@@ -18,8 +18,8 @@ type SubCategory = {
 	route: string;
 };
 const iconStyle = css({
-	width: '128px',
-	height: '128px',
+	width: '40px',
+	height: '40px',
 	strokeWidth: '1.5',
 	color: 'blue.500',
 });
@@ -111,12 +111,12 @@ function Category() {
 		<>
 			<div
 				className={css({
-					display: 'grid',
+					display: { base: 'none', md: 'grid' },
 					gridTemplateColumns: {
-						base: 'repeat(auto-fit, minmax(140px, 1fr))', // 모바일: 더 작은 최소값
-						md: 'repeat(auto-fit, minmax(160px, 1fr))', // 태블릿
-						lg: 'repeat(auto-fit, minmax(180px, 1fr))', // 데스크탑
-						'2xl': 'repeat(7, minmax(180px, 1fr))', // 2xl
+						base: 'repeat(auto-fit, minmax(100px, 1fr))', // 모바일: 더 작은 최소값
+						md: 'repeat(auto-fit, minmax(120px, 1fr))', // 태블릿
+						lg: 'repeat(auto-fit, minmax(140px, 1fr))', // 데스크탑
+						'2xl': 'repeat(7, minmax(140px, 1fr))', // 2xl
 					},
 					gridAutoFlow: 'row',
 					overflow: 'visible',
