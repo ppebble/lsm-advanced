@@ -25,15 +25,15 @@ const trends: TrendProps[] = [
 	},
 	{
 		id: '123',
-		title: '소형 원룸을 넓어 보이게 리모델링',
+		title: '트렌드 아이템 2',
 		color: 'gray.800',
 		img: bed02,
 		likes: 15,
 		company: '',
 	},
 	{
-		id: '123',
-		title: '소형 원룸을 넓어 보이게 리모델링',
+		id: '456',
+		title: '트렌드 아이템 3',
 		color: 'gray.800',
 		img: bed03,
 		likes: 15,
@@ -46,10 +46,11 @@ function Trend() {
 		<>
 			<h2
 				className={css({
-					fontSize: '2xl',
+					fontSize: { base: 'xl', md: '2xl' },
 					fontWeight: 'bold',
 					mb: '8',
-					textAlign: 'center',
+					textAlign: { base: 'start', md: 'center' },
+					ml: { base: '8' },
 					height: '30px',
 				})}
 			>
@@ -62,16 +63,29 @@ function Trend() {
 					gridTemplateColumns: {
 						base: 'repeat(1, minmax(280px, 1fr))', // 모바일: 1줄에 1-2개
 						md: 'repeat(2, minmax(320px, 1fr))',
-						xl: 'repeat(auto-fit, minmax(320px, 1fr))',
+						xl: 'repeat(2, minmax(480px, 1fr))',
+						'2xl': 'repeat(3, minmax(480px, 1fr))',
 					},
-					gap: '6',
-					width: '100%',
-					maxWidth: '1440px',
-					height: '400px',
-					mx: 'auto',
+					gap: { base: '2', md: '4', lg: '6' },
+					width: 'calc(100% + 12px)',
+					marginLeft: '-6px',
+					justifyItems: 'center',
+					justifyContent: 'space-evenly',
+					// justifyItems: 'start',
+
+					// alignItems: 'center',
+					// alignContent: 'center',
+					maxWidth: '1580px',
+					height: '600px',
+					// mx: 'auto',
+					mx: { base: '0, 6px', md: 'auto' },
 					overflowX: 'hidden',
-					overflowY: { base: 'auto', xl: 'hidden' }, // 모바일에서 스크롤 가능
+					overflowY: { base: 'auto', '2xl': 'hidden' }, // 모바일에서 스크롤 가능
 					scrollbar: 'hidden',
+					WebkitOverflowScrolling: 'touch',
+					scrollSnapType: 'none',
+					willChange: 'transform',
+					scrollBehavior: 'smooth',
 				})}
 			>
 				{trends.map((item) => (
@@ -80,9 +94,9 @@ function Trend() {
 						className={css({
 							bg: 'white',
 							minH: '350px',
-							width: { base: '100vw', md: 'calc(100% - 12px)' },
-							maxWidth: '640px',
-							height: { base: '400px', md: '360px' },
+							width: { base: '350px', md: 'calc(100% - 24px)', lg: 'calc(100% - 12px)' },
+							maxWidth: '480px',
+							height: { base: '350px', md: '360px' },
 							borderRadius: 'xl',
 							overflow: 'hidden',
 							border: '1px solid token(colors.gray.200)',

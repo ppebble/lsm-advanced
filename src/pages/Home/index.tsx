@@ -54,6 +54,7 @@ function Home() {
 					className={css({
 						mx: 'auto',
 						py: { base: '8', md: '16' },
+						width: '100vw',
 						px: { base: '4', md: '6' },
 					})}
 				>
