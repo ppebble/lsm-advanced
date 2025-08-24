@@ -20,7 +20,7 @@ function Home() {
 				{/* 메인 배너 섹션 */}
 				<section
 					className={css({
-						mt: { base: '60px', md: '80px' },
+						// mt: { base: '60px', md: '80px' },
 						height: { base: '300px', md: '500px' },
 					})}
 				>
