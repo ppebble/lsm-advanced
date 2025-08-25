@@ -10,6 +10,18 @@ export default defineConfig({
 					primary: { value: '#0FEE0F' },
 					secondary: { value: '#EE0F0F' },
 				},
+				fonts: {
+					sans: { value: 'Noto Sans KR, system-ui, sans-serif' },
+				},
+				fontWeights: {
+					thin: { value: '100' },
+					light: { value: '300' },
+					demilight: { value: '350' },
+					normal: { value: '400' },
+					medium: { value: '500' },
+					bold: { value: '700' },
+					black: { value: '900' },
+				},
 			},
 			breakpoints: {
 				sm: '640px',
@@ -20,19 +32,11 @@ export default defineConfig({
 			},
 		},
 	},
-
-	// ▼ 모든 유틸리티 클래스 강제 생성
 	staticCss: {
 		css: [
 			{
 				properties: {
-					// ▼ 필수: 사용할 모든 CSS 속성 범위 지정
-					color: ['*'],
-					fontSize: ['*'],
-					backgroundColor: ['*'],
-					fontFamily: ['*'],
-					minHeight: ['*'],
-					// ... 기타 필요한 속성
+					fontWeight: ['100', '300', '350', '400', '500', '700', '900'],
 				},
 			},
 		],
@@ -40,11 +44,9 @@ export default defineConfig({
 
 	// ▼ 글로벌 CSS 주입 (선택)
 	globalCss: {
-		':lang(ko)': {
-			fontFamily: '{fonts.sansKr}',
-		},
-		':lang(en)': {
-			'--font-sans': '{fonts.sans}',
+		body: {
+			fontFamily: 'var(--font-noto-sans-kr)',
+			fontWeight: '400',
 		},
 	},
 });
