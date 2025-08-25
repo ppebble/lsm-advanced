@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 import CategoryItem from './CategoryItem';
+import { categoryStyles } from './styles';
 
 export type Category = {
 	id: string;
@@ -109,39 +110,7 @@ function Category() {
 
 	return (
 		<>
-			<div
-				className={css({
-					display: { base: 'none', md: 'grid' },
-					gridTemplateColumns: {
-						base: 'repeat(auto-fit, minmax(100px, 1fr))', // 모바일: 더 작은 최소값
-						md: 'repeat(auto-fit, minmax(120px, 1fr))', // 태블릿
-						lg: 'repeat(auto-fit, minmax(140px, 1fr))', // 데스크탑
-						'2xl': 'repeat(7, minmax(140px, 1fr))', // 2xl
-					},
-					gridAutoFlow: 'row',
-					overflow: 'visible',
-					justifyItems: 'stretch',
-					gap: {
-						base: '16px',
-						md: '24px',
-						lg: '32px', // 원하는 간격으로 조정
-					},
-					width: '100%',
-					maxWidth: {
-						base: '100%',
-						lg: '1440px',
-					},
-					margin: {
-						base: '0',
-						lg: '0 auto',
-					},
-					padding: {
-						base: '12px 16px',
-						md: '20px 24px',
-						lg: '20px 32px', // 좌우 패딩 증가
-					},
-				})}
-			>
+			<div className={categoryStyles.categoryContainer}>
 				{categories.map((category) => (
 					<CategoryItem key={category.id} category={category} />
 				))}
