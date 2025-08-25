@@ -75,12 +75,14 @@ export const categoryStyles = {
 		zIndex: 10,
 	}),
 	main: css({
-		width: { base: '44px', md: '52px' },
-		height: { base: '44px', md: '52px' },
+		// width: { base: '44px', md: '64px' },
+		width: '100%',
+		height: { base: '44px', md: '64px' },
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center',
-		bg: 'blue.50',
+		justifyContent: 'flex-start',
+		gap: '12px',
+		// bg: 'blue.50',
 		borderRadius: 'full',
 		p: '2',
 	}),
@@ -96,7 +98,7 @@ export const categoryStyles = {
 			},
 			bg: 'white',
 			borderRadius: 'lg',
-			boxShadow: '2xl',
+			boxShadow: 'xl',
 			// transform: isActive
 			// 	? 'rotateX(0deg) translateZ(20px)'
 			// 	: 'rotateX(-90deg) translateZ(-50px)',
@@ -125,8 +127,8 @@ export const categoryStyles = {
 		borderBottom: '1px solid #f3f4f6',
 	}),
 	mainIcon: css({
-		width: '32px',
-		height: '32px',
+		width: '48px',
+		height: '48px',
 		bg: 'blue.50',
 		borderRadius: 'full',
 		display: 'flex',

@@ -46,7 +46,7 @@ function CategoryItem({ category }: { category: Category }) {
 								<span
 									className={css({
 										fontSize: { base: 'md', md: 'lg' },
-										fontWeight: 'medium',
+										fontWeight: 'light',
 										textAlign: 'center',
 										color: 'gray.800',
 									})}
