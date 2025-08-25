@@ -4,6 +4,7 @@ import bed01 from '@assets/img/bed01.jpg';
 import bed02 from '@assets/img/bed02.jpg';
 import bed03 from '@assets/img/bed03.jpg';
 import { Link, useNavigate } from 'react-router-dom';
+import { trendPatterns, trendStyles } from './styles';
 
 export type TrendProps = {
 	id: string;
@@ -47,114 +48,30 @@ const trends: TrendProps[] = [
 
 function Trend() {
 	const navigate = useNavigate();
+
 	return (
 		<>
-			<h2
-				className={css({
-					fontSize: { base: 'xl', md: '2xl' },
-					fontWeight: 'bold',
-					mb: '4',
-					textAlign: { base: 'start', md: 'center' },
-					ml: { base: '2' },
-					height: '30px',
-				})}
-			>
-				🏆 실시간 인기 시공 사례
-			</h2>
+			<h2 className={trendStyles.title}>🏆 실시간 인기 시공 사례</h2>
 
-			<div
-				className={css({
-					display: 'grid',
-					gridTemplateColumns: {
-						base: 'repeat(1, minmax(100vw, 1fr))', // 모바일: 1줄에 1-2개
-						md: 'repeat(2, minmax(320px, 1fr))',
-						xl: 'repeat(2, minmax(480px, 1fr))',
-						'2xl': 'repeat(3, minmax(480px, 1fr))',
-					},
-					gap: { base: '0', md: '4', '2xl': '2' },
-					// width: 'calc(100% + 12px)',
-					width: { base: '100%', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
-					justifyItems: { base: 'flex-start', md: 'center' },
-					justifyContent: { base: 'flex-start', '2xl': 'space-evenly' },
-					// alignSelf: { base: 'flex-start', '2xl': 'center' },
-					alignSelf: 'center',
-					// justifyItems: 'start',
-					// alignItems: 'center',
-					// alignContent: 'center',
-					maxWidth: { base: '100vw', md: '80vw', '2xl': '90vw' },
-					// maxWidth: { base: '350px', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
-					height: '600px',
-					// mx: 'auto',
-					mx: { base: '0, 6px', md: 'auto' },
-					overflowX: 'hidden',
-					overflowY: { base: 'auto', '2xl': 'hidden' },
-					scrollbar: 'hidden',
-					WebkitOverflowScrolling: 'touch',
-					scrollSnapType: 'none',
-					willChange: 'transform',
-					scrollBehavior: 'smooth',
-				})}
-			>
+			<div className={trendStyles.gridContainer}>
 				{trends.map((item) => (
-					<div
-						key={item.id}
-						className={css({
-							ml: { base: '3', md: '0' },
-							bg: 'white',
-							mt: '4',
-							mb: '4',
-							minH: '350px',
-							width: { base: '80vw', md: 'calc(100% - 24px)', '2xl': 'calc(100% - 12px)' },
-							maxWidth: '80vw',
-							height: { base: '350px', md: '360px' },
-							borderRadius: 'xl',
-							overflow: 'hidden',
-							border: '1px solid token(colors.gray.200)',
-							boxShadow: 'md',
-							transition: 'transform 0.2s',
-							_hover: { transform: 'translateY(-4px)' },
-						})}
-					>
-						<img
-							src={item.img}
-							className={css({
-								width: '100%',
-								bgSize: 'cover',
-								height: 'calc(58% - 2px)',
-								objectFit: 'cover',
-							})}
-						/>
+					<div key={item.id} className={trendStyles.card}>
+						<img src={item.img} className={trendStyles.image} />
 						<div className={css({ p: '4' })}>
-							<h3
-								className={css({
-									fontSize: 'lg',
-									fontWeight: 'bold',
-									mb: '2',
-									lineClamp: 2, // 2줄 이상 말줄임
-								})}
-							>
+							<h3 className={css({ fontSize: 'lg', fontWeight: 'bold', mb: '2', lineClamp: 2 })}>
 								{item.title}
 							</h3>
-							<div className={flex({ gap: '2', alignItems: 'center', mb: '2' })}>
+							<div className={trendPatterns.flexGap2}>
 								<span className={css({ color: 'gray.600', fontSize: 'sm' })}>
 									{item.company} · {item.location}
 								</span>
 							</div>
-							<div className={flex({ justifyContent: 'space-between' })}>
+							<div className={trendPatterns.flexBetween}>
 								<span className={css({ color: 'amber.600', fontWeight: 'bold' })}>
 									♥ {item.likes}
 								</span>
 								<button
-									className={css({
-										px: '3',
-										py: '1',
-										bg: 'blue.500',
-										color: 'white',
-										borderRadius: 'full',
-										border: 'none',
-										fontSize: 'sm',
-										_hover: { bg: 'blue.600', cursor: 'pointer' },
-									})}
+									className={trendStyles.detailButton}
 									onClick={() => navigate(`/trend/${item.id}`)}
 								>
 									상세보기
@@ -164,24 +81,14 @@ function Trend() {
 					</div>
 				))}
 			</div>
-			<div className={flex({ justify: 'center', mt: '4' })}>
-				<button
-					className={css({
-						px: '6',
-						border: '1px solid token(colors.gray.300)',
-						borderRadius: 'full',
-						fontWeight: 'medium',
-						_hover: { bg: 'gray.100', cursor: 'pointer' },
-						height: '40px',
-					})}
-					onClick={() => {
-						navigate('/trends');
-					}}
-				>
+
+			<div className={trendPatterns.flexCenter}>
+				<button className={trendStyles.moreButton} onClick={() => navigate('/trends')}>
 					더 많은 사례 보기 →
 				</button>
 			</div>
 		</>
 	);
 }
+
 export default Trend;

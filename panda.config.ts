@@ -5,6 +5,12 @@ export default defineConfig({
 	include: ['./src/**/*.{ts,tsx}'],
 	theme: {
 		extend: {
+			tokens: {
+				colors: {
+					primary: { value: '#0FEE0F' },
+					secondary: { value: '#EE0F0F' },
+				},
+			},
 			breakpoints: {
 				sm: '640px',
 				md: '768px',
