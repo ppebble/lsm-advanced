@@ -48,5 +48,33 @@ export default defineConfig({
 			fontFamily: 'var(--font-noto-sans-kr)',
 			fontWeight: '400',
 		},
+		a: {
+			textDecoration: 'none',
+			color: 'inherit',
+			_hover: {
+				textDecoration: 'none',
+			},
+			_focus: {
+				outline: 'none',
+			},
+		},
+		'a[href]': {
+			textDecoration: 'none',
+		},
+		'html, body': {
+			margin: 0,
+			padding: 0,
+			fontFamily: 'var(--font-noto-sans-kr)',
+		},
+		button: {
+			border: 'none',
+			background: 'none',
+			cursor: 'pointer',
+		},
+		'ul, ol': {
+			listStyle: 'none',
+			padding: 0,
+			margin: 0,
+		},
 	},
 });
