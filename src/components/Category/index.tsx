@@ -1,36 +1,16 @@
 import { Archive, Bath, Blinds, CookingPot, Grid2x2Plus, LampFloor, Sofa } from 'lucide-react';
-import { act, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 import CategoryItem from './CategoryItem';
 import { categoryStyles } from './styles';
-
-export type Category = {
-	id: string;
-	name: string;
-	subCategories?: SubCategory[];
-	route: string;
-	icon?: React.ReactNode;
-};
-type SubCategory = {
-	id: string;
-	name: string;
-	route: string;
-};
-const iconStyle = css({
-	width: '40px',
-	height: '40px',
-	strokeWidth: '1.5',
-	color: 'blue.500',
-});
+import { CategoryProps } from '@/assets/data/type';
+// import { categories } from '@/assets/data/psudoData';
 function Category() {
-	const categories: Category[] = [
+	const categories: CategoryProps[] = [
 		{
 			id: 'bathroom',
 			name: '욕실',
 			route: '/category/bathroom',
-			icon: <Bath className={iconStyle} />,
+			icon: <Bath className={categoryStyles.icon} />,
 			subCategories: [
 				{ id: 'tile', name: '타일', route: '/category/bathroom/tile' },
 				{ id: 'sink', name: '세면대', route: '/category/bathroom/sink' },
@@ -41,7 +21,7 @@ function Category() {
 		{
 			id: 'kitchen',
 			name: '주방',
-			icon: <CookingPot className={iconStyle} />,
+			icon: <CookingPot className={categoryStyles.icon} />,
 			route: '/category/kitchen',
 			subCategories: [
 				{ id: 'sink', name: '싱크대', route: '/category/kitchen/sink' },
@@ -53,7 +33,7 @@ function Category() {
 			id: 'living',
 			name: '주거공간',
 			route: '/category/living',
-			icon: <Sofa className={iconStyle} />,
+			icon: <Sofa className={categoryStyles.icon} />,
 			subCategories: [
 				{ id: 'wallpaper', name: '벽지/도배', route: '/category/living/wallpaper' },
 				{ id: 'flooring', name: '장판/마루', route: '/category/living/flooring' },
@@ -65,7 +45,7 @@ function Category() {
 			id: 'entrance',
 			name: '현관/창호',
 			route: '/category/entrance',
-			icon: <Blinds className={iconStyle} />,
+			icon: <Blinds className={categoryStyles.icon} />,
 			subCategories: [
 				{ id: 'door', name: '도어', route: '/category/entrance/door' },
 				{ id: 'sash', name: '샷시', route: '/category/entrance/sash' },
@@ -76,7 +56,7 @@ function Category() {
 			id: 'floor',
 			name: '바닥재',
 			route: '/category/floor',
-			icon: <Grid2x2Plus className={iconStyle} />,
+			icon: <Grid2x2Plus className={categoryStyles.icon} />,
 			subCategories: [
 				{ id: 'laminate', name: '장판', route: '/category/floor/laminate' },
 				{ id: 'wood', name: '마루', route: '/category/floor/wood' },
@@ -87,7 +67,7 @@ function Category() {
 		{
 			id: 'lighting',
 			name: '조명',
-			icon: <LampFloor className={iconStyle} />,
+			icon: <LampFloor className={categoryStyles.icon} />,
 			route: '/category/lighting',
 			subCategories: [
 				{ id: 'main', name: '메인 조명', route: '/category/lighting/main' },
@@ -98,7 +78,7 @@ function Category() {
 		{
 			id: 'storage',
 			name: '수납공간',
-			icon: <Archive className={iconStyle} />,
+			icon: <Archive className={categoryStyles.icon} />,
 			route: '/category/storage',
 			subCategories: [
 				{ id: 'closet', name: '붙박이장', route: '/category/storage/closet' },
@@ -107,7 +87,6 @@ function Category() {
 			],
 		},
 	];
-
 	return (
 		<>
 			<div className={categoryStyles.categoryContainer}>

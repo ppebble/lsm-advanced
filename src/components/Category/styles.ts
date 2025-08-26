@@ -1,5 +1,5 @@
+import { CategoryProps } from '@/assets/data/type';
 import { css } from 'styled-system/css';
-import { Category } from '.';
 
 export const categoryStyles = {
 	categoryContainer: css({
@@ -86,7 +86,7 @@ export const categoryStyles = {
 		borderRadius: 'full',
 		p: '2',
 	}),
-	dropdown: (options: { isActive?: boolean; category?: Category } = {}) =>
+	dropdown: (options: { isActive?: boolean; category?: CategoryProps } = {}) =>
 		css({
 			position: 'absolute',
 			width: '101%',
@@ -139,5 +139,11 @@ export const categoryStyles = {
 		padding: '8px 12px',
 		borderRadius: 'md',
 		_hover: { bg: 'gray.100' },
+	}),
+	icon: css({
+		width: '40px',
+		height: '40px',
+		strokeWidth: '1.5',
+		color: 'blue.500',
 	}),
 };
