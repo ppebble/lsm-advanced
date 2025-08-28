@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from 'styled-system/css';
-import { Category } from '.';
 import { categoryStyles } from './styles';
+import { CategoryProps } from '@/assets/data/type';
 
-function CategoryItem({ category }: { category: Category }) {
+function CategoryItem({ category }: { category: CategoryProps }) {
 	const [isActive, setIsActive] = useState(false);
 	return (
 		<div

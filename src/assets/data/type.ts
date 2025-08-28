@@ -14,11 +14,11 @@ export interface PortfolioItem {
 export type CategoryProps = {
 	id: string;
 	name: string;
-	subCategories?: SubCategory[];
+	subCategories?: SubCategoryType[];
 	route: string;
 	icon?: React.ReactNode;
 };
-export type SubCategory = {
+export type SubCategoryType = {
 	id: string;
 	name: string;
 	route: string;
