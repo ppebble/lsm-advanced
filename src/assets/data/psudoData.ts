@@ -1,0 +1,112 @@
+import { CategoryProps, CategoryType, InteriorStyle, PortfolioItem } from './type';
+
+export const portfolioItems: PortfolioItem[] = [
+	{
+		id: 'bed-001',
+		title: '소형 원룸 공간 활용 침실 리모델링',
+		description: '6평 원룸의 공간 최적화를 통한 수납과 휴식 공간 조성',
+		category: 'bed',
+		style: 'minimal',
+		images: [
+			{
+				id: 'img-1',
+				url: '/assets/img/bed03.jpg',
+				alt: '리모델링 후 침실 전경',
+				isPrimary: true,
+				type: 'after',
+			},
+			{
+				id: 'img-2',
+				url: '/assets/portfolio/bed-001-2.jpg',
+				alt: '리모델링 전 상태',
+				isPrimary: false,
+				type: 'before',
+			},
+		],
+		details: {
+			location: '서울시 강남구',
+			area: 6, // 평
+			period: '2주',
+			budget: 1200, // 만원
+			materials: ['합판', '스테인리스', 'LED 조명'],
+		},
+		metrics: {
+			likes: 245,
+			views: 1245,
+			shares: 34,
+			saves: 89,
+		},
+		company: {
+			id: 'co-123',
+			name: '공간연구소',
+			logo: '/assets/img/lr02.jpg',
+			rating: 4.8,
+			reviewCount: 127,
+		},
+		createdAt: '2024-01-15',
+		tags: ['소형평수', '수납최적화', '원룸'],
+	},
+	{
+		id: 'bath-001',
+		title: '프리미엄 타일로 재탄생한 욕실',
+		description: '고급 마블 타일과 스마트 바스루프를 적용한 모던 욕실',
+		category: 'bath',
+		style: 'modern',
+		images: [
+			{
+				id: 'img-3',
+				url: '/assets/img/bath02.jpg',
+				alt: '마블 타일이 적용된 욕실',
+				isPrimary: true,
+				type: 'after',
+			},
+		],
+		details: {
+			location: '경기도 성남시',
+			area: 3.5,
+			period: '3주',
+			budget: 2500,
+			materials: ['마블 타일', '스마트 미러', '인조대리석'],
+		},
+		metrics: {
+			likes: 412,
+			views: 2156,
+			shares: 67,
+			saves: 134,
+		},
+		company: {
+			id: 'co-456',
+			name: '바스루프',
+			rating: 4.9,
+			reviewCount: 89,
+		},
+		createdAt: '2024-02-03',
+		tags: ['프리미엄', '타일', '스마트홈'],
+	},
+	// 추가 아이템들...
+];
+
+// 카테고리 목록도 함께 export
+export const category: CategoryType[] = [
+	'all',
+	'bed',
+	'bath',
+	'kitchen',
+	'living',
+	'entrance',
+	'floor',
+	'lighting',
+	'storage',
+];
+
+// 인테리어 스타일 목록
+export const interiorStyles: InteriorStyle[] = [
+	'modern',
+	'minimal',
+	'scandinavian',
+	'industrial',
+	'vintage',
+	'natural',
+	'classic',
+	'contemporary',
+];
