@@ -52,7 +52,15 @@ export interface ImageData {
 	isPrimary: boolean;
 	type: 'before' | 'after' | 'process' | 'detail';
 }
-
+export type TrendProps = {
+	id: string;
+	title: string;
+	likes: number;
+	company: string;
+	location?: string;
+	color: string;
+	img?: string;
+};
 // 타입 정의
 export type CategoryType =
 	| 'all'

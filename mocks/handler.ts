@@ -1,5 +1,5 @@
+import { category, portfolioItems, trends } from '@/assets/data/psudoData';
 import { http, HttpResponse, delay } from 'msw';
-import { portfolioItems, trendItems, categories } from '@/data/psudoData';
 
 export const handlers = [
 	// 1. 포트폴리오 목록 조회 (지연 추가)
@@ -45,7 +45,7 @@ export const handlers = [
 
 		return HttpResponse.json({
 			success: true,
-			data: trendItems,
+			data: trends,
 		});
 	}),
 
@@ -73,7 +73,7 @@ export const handlers = [
 
 		return HttpResponse.json({
 			success: true,
-			data: categories,
+			data: category,
 		});
 	}),
 ];

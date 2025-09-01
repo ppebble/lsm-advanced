@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/fonts.css';
 import { worker } from '../mocks/browser';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 if (process.env.NODE_ENV === 'development') {
@@ -11,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 	});
 }
 root.render(
-	<React.StrictMode>
+	<BrowserRouter>
 		<App />
-	</React.StrictMode>,
+	</BrowserRouter>,
 );
