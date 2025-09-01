@@ -1,50 +1,8 @@
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
-import bed01 from '@assets/img/bed01.jpg';
-import bed02 from '@assets/img/bed02.jpg';
-import bed03 from '@assets/img/bed03.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { trendPatterns, trendStyles } from './styles';
-
-export type TrendProps = {
-	id: string;
-	title: string;
-	likes: number;
-	company: string;
-	location?: string;
-	color: string;
-	img?: string;
-};
-
-const trends: TrendProps[] = [
-	{
-		id: 'modern',
-		title: '소형 원룸을 넓어 보이게 리모델링',
-		color: 'gray.800',
-		img: bed01,
-		likes: 15,
-		company: 'A',
-		location: '서울 광진구',
-	},
-	{
-		id: '123',
-		title: '트렌드 아이템 2',
-		color: 'gray.800',
-		img: bed02,
-		likes: 15,
-		company: 'B',
-		location: '경기도 수원시',
-	},
-	{
-		id: '456',
-		title: '트렌드 아이템 3',
-		color: 'gray.800',
-		img: bed03,
-		likes: 15,
-		company: 'C',
-		location: '전라북도 전주시',
-	},
-];
+import { trends } from '@/assets/data/psudoData';
 
 function Trend() {
 	const navigate = useNavigate();
