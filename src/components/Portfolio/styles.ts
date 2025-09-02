@@ -4,12 +4,12 @@ export const portfolioStyles = {
 	container: css({
 		mx: 'auto',
 		py: { base: '8', md: '16' },
-		width: '100vw',
+		width: '95vw',
 		px: { base: '4', md: '6' },
 	}),
 	mainContainer: css({
 		borderBottom: '1px solid token(colors.gray.200)',
-		'&::-webkit-scrollbar': { display: 'none' }, // Chrome/Safari
+		'&::-webkit-scrollbar': { display: 'none' },
 		display: 'flex',
 		gap: '6',
 		mb: '8',
@@ -33,5 +33,32 @@ export const portfolioStyles = {
 		rounded: 'xl',
 		boxShadow: 'md',
 		width: '100%',
+		borderRadius: 'xl',
+		border: '1px solid white',
+		_hover: { transition: 'transform 0.4s ease', transform: 'scale(1.02)' },
+	}),
+	image: css({
+		borderRadius: 'xl',
+		border: '1px solid white',
+		height: '100%',
+		width: '100%',
+		objectFit: 'cover',
+	}),
+	descContainer: (isActive: boolean) =>
+		css({
+			padding: '16px',
+			textAlign: 'center',
+			transition: 'opacity 0.3s ease',
+			opacity: isActive ? 1 : 0,
+		}),
+	title: css({
+		fontSize: '1.5rem',
+		fontWeight: 'bold',
+		marginBottom: '8px',
+		color: 'gray.800',
+	}),
+	desc: css({
+		color: 'gray.600',
+		lineHeight: '1.5',
 	}),
 };
