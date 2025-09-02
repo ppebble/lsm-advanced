@@ -5,14 +5,18 @@ import './styles/fonts.css';
 import { worker } from '../mocks/browser';
 import { BrowserRouter } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-if (process.env.NODE_ENV === 'development') {
-	worker.start({
-		onUnhandledRequest: 'bypass', // MSW가 처리하지 않은 요청은 그대로 통과
-	});
+async function enableMocking() {
+	if (process.env.NODE_ENV !== 'development') {
+		return;
+	}
+
+	const { worker } = await import('../mocks/browser');
+	return worker.start();
 }
-root.render(
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>,
-);
+enableMocking().then(() => {
+	ReactDOM.createRoot(document.getElementById('root')!).render(
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>,
+	);
+});
