@@ -2,7 +2,7 @@ import { css } from 'styled-system/css';
 
 export const bannerStyles = {
 	mainImage: css({
-		bgImage: `url(@assets/img/id01.jpg)`,
+		bgImage: `url(@assets/img/batch_id01.webp)`,
 		bgSize: 'cover',
 		display: 'flex',
 		alignItems: 'center',

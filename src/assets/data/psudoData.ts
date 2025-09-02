@@ -1,12 +1,12 @@
 import { CategoryProps, CategoryType, InteriorStyle, PortfolioItem, TrendProps } from './type';
-import bed01 from '@assets/img/bed01.jpg';
-import bed02 from '@assets/img/bed02.jpg';
-import bed03 from '@assets/img/bed03.jpg';
-import lr01 from '@assets/img/lr01.jpg';
-import lr02 from '@assets/img/lr02.jpg';
-import lr03 from '@assets/img/lr03.jpg';
-import bath01 from '@assets/img/bath01.jpg';
-import bath02 from '@assets/img/bath02.jpg';
+import bed01 from '@assets/img/batch_bed01.webp';
+import bed02 from '@assets/img/batch_bed02.webp';
+import bed03 from '@assets/img/batch_bed03.webp';
+import lr01 from '@assets/img/batch_lr01.webp';
+import lr02 from '@assets/img/batch_lr02.webp';
+import bath01 from '@assets/img/batch_bath01.webp';
+import bath02 from '@assets/img/batch_bath02.webp';
+import kc01 from '@assets/img/batch_kc01.webp';
 
 export const portfolioItems: PortfolioItem[] = [
 	{
@@ -397,7 +397,7 @@ export const trends: TrendProps[] = [
 		id: '3',
 		title: '트렌드 아이템 3',
 		color: 'gray.800',
-		img: lr03,
+		img: kc01,
 		likes: 15,
 		company: 'C',
 		location: '전라북도 전주시',
