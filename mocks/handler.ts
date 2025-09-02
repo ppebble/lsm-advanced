@@ -2,13 +2,13 @@ import { category, portfolioItems, trends } from '@/assets/data/psudoData';
 import { http, HttpResponse, delay } from 'msw';
 
 export const handlers = [
-	// 1. 포트폴리오 목록 조회 (지연 추가)
+	// 1. 포트폴리오 목록 조회
 	http.get('/api/portfolio', async ({ request }) => {
 		const url = new URL(request.url);
 		const category = url.searchParams.get('category');
 
-		// 네트워크 지연 (0.5-1.5초)
-		await delay(Math.random() * 1000 + 500);
+		// 네트워크 지연 설정
+		await delay(Math.random() * 1000 + 100);
 
 		const filteredItems =
 			category && category !== 'all'
@@ -49,7 +49,7 @@ export const handlers = [
 		});
 	}),
 
-	// 4. 좋아요 증가 (POST 요청)
+	// 4. 좋아요 증가
 	http.post('/api/portfolio/:id/like', async ({ params }) => {
 		await delay(300);
 

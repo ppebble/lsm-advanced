@@ -84,6 +84,8 @@ export const trendStyles = {
 		fontWeight: 'medium',
 		_hover: { bg: 'gray.100', cursor: 'pointer' },
 		height: '40px',
+		bg: 'blue.500',
+		color: 'white',
 	}),
 };
 
