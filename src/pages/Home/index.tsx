@@ -15,6 +15,7 @@ function Home() {
 					maxWidth: '100vw',
 					gap: '24px', // 섹션 간 간격 고정
 					overflowX: 'hidden',
+					bgColor: 'gray.50',
 				})}
 			>
 				{/* 메인 배너 섹션 */}
