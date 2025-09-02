@@ -1,18 +1,44 @@
 import { css } from 'styled-system/css';
 import { portfolioStyles } from './styles';
-import { category, portfolioItems } from '@/assets/data/psudoData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PortfolioDesc } from './PortfolioDesc';
 import { Link } from 'react-router-dom';
+import { ApiResponse, CategoryType, PortfolioItem } from '@/assets/data/type';
+import CategoryItem from '../Category/CategoryItem';
 
 function Portfolio() {
 	const [activeItem, setActiveItem] = useState<number | null>(null);
+
+	const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+	const [categories, setCategories] = useState<CategoryType[]>([]);
+	const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
+	const [loading, setLoading] = useState<boolean>(true);
+	const [error, setError] = useState<String | null>(null);
+
+	useEffect(() => {
+		const fetchCategories = async () => {
+			try {
+				const res = await fetch('/api/categories');
+				if (!res.ok) {
+					throw new Error('카테고리를 불러오는데 실패했습니다.');
+				}
+				const result: ApiResponse<CategoryType[]> = await res.json();
+				if (result) {
+					console.log(result);
+					setCategories(result.data);
+				}
+			} catch (err: any) {
+				setError(err.messsage);
+			}
+		};
+		fetchCategories();
+	}, []);
 
 	return (
 		<>
 			<div className={portfolioStyles.container}>
 				<div className={portfolioStyles.mainContainer}>
-					{category.map((tab) => {
+					{categories.map((tab) => {
 						return (
 							<button key={tab} className={portfolioStyles.tabfolderContainer}>
 								{tab}
