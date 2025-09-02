@@ -52,6 +52,13 @@ export interface ImageData {
 	isPrimary: boolean;
 	type: 'before' | 'after' | 'process' | 'detail';
 }
+
+export interface ApiResponse<T> {
+	success: boolean;
+	data: T;
+	total?: number;
+}
+
 export type TrendProps = {
 	id: string;
 	title: string;
