@@ -88,9 +88,7 @@ function Navigation() {
 					</div>
 				</div>
 			</nav>
-			<div>
-				<Outlet />
-			</div>
+			<Outlet />
 		</>
 	);
 }

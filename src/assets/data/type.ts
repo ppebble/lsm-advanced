@@ -53,6 +53,21 @@ export interface ImageData {
 	type: 'before' | 'after' | 'process' | 'detail';
 }
 
+export interface ApiResponse<T> {
+	success: boolean;
+	data: T;
+	total?: number;
+}
+
+export type TrendProps = {
+	id: string;
+	title: string;
+	likes: number;
+	company: string;
+	location?: string;
+	color: string;
+	img?: string;
+};
 // 타입 정의
 export type CategoryType =
 	| 'all'
