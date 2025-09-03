@@ -10,7 +10,7 @@ interface PortfolioProps {
 
 export function PortfolioDesc({ id, title, desc, isActive }: PortfolioProps) {
 	return (
-		<div className={portfolioStyles.descContainer(isActive)}>
+		<div className={portfolioStyles.descCard(isActive)}>
 			<p className={portfolioStyles.title}>{title}</p>
 			<p className={portfolioStyles.desc}>{desc}</p>
 		</div>

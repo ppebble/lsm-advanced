@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { PortfolioDesc } from './PortfolioDesc';
 import { Link } from 'react-router-dom';
 import { ApiResponse, CategoryType, PortfolioItem } from '@/assets/data/type';
-import CategoryItem from '../Category/CategoryItem';
 
 function Portfolio() {
 	const [activeItem, setActiveItem] = useState<number | null>(null);
@@ -25,6 +24,7 @@ function Portfolio() {
 				const result: ApiResponse<CategoryType[]> = await res.json();
 				if (result) {
 					console.log(result);
+					console.log(res);
 					setCategories(result.data);
 				}
 			} catch (err: any) {
@@ -33,6 +33,38 @@ function Portfolio() {
 		};
 		fetchCategories();
 	}, []);
+	useEffect(() => {
+		const fetchPortfolioItems = async () => {
+			setLoading(true);
+			setError(null);
+
+			try {
+				const url =
+					selectedCategory === 'all'
+						? '/api/portfolio'
+						: `/api/portfolio?category=${encodeURIComponent(selectedCategory)}`;
+				const res = await fetch(url);
+
+				const result: ApiResponse<PortfolioItem[]> = await res.json();
+
+				if (result.success) {
+					setPortfolioItems(result.data);
+				} else {
+					throw new Error('포트폴리오 조회에 실패했습니다.');
+				}
+			} catch (err) {
+				setError('PortfolioItem Error');
+				console.error('포트폴리오 조회 중 오류:', err);
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchPortfolioItems();
+	}, [selectedCategory]);
+
+	const handleCategoryChange = (category: CategoryType) => {
+		setSelectedCategory(category);
+	};
 
 	return (
 		<>
@@ -40,7 +72,11 @@ function Portfolio() {
 				<div className={portfolioStyles.mainContainer}>
 					{categories.map((tab) => {
 						return (
-							<button key={tab} className={portfolioStyles.tabfolderContainer}>
+							<button
+								key={tab}
+								onClick={() => handleCategoryChange(tab)}
+								className={portfolioStyles.tabfolderContainer}
+							>
 								{tab}
 							</button>
 						);
@@ -71,31 +107,15 @@ function Portfolio() {
 									})}
 								>
 									<img
-										className={css({
-											height: '100%',
-											width: '100%',
-											objectFit: 'cover',
-											borderRadius: 'xl',
-										})}
+										className={portfolioStyles.image}
 										src={item.images[0].url}
 										alt={item.images[0].alt}
 									/>
 								</div>
-
 								<div
-									className={css({
-										position: 'absolute',
-										top: 0,
-										left: 0,
-										width: '100%',
-										height: '100%',
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-										backgroundColor: activeItem === i ? 'rgba(255, 255, 255, 0.9)' : 'transparent',
-										transition: 'background-color 0.3s ease',
-										pointerEvents: 'none',
-									})}
+									className={portfolioStyles.descContainer.concat(
+										"backgroundColor: activeItem === i ? 'rgba(255, 255, 255, 0.9)' : 'transparent',",
+									)}
 								>
 									{activeItem === i && (
 										<PortfolioDesc
