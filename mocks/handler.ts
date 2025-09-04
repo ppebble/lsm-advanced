@@ -8,17 +8,41 @@ export const handlers = [
 		const category = url.searchParams.get('category');
 
 		// 네트워크 지연 설정
-		await delay(Math.random() * 1000 + 100);
+		await delay(Math.random() * 1 + 100);
 
 		const filteredItems =
 			category && category !== 'all'
 				? portfolioItems.filter((item) => item.category === category)
 				: portfolioItems;
-
 		return HttpResponse.json({
 			success: true,
 			data: filteredItems,
 			total: filteredItems.length,
+		});
+	}),
+	// 메인 페이지의 포트폴리오 목록 간소화하여 return
+	http.get('/api/portfolio/thumbnails', async ({ request }) => {
+		const url = new URL(request.url);
+		const category = url.searchParams.get('category');
+
+		// 네트워크 지연 설정
+		await delay(Math.random() * 1 + 100);
+
+		const filteredItems =
+			category && category !== 'all'
+				? portfolioItems.filter((item) => item.category === category)
+				: portfolioItems;
+		const data = filteredItems.map((e) => ({
+			id: e.id,
+			title: e.title,
+			description: e.description,
+			images: e.images[0].url,
+		}));
+
+		return HttpResponse.json({
+			success: true,
+			data: data,
+			total: data.length,
 		});
 	}),
 

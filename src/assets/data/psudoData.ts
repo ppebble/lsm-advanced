@@ -1,4 +1,4 @@
-import { CategoryProps, CategoryType, InteriorStyle, PortfolioItem, TrendProps } from './type';
+import { CategoryType, InteriorStyle, PortfolioItem, TrendProps } from './type';
 import batch_bath01 from '@assets/img/batch_bath01.webp';
 import batch_bath02 from '@assets/img/batch_bath02.webp';
 import batch_bed01 from '@assets/img/batch_bed01.webp';
@@ -767,7 +767,7 @@ export const portfolioItems: PortfolioItem[] = [
 		category: 'bed',
 		style: 'classic',
 		images: [
-			{ id: 'img-1', url: batch_bed01, alt: '게스트 침실 전경', isPrimary: true, type: 'after' },
+			{ id: 'img-1', url: batch_bed02, alt: '게스트 침실 전경', isPrimary: true, type: 'after' },
 			{ id: 'img-2', url: batch_bed03, alt: '기존 침실 상태', isPrimary: false, type: 'before' },
 		],
 		details: {
