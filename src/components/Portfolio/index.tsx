@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react';
 import { PortfolioDesc } from './PortfolioDesc';
 import { Link } from 'react-router-dom';
 import { ApiResponse, CategoryType, PortfolioItem } from '@/assets/data/type';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 function Portfolio() {
+	// const { ref } = useIntersectionObserver();
+	const refCallback = useIntersectionObserver();
 	const [activeItem, setActiveItem] = useState<number | null>(null);
 
 	const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
@@ -23,8 +26,6 @@ function Portfolio() {
 				}
 				const result: ApiResponse<CategoryType[]> = await res.json();
 				if (result) {
-					console.log(result);
-					console.log(res);
 					setCategories(result.data);
 				}
 			} catch (err: any) {
@@ -41,8 +42,8 @@ function Portfolio() {
 			try {
 				const url =
 					selectedCategory === 'all'
-						? '/api/portfolio'
-						: `/api/portfolio?category=${encodeURIComponent(selectedCategory)}`;
+						? '/api/portfolio/thumbnails'
+						: `/api/portfolio/thumbnails?category=${encodeURIComponent(selectedCategory)}`;
 				const res = await fetch(url);
 
 				const result: ApiResponse<PortfolioItem[]> = await res.json();
@@ -107,9 +108,11 @@ function Portfolio() {
 									})}
 								>
 									<img
+										// ref={ref}
+										ref={refCallback}
 										className={portfolioStyles.image}
-										src={item.images[0].url}
-										alt={item.images[0].alt}
+										data-src={item.images}
+										alt={'Loading . . .'}
 									/>
 								</div>
 								<div
