@@ -35,7 +35,6 @@ export const useIntersectionObserver = () => {
 			}
 		}
 	}, []);
-	console.log(observe);
 
 	return observe;
 };

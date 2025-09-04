@@ -65,7 +65,7 @@ export const handlers = [
 
 	// 3. 트렌드 목록 조회
 	http.get('/api/trends', async () => {
-		await delay(600);
+		await delay(200);
 
 		return HttpResponse.json({
 			success: true,
