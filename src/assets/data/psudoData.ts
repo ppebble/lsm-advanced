@@ -1,5 +1,12 @@
 import { categoryStyles } from '@/components/Category/styles';
-import { CategoryProps, CategoryMainType, InteriorStyle, PortfolioItem, TrendProps } from './type';
+import {
+	CategoryProps,
+	CategoryMainType,
+	InteriorStyle,
+	PortfolioItem,
+	TrendProps,
+	BannerItems,
+} from './type';
 import batch_bath01 from '@assets/img/batch_bath01.webp';
 import batch_bath02 from '@assets/img/batch_bath02.webp';
 import batch_bed01 from '@assets/img/batch_bed01.webp';
@@ -15,6 +22,8 @@ import batch_kc04 from '@assets/img/batch_kc04.webp';
 import batch_kc05 from '@assets/img/batch_kc05.webp';
 import batch_lr01 from '@assets/img/batch_lr01.webp';
 import batch_lr02 from '@assets/img/batch_lr02.webp';
+import banner01 from '@assets/img/batch_banner01.webp';
+import banner02 from '@assets/img/batch_banner-discount.webp';
 
 export const portfolioItems: PortfolioItem[] = [
 	{
@@ -815,6 +824,18 @@ export const interiorStyles: InteriorStyle[] = [
 	'natural',
 	'classic',
 	'contemporary',
+];
+export const bannerItems: BannerItems[] = [
+	{
+		id: 'banner1',
+		images: banner01,
+		tags: ['banner', 'ad'],
+	},
+	{
+		id: 'banner2',
+		images: banner02,
+		tags: ['banner', 'discount'],
+	},
 ];
 
 export const trends: TrendProps[] = [

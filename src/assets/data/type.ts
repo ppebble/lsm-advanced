@@ -11,6 +11,11 @@ export interface PortfolioItem {
 	createdAt: string;
 	tags: string[];
 }
+export type BannerItems = {
+	id: string;
+	images: string;
+	tags: string[];
+};
 export type CategoryProps = {
 	id: string;
 	name: string;
