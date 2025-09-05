@@ -1,5 +1,5 @@
 import { categories } from '@/assets/data/categories';
-import { mainCategory, portfolioItems, trends } from '@/assets/data/psudoData';
+import { bannerItems, mainCategory, portfolioItems, trends } from '@/assets/data/psudoData';
 import { http, HttpResponse, delay } from 'msw';
 
 export const handlers = [
@@ -108,6 +108,15 @@ export const handlers = [
 		return HttpResponse.json({
 			success: true,
 			data: categories,
+		});
+	}),
+	// 6. 배너 이미지
+	http.get('/api/banners', async () => {
+		await delay(200);
+
+		return HttpResponse.json({
+			success: true,
+			data: bannerItems,
 		});
 	}),
 ];
