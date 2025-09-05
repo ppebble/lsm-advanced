@@ -1,5 +1,5 @@
 import { categoryStyles } from '@/components/Category/styles';
-import { CategoryProps, CategoryType, InteriorStyle, PortfolioItem, TrendProps } from './type';
+import { CategoryProps, CategoryMainType, InteriorStyle, PortfolioItem, TrendProps } from './type';
 import batch_bath01 from '@assets/img/batch_bath01.webp';
 import batch_bath02 from '@assets/img/batch_bath02.webp';
 import batch_bed01 from '@assets/img/batch_bed01.webp';
@@ -793,7 +793,7 @@ export const portfolioItems: PortfolioItem[] = [
 ];
 
 // 카테고리 목록도 함께 export
-export const category: CategoryType[] = [
+export const mainCategory: CategoryMainType[] = [
 	'all',
 	'bed',
 	'bath',

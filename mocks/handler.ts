@@ -1,4 +1,5 @@
-import { category, portfolioItems, trends } from '@/assets/data/psudoData';
+import { categories } from '@/assets/data/categories';
+import { mainCategory, portfolioItems, trends } from '@/assets/data/psudoData';
 import { http, HttpResponse, delay } from 'msw';
 
 export const handlers = [
@@ -91,13 +92,22 @@ export const handlers = [
 		});
 	}),
 
-	// 5. 카테고리 목록
+	// 5. 메인카테고리 목록
+	http.get('/api/main-categories', async () => {
+		await delay(200);
+
+		return HttpResponse.json({
+			success: true,
+			data: mainCategory,
+		});
+	}),
+	// 5. 전체카테고리 목록
 	http.get('/api/categories', async () => {
 		await delay(200);
 
 		return HttpResponse.json({
 			success: true,
-			data: category,
+			data: categories,
 		});
 	}),
 ];

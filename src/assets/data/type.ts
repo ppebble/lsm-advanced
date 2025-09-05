@@ -2,7 +2,7 @@ export interface PortfolioItem {
 	id: string;
 	title: string;
 	description: string;
-	category: CategoryType;
+	category: CategoryMainType;
 	style: InteriorStyle;
 	images: ImageData[];
 	details: ItemDetails;
@@ -69,7 +69,7 @@ export type TrendProps = {
 	img?: string;
 };
 // 타입 정의
-export type CategoryType =
+export type CategoryMainType =
 	| 'all'
 	| 'bed'
 	| 'bath'

@@ -3,7 +3,7 @@ import { portfolioStyles } from './styles';
 import { useEffect, useState } from 'react';
 import { PortfolioDesc } from './PortfolioDesc';
 import { Link } from 'react-router-dom';
-import { ApiResponse, CategoryType, PortfolioItem } from '@/assets/data/type';
+import { ApiResponse, CategoryMainType, PortfolioItem } from '@/assets/data/type';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 function Portfolio() {
@@ -12,19 +12,19 @@ function Portfolio() {
 	const [activeItem, setActiveItem] = useState<number | null>(null);
 
 	const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
-	const [categories, setCategories] = useState<CategoryType[]>([]);
-	const [selectedCategory, setSelectedCategory] = useState<CategoryType>('all');
+	const [categories, setCategories] = useState<CategoryMainType[]>([]);
+	const [selectedCategory, setSelectedCategory] = useState<CategoryMainType>('all');
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<String | null>(null);
 
 	useEffect(() => {
-		const fetchCategories = async () => {
+		const fetchMainCategories = async () => {
 			try {
-				const res = await fetch('/api/categories');
+				const res = await fetch('/api/main-categories');
 				if (!res.ok) {
 					throw new Error('카테고리를 불러오는데 실패했습니다.');
 				}
-				const result: ApiResponse<CategoryType[]> = await res.json();
+				const result: ApiResponse<CategoryMainType[]> = await res.json();
 				if (result) {
 					setCategories(result.data);
 				}
@@ -32,7 +32,7 @@ function Portfolio() {
 				setError(err.messsage);
 			}
 		};
-		fetchCategories();
+		fetchMainCategories();
 	}, []);
 	useEffect(() => {
 		const fetchPortfolioItems = async () => {
@@ -63,7 +63,7 @@ function Portfolio() {
 		fetchPortfolioItems();
 	}, [selectedCategory]);
 
-	const handleCategoryChange = (category: CategoryType) => {
+	const handleCategoryChange = (category: CategoryMainType) => {
 		setSelectedCategory(category);
 	};
 
