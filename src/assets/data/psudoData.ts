@@ -1,4 +1,5 @@
-import { CategoryType, InteriorStyle, PortfolioItem, TrendProps } from './type';
+import { categoryStyles } from '@/components/Category/styles';
+import { CategoryProps, CategoryType, InteriorStyle, PortfolioItem, TrendProps } from './type';
 import batch_bath01 from '@assets/img/batch_bath01.webp';
 import batch_bath02 from '@assets/img/batch_bath02.webp';
 import batch_bed01 from '@assets/img/batch_bed01.webp';
@@ -14,6 +15,7 @@ import batch_kc04 from '@assets/img/batch_kc04.webp';
 import batch_kc05 from '@assets/img/batch_kc05.webp';
 import batch_lr01 from '@assets/img/batch_lr01.webp';
 import batch_lr02 from '@assets/img/batch_lr02.webp';
+import { Archive, Bath, Blinds, CookingPot, Grid2x2Plus, LampFloor, Sofa } from 'lucide-react';
 
 export const portfolioItems: PortfolioItem[] = [
 	{
