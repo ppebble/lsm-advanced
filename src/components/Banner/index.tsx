@@ -1,6 +1,29 @@
 import { css } from 'styled-system/css';
 import { bannerStyles } from './styles';
+import { useEffect, useState } from 'react';
+import { ApiResponse, BannerItems } from '@/assets/data/type';
 function Banner() {
+	const [loading, setLoading] = useState<boolean>(true);
+	const [error, setError] = useState<String | null>(null);
+	const [bannerItems, setBannerItems] = useState<BannerItems[]>([]);
+	useEffect(() => {
+		const fetchBanners = async () => {
+			try {
+				const res = await fetch('/api/banners');
+				if (!res.ok) {
+					throw new Error('배너 이미지 조회에 실패했습니다');
+				}
+				const result: ApiResponse<BannerItems[]> = await res.json();
+				if (result) {
+					setBannerItems(result.data);
+				}
+			} catch (err: any) {
+				setError(err.messsage);
+			}
+		};
+		fetchBanners();
+	}, []);
+
 	return (
 		<>
 			<div className={bannerStyles.mainImage}>
