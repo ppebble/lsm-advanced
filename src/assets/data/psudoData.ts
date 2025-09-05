@@ -15,7 +15,6 @@ import batch_kc04 from '@assets/img/batch_kc04.webp';
 import batch_kc05 from '@assets/img/batch_kc05.webp';
 import batch_lr01 from '@assets/img/batch_lr01.webp';
 import batch_lr02 from '@assets/img/batch_lr02.webp';
-import { Archive, Bath, Blinds, CookingPot, Grid2x2Plus, LampFloor, Sofa } from 'lucide-react';
 
 export const portfolioItems: PortfolioItem[] = [
 	{
