@@ -7,7 +7,8 @@ export const categories: CategoryProps[] = [
 		id: 'bath',
 		name: '욕실',
 		route: '/category/bathroom',
-		icon: <Bath className={categoryStyles.icon} />,
+		// icon: [<Bath className={categoryStyles.icon} />],
+		icon: 'Bath',
 		subCategories: [
 			{ id: 'tile', name: '타일', route: '/category/bathroom/tile' },
 			{ id: 'sink', name: '세면대', route: '/category/bathroom/sink' },
@@ -18,7 +19,8 @@ export const categories: CategoryProps[] = [
 	{
 		id: 'kitchen',
 		name: '주방',
-		icon: <CookingPot className={categoryStyles.icon} />,
+		// icon: <CookingPot className={categoryStyles.icon} />,
+		icon: 'CookingPot',
 		route: '/category/kitchen',
 		subCategories: [
 			{ id: 'sink', name: '싱크대', route: '/category/kitchen/sink' },
@@ -30,7 +32,8 @@ export const categories: CategoryProps[] = [
 		id: 'living',
 		name: '주거공간',
 		route: '/category/living',
-		icon: <Sofa className={categoryStyles.icon} />,
+		// icon: <Sofa className={categoryStyles.icon} />,
+		icon: 'Sofa',
 		subCategories: [
 			{ id: 'wallpaper', name: '벽지/도배', route: '/category/living/wallpaper' },
 			{ id: 'flooring', name: '장판/마루', route: '/category/living/flooring' },
@@ -42,7 +45,8 @@ export const categories: CategoryProps[] = [
 		id: 'entrance',
 		name: '현관/창호',
 		route: '/category/entrance',
-		icon: <Blinds className={categoryStyles.icon} />,
+		// icon: <Blinds className={categoryStyles.icon} />,
+		icon: 'Blinds',
 		subCategories: [
 			{ id: 'door', name: '도어', route: '/category/entrance/door' },
 			{ id: 'sash', name: '샷시', route: '/category/entrance/sash' },
@@ -53,7 +57,8 @@ export const categories: CategoryProps[] = [
 		id: 'floor',
 		name: '바닥재',
 		route: '/category/floor',
-		icon: <Grid2x2Plus className={categoryStyles.icon} />,
+		// icon: <Grid2x2Plus className={categoryStyles.icon} />,
+		icon: 'Grid2x2Plus',
 		subCategories: [
 			{ id: 'laminate', name: '장판', route: '/category/floor/laminate' },
 			{ id: 'wood', name: '마루', route: '/category/floor/wood' },
@@ -64,7 +69,8 @@ export const categories: CategoryProps[] = [
 	{
 		id: 'lighting',
 		name: '조명',
-		icon: <LampFloor className={categoryStyles.icon} />,
+		// icon: <LampFloor className={categoryStyles.icon} />,
+		icon: 'LampFloor',
 		route: '/category/lighting',
 		subCategories: [
 			{ id: 'main', name: '메인 조명', route: '/category/lighting/main' },
@@ -75,7 +81,8 @@ export const categories: CategoryProps[] = [
 	{
 		id: 'storage',
 		name: '수납공간',
-		icon: <Archive className={categoryStyles.icon} />,
+		// icon: <Archive className={categoryStyles.icon} />,
+		icon: 'Archive',
 		route: '/category/storage',
 		subCategories: [
 			{ id: 'closet', name: '붙박이장', route: '/category/storage/closet' },

@@ -16,7 +16,7 @@ export type CategoryProps = {
 	name: string;
 	subCategories?: SubCategoryType[];
 	route: string;
-	icon?: React.ReactNode;
+	icon?: string;
 };
 export type SubCategoryType = {
 	id: string;
