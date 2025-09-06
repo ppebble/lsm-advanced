@@ -8,9 +8,10 @@ export const bannerStyles = {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: { base: '50vh', md: '50vh' },
+		height: { base: '50vh', md: '500px' },
 		width: { base: '100vw', md: '80vw' },
 		marginX: 'auto',
+		pt: '1.5rem',
 	}),
 	slideContainer: css({
 		flex: '0 0 100%',
