@@ -86,6 +86,7 @@ export const trendStyles = {
 		height: '40px',
 		bg: 'blue.500',
 		color: 'white',
+		alignContent: 'center',
 	}),
 };
 
