@@ -1,29 +1,55 @@
 import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 export const bannerStyles = {
 	mainImage: css({
-		bgImage: `url(@assets/img/batch_id01.webp)`,
-		bgSize: 'cover',
+		position: 'relative',
+		overflow: 'hidden',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		color: 'white',
-		textAlign: 'center',
+		height: { base: '50vh', md: '500px' },
+		width: { base: '100vw', md: '80vw' },
+		marginX: 'auto',
+		pt: '1.5rem',
+	}),
+	slideContainer: css({
+		flex: '0 0 100%',
+		width: '100%',
+		height: '100%',
+		position: 'relative',
+	}),
+	slideImage: css({
+		width: '80vw',
 		height: { base: '300px', md: '500px' },
+		// objectFit: 'cover',
+		userSelect: 'none',
+		pointerEvents: 'auto',
+		WebkitUserSelect: 'none',
 	}),
-	mainPhrase: css({
-		fontSize: { base: '3xl', md: '5xl' },
-		fontWeight: 'bold',
-		textShadow: '0 2px 4px rgba(0,0,0,0.5)',
-		color: 'gray.200',
-	}),
-	btnInquiry: css({
-		mt: '6',
-		px: '6',
-		py: '3',
-		bg: 'orange.500',
+	arrowBtn: (options: { side: 'left' | 'right' }) =>
+		css({
+			position: 'absolute',
+			top: '50%',
+			transform: 'translateY(-50%)',
+			zIndex: 10,
+			bg: 'rgba(0,0,0,0.4)',
+			color: 'white',
+			rounded: 'full',
+			p: '2',
+			cursor: 'pointer',
+			_hover: { bg: 'rgba(0,0,0,0.6)' },
+			...(options.side === 'left' ? { left: '4' } : { right: '4' }),
+		}),
+	counter: css({
+		position: 'absolute',
+		bottom: '3',
+		right: '4',
+		fontSize: 'sm',
+		bg: 'rgba(0,0,0,0.5)',
 		color: 'white',
-		rounded: 'md',
-		_hover: { bg: 'orange.600' },
+		px: '2',
+		py: '1',
+		rounded: 'sm',
 	}),
 };
