@@ -17,14 +17,17 @@ export const portfolioStyles = {
 	}),
 	tabfolderContainer: css({
 		flexShrink: '0',
+		bgColor: 'blue.500',
+		color: 'gray.200',
+		roundedTop: '2xl',
 		padding: { base: '8px 16px', md: '12px 24px' },
 		borderBottom: '2px solid transparent',
-		_hover: { borderColor: 'gray.400' },
+		_hover: { borderColor: 'gray.400', bgColor: 'blue.700' },
 		_selected: { borderColor: 'amber.500', fontWeight: 'bold' },
 	}),
 	itemContainer: css({
 		display: 'grid',
-		gridTemplateColumns: { base: '1fr', md: 'repeat(6, 1fr)' },
+		gridTemplateColumns: { base: '1fr', md: 'repeat(4, 1fr)' },
 		gap: { base: '4', md: '6' },
 	}),
 	item: css({

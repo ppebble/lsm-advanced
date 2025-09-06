@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { css } from 'styled-system/css';
 import { categoryStyles } from './styles';
 import { CategoryProps } from '@/assets/data/type';
+import { categoryIconMap } from '@/assets/data/icons';
 
 function CategoryItem({ category }: { category: CategoryProps }) {
+	const Icon = categoryIconMap[category.icon ?? ''];
 	const [isActive, setIsActive] = useState(false);
 	return (
 		<div
@@ -15,7 +17,9 @@ function CategoryItem({ category }: { category: CategoryProps }) {
 			<div className={categoryStyles.cardContainer}>
 				{/* 카테고리 카드 (앞면) */}
 				<div className={categoryStyles.card}>
-					<div className={categoryStyles.mainIcon}>{category.icon}</div>
+					<div className={categoryStyles.mainIcon}>
+						{Icon && <Icon className={categoryStyles.icon} />}
+					</div>
 					<span
 						className={css({
 							fontSize: { base: 'md', md: 'lg' },
@@ -31,7 +35,9 @@ function CategoryItem({ category }: { category: CategoryProps }) {
 				{isActive && category.subCategories && (
 					<div className={categoryStyles.dropdown({ isActive, category })}>
 						<Link to={category.route} className={categoryStyles.main}>
-							<div className={categoryStyles.mainIcon}>{category.icon}</div>
+							<div className={categoryStyles.mainIcon}>
+								{Icon && <Icon className={categoryStyles.icon} />}
+							</div>
 							<span
 								className={css({
 									fontWeight: 'bold',
