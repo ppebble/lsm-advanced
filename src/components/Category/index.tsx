@@ -8,8 +8,8 @@ function Category() {
 	return (
 		<>
 			<div className={categoryStyles.categoryContainer}>
-				{categories &&
-					categories.map((category: CategoryProps) => (
+				{categories.data &&
+					categories.data.map((category: CategoryProps) => (
 						<CategoryItem key={category.id} category={category} />
 					))}
 			</div>

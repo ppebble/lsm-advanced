@@ -8,6 +8,6 @@ import Slider from './Slider';
 function Banner() {
 	const bannerItems = useFetch<BannerItems[]>({ url: '/api/banners' });
 
-	return <>{bannerItems && <Slider bannerItems={bannerItems} />}</>;
+	return <>{bannerItems.data && <Slider bannerItems={bannerItems.data} />}</>;
 }
 export default Banner;

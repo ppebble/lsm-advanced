@@ -1,36 +1,5 @@
 import { ApiResponse } from '@/assets/data/type';
-
-type Status = 'pending' | 'success' | 'error';
-
-function createResource<T>(promise: Promise<T>) {
-	let status: Status = 'pending';
-	let result: T;
-	let error: any;
-
-	const suspender = promise.then(
-		(res) => {
-			status = 'success';
-			result = res;
-		},
-		(err) => {
-			status = 'error';
-			error = err;
-		},
-	);
-
-	return {
-		read(): T {
-			if (status === 'pending') {
-				throw suspender; // Suspense fallback으로 이동
-			} else if (status === 'error') {
-				throw error; // ErrorBoundary fallback으로 이동
-			}
-			return result!;
-		},
-	};
-}
-
-const resourceCache = new Map<string, ReturnType<typeof createResource<any>>>();
+import { useEffect, useRef, useState } from 'react';
 
 interface UseFetchParams {
 	url: string | null;
@@ -39,23 +8,60 @@ interface UseFetchParams {
 }
 
 export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
-	if (!url || !enabled) {
-		throw new Promise(() => {}); // Suspense에 걸리지 않도록 noop Promise
-	}
+	const [data, setData] = useState<T | null>(null);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError] = useState<string | null>(null);
 
-	if (!resourceCache.has(url)) {
-		const fetchPromise = fetch(url, options)
-			.then((res) => {
+	useEffect(() => {
+		if (!url || !enabled) return;
+
+		const fetchData = async () => {
+			setLoading(true);
+			setError(null);
+
+			try {
+				const res = await fetch(url, options);
+
 				if (!res.ok) {
 					throw new Error(`Fetch 실패: ${res.status}`);
 				}
-				return res.json() as Promise<ApiResponse<T>>;
-			})
-			.then((json) => json.data);
 
-		resourceCache.set(url, createResource<T>(fetchPromise));
-	}
+				const result: ApiResponse<T> = await res.json();
+				setData(result.data);
+			} catch (err: any) {
+				setError(err.message ?? 'Unknown error');
+			} finally {
+				setLoading(false);
+			}
+		};
 
-	const resource = resourceCache.get(url)!;
-	return resource.read();
+		fetchData();
+	}, [url]);
+
+	return { data, loading, error };
+}
+
+//---- Promise return 방식------------------------
+
+export function useFetch2<T>({ url, options, enabled = true }: UseFetchParams) {
+	const promiseRef = useRef<Promise<T> | null>(null);
+
+	useEffect(() => {
+		if (!url || !enabled) return;
+
+		const controller = new AbortController();
+		const signal = controller.signal;
+
+		promiseRef.current = fetch(url, { ...options, signal }).then(async (res) => {
+			if (!res.ok) throw new Error(`Fetch 실패: ${res.status}`);
+			const result: ApiResponse<T> = await res.json();
+			return result.data;
+		});
+
+		return () => {
+			controller.abort();
+		};
+	}, [url, options, enabled]);
+
+	return promiseRef.current;
 }

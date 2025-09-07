@@ -18,8 +18,8 @@ function Trend() {
 			<h2 className={trendStyles.title}>🏆 실시간 인기 시공 사례</h2>
 
 			<div className={trendStyles.gridContainer}>
-				{trendItems &&
-					trendItems.map((item: TrendProps) => (
+				{trendItems.data &&
+					trendItems.data.map((item) => (
 						<div key={item.id} className={trendStyles.card}>
 							<img
 								ref={refCallback}

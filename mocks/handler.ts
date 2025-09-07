@@ -27,7 +27,7 @@ export const handlers = [
 		const category = url.searchParams.get('category');
 
 		// 네트워크 지연 설정
-		await delay(Math.random() * 1 + 100);
+		await delay(Math.random() * 1 + 10000);
 
 		const filteredItems =
 			category && category !== 'all'

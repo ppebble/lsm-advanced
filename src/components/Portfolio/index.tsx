@@ -5,7 +5,7 @@ import { PortfolioDesc } from './PortfolioDesc';
 import { Link } from 'react-router-dom';
 import { ApiResponse, CategoryMainType, PortfolioItem } from '@/assets/data/type';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { useFetch } from '@/hooks/useFetch';
+import { useFetch, useFetch2 } from '@/hooks/useFetch';
 import { ErrorBoundary, Suspense } from '@suspensive/react';
 import { ErrorFallback, LoadingFallback } from '../common/fallback';
 
@@ -16,8 +16,30 @@ function Portfolio() {
 	const [selectedCategory, setSelectedCategory] = useState<CategoryMainType>('all');
 	const [url, setUrl] = useState<string>('');
 
-	const categories = useFetch<CategoryMainType[]>({ url: '/api/main-categories' });
-	const portfolioItems = useFetch<PortfolioItem[]>({ url: url });
+	const fetchCategories = useFetch2<CategoryMainType[]>({ url: '/api/main-categories' });
+	const fetchPortfolio = useFetch2<PortfolioItem[]>({ url: url });
+
+	const [categories, setCategories] = useState<CategoryMainType[]>([]);
+	const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
+
+	// 카테고리 fetch
+	useEffect(() => {
+		if (!fetchCategories) return;
+
+		fetchCategories
+			.then((data) => setCategories(data))
+			.catch((err) => console.error('Category fetch error:', err));
+	}, [fetchCategories]);
+
+	// 포트폴리오 fetch
+	useEffect(() => {
+		if (!fetchPortfolio) return;
+
+		fetchPortfolio
+			.then((data) => setPortfolioItems(data))
+			.catch((err) => console.error('Portfolio fetch error:', err));
+	}, [fetchPortfolio]);
+
 	useEffect(() => {
 		setUrl(
 			selectedCategory === 'all'
