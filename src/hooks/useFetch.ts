@@ -1,7 +1,13 @@
 import { ApiResponse } from '@/assets/data/type';
 import { useEffect, useState } from 'react';
 
-export function useFetch<T>(url: string | null, options?: RequestInit) {
+interface UseFetchParams {
+	url: string | null;
+	options?: RequestInit;
+	enabled?: boolean;
+}
+
+export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
 	const [data, setData] = useState<T | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);

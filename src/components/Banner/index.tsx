@@ -6,7 +6,7 @@ import { useFetch } from '@/hooks/useFetch';
 import Slider from './Slider';
 
 function Banner() {
-	const { data: bannerItems, loading, error } = useFetch<BannerItems[]>('/api/banners');
+	const { data: bannerItems, loading, error } = useFetch<BannerItems[]>({ url: '/api/banners' });
 
 	return <>{bannerItems && <Slider bannerItems={bannerItems} />}</>;
 }
