@@ -14,31 +14,15 @@ function Portfolio() {
 	const refCallback = useIntersectionObserver();
 	const [activeItem, setActiveItem] = useState<number | null>(null);
 	const [selectedCategory, setSelectedCategory] = useState<CategoryMainType>('all');
-	const [url, setUrl] = useState<string>('');
+	const [url, setUrl] = useState<string>('/api/portfolio/thumbnails');
 
-	const fetchCategories = useFetch2<CategoryMainType[]>({ url: '/api/main-categories' });
-	const fetchPortfolio = useFetch2<PortfolioItem[]>({ url: url });
+	// const categories = useFetch2<CategoryMainType[]>({ url: '/api/main-categories' });
+	// const portfolioItems = useFetch2<PortfolioItem[]>({ url: url });
+	const categories = useFetch<CategoryMainType[]>({ url: '/api/main-categories' });
+	const portfolioItems = useFetch<PortfolioItem[]>({ url: url });
 
-	const [categories, setCategories] = useState<CategoryMainType[]>([]);
-	const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
-
-	// 카테고리 fetch
-	useEffect(() => {
-		if (!fetchCategories) return;
-
-		fetchCategories
-			.then((data) => setCategories(data))
-			.catch((err) => console.error('Category fetch error:', err));
-	}, [fetchCategories]);
-
-	// 포트폴리오 fetch
-	useEffect(() => {
-		if (!fetchPortfolio) return;
-
-		fetchPortfolio
-			.then((data) => setPortfolioItems(data))
-			.catch((err) => console.error('Portfolio fetch error:', err));
-	}, [fetchPortfolio]);
+	// const [categories, setCategories] = useState<CategoryMainType[]>([]);
+	// const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([]);
 
 	useEffect(() => {
 		setUrl(
@@ -58,8 +42,9 @@ function Portfolio() {
 				<Suspense fallback={<LoadingFallback />}>
 					<div className={portfolioStyles.container}>
 						<div className={portfolioStyles.mainContainer}>
-							{categories &&
-								categories.map((tab: CategoryMainType) => {
+							{categories.data &&
+								// categories.map((tab: CategoryMainType) => {
+								categories.data.map((tab: CategoryMainType) => {
 									return (
 										<button
 											key={tab}
@@ -72,8 +57,10 @@ function Portfolio() {
 								})}
 						</div>
 						<div className={portfolioStyles.itemContainer}>
-							{portfolioItems &&
-								portfolioItems.map((item: PortfolioItem, i: number) => (
+							{/* {portfolioItems && */}
+							{portfolioItems.data &&
+								portfolioItems.data.map((item: PortfolioItem, i: number) => (
+									// portfolioItems.map((item: PortfolioItem, i: number) => (
 									<div
 										key={i}
 										className={css({

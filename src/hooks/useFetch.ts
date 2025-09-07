@@ -45,23 +45,42 @@ export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
 
 export function useFetch2<T>({ url, options, enabled = true }: UseFetchParams) {
 	const promiseRef = useRef<Promise<T> | null>(null);
+	const statusRef = useRef<'pending' | 'success' | 'error'>('pending');
+	const resultRef = useRef<T | null>(null);
+	const errorRef = useRef<Error | null>(null);
 
 	useEffect(() => {
 		if (!url || !enabled) return;
 
-		const controller = new AbortController();
-		const signal = controller.signal;
-
-		promiseRef.current = fetch(url, { ...options, signal }).then(async (res) => {
-			if (!res.ok) throw new Error(`Fetch 실패: ${res.status}`);
-			const result: ApiResponse<T> = await res.json();
-			return result.data;
-		});
-
-		return () => {
-			controller.abort();
-		};
+		statusRef.current = 'pending';
+		promiseRef.current = fetch(url, { ...options })
+			.then(async (res) => {
+				if (!res.ok) throw new Error(`Fetch 실패: ${res.status}`);
+				const result: ApiResponse<T> = await res.json();
+				statusRef.current = 'success';
+				resultRef.current = result.data;
+				return result.data;
+			})
+			.catch((err) => {
+				statusRef.current = 'error';
+				errorRef.current = err;
+				throw err;
+			});
 	}, [url, options, enabled]);
 
-	return promiseRef.current;
+	if (!promiseRef.current) {
+		return null; // 또는 초기값 처리
+	}
+
+	// Suspense를 위한 처리
+	if (statusRef.current === 'pending') {
+		throw promiseRef.current;
+	}
+
+	// ErrorBoundary를 위한 처리
+	if (statusRef.current === 'error') {
+		throw errorRef.current;
+	}
+
+	return resultRef.current;
 }
