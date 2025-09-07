@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { ApiResponse, CategoryMainType, PortfolioItem } from '@/assets/data/type';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { useFetch } from '@/hooks/useFetch';
+import { ErrorBoundary, Suspense } from '@suspensive/react';
+import { ErrorFallback, LoadingFallback } from '../common/fallback';
 
 function Portfolio() {
 	// const { ref } = useIntersectionObserver();
@@ -14,16 +16,8 @@ function Portfolio() {
 	const [selectedCategory, setSelectedCategory] = useState<CategoryMainType>('all');
 	const [url, setUrl] = useState<string>('');
 
-	const {
-		data: categories,
-		loading: categoryLoading,
-		error: categoryError,
-	} = useFetch<CategoryMainType[]>({ url: '/api/main-categories' });
-	const {
-		data: portfolioItems,
-		loading: portfolioLoading,
-		error: portfolioError,
-	} = useFetch<PortfolioItem[]>({ url: url });
+	const categories = useFetch<CategoryMainType[]>({ url: '/api/main-categories' });
+	const portfolioItems = useFetch<PortfolioItem[]>({ url: url });
 	useEffect(() => {
 		setUrl(
 			selectedCategory === 'all'
@@ -38,73 +32,77 @@ function Portfolio() {
 
 	return (
 		<>
-			<div className={portfolioStyles.container}>
-				<div className={portfolioStyles.mainContainer}>
-					{categories &&
-						categories.map((tab) => {
-							return (
-								<button
-									key={tab}
-									onClick={() => handleCategoryChange(tab)}
-									className={portfolioStyles.tabfolderContainer}
-								>
-									{tab}
-								</button>
-							);
-						})}
-				</div>
-				<div className={portfolioStyles.itemContainer}>
-					{portfolioItems &&
-						portfolioItems.map((item, i) => (
-							<div
-								key={i}
-								className={css({
-									position: 'relative',
-									overflow: 'hidden',
-									borderRadius: 'xl',
-									height: '300px',
+			<ErrorBoundary fallback={ErrorFallback}>
+				<Suspense fallback={<LoadingFallback />}>
+					<div className={portfolioStyles.container}>
+						<div className={portfolioStyles.mainContainer}>
+							{categories &&
+								categories.map((tab: CategoryMainType) => {
+									return (
+										<button
+											key={tab}
+											onClick={() => handleCategoryChange(tab)}
+											className={portfolioStyles.tabfolderContainer}
+										>
+											{tab}
+										</button>
+									);
 								})}
-								onMouseEnter={() => setActiveItem(i)}
-								onMouseLeave={() => setActiveItem(null)}
-							>
-								<Link to={`/work/${item.id}`}>
+						</div>
+						<div className={portfolioStyles.itemContainer}>
+							{portfolioItems &&
+								portfolioItems.map((item: PortfolioItem, i: number) => (
 									<div
+										key={i}
 										className={css({
 											position: 'relative',
-											height: '100%',
-											width: '100%',
-											transition: 'all 0.3s ease',
-											opacity: activeItem === i ? 0.3 : 1,
-											filter: activeItem === i ? 'blur(2px)' : 'none',
+											overflow: 'hidden',
+											borderRadius: 'xl',
+											height: '300px',
 										})}
+										onMouseEnter={() => setActiveItem(i)}
+										onMouseLeave={() => setActiveItem(null)}
 									>
-										<img
-											// ref={ref}
-											ref={refCallback}
-											className={portfolioStyles.image}
-											data-src={item.images}
-											alt={'Loading . . .'}
-										/>
+										<Link to={`/work/${item.id}`}>
+											<div
+												className={css({
+													position: 'relative',
+													height: '100%',
+													width: '100%',
+													transition: 'all 0.3s ease',
+													opacity: activeItem === i ? 0.3 : 1,
+													filter: activeItem === i ? 'blur(2px)' : 'none',
+												})}
+											>
+												<img
+													// ref={ref}
+													ref={refCallback}
+													className={portfolioStyles.image}
+													data-src={item.images}
+													alt={'Loading . . .'}
+												/>
+											</div>
+											<div
+												className={portfolioStyles.descContainer.concat(
+													"backgroundColor: activeItem === i ? 'rgba(255, 255, 255, 0.9)' : 'transparent',",
+												)}
+											>
+												{activeItem === i && (
+													<PortfolioDesc
+														id={item.id}
+														desc={item.description}
+														title={item.title}
+														isActive={activeItem === i}
+													/>
+												)}
+											</div>
+										</Link>
 									</div>
-									<div
-										className={portfolioStyles.descContainer.concat(
-											"backgroundColor: activeItem === i ? 'rgba(255, 255, 255, 0.9)' : 'transparent',",
-										)}
-									>
-										{activeItem === i && (
-											<PortfolioDesc
-												id={item.id}
-												desc={item.description}
-												title={item.title}
-												isActive={activeItem === i}
-											/>
-										)}
-									</div>
-								</Link>
-							</div>
-						))}
-				</div>
-			</div>
+								))}
+						</div>
+					</div>
+				</Suspense>
+			</ErrorBoundary>
 		</>
 	);
 }

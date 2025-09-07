@@ -11,7 +11,7 @@ import { useFetch } from '@/hooks/useFetch';
 function Trend() {
 	// const { ref } = useIntersectionObserver();
 	const refCallback = useIntersectionObserver();
-	const { data: trendItems, loading, error } = useFetch<TrendProps[]>({ url: '/api/trends' });
+	const trendItems = useFetch<TrendProps[]>({ url: '/api/trends' });
 
 	return (
 		<>
@@ -19,7 +19,7 @@ function Trend() {
 
 			<div className={trendStyles.gridContainer}>
 				{trendItems &&
-					trendItems.map((item) => (
+					trendItems.map((item: TrendProps) => (
 						<div key={item.id} className={trendStyles.card}>
 							<img
 								ref={refCallback}

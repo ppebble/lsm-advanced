@@ -1,5 +1,36 @@
 import { ApiResponse } from '@/assets/data/type';
-import { useEffect, useState } from 'react';
+
+type Status = 'pending' | 'success' | 'error';
+
+function createResource<T>(promise: Promise<T>) {
+	let status: Status = 'pending';
+	let result: T;
+	let error: any;
+
+	const suspender = promise.then(
+		(res) => {
+			status = 'success';
+			result = res;
+		},
+		(err) => {
+			status = 'error';
+			error = err;
+		},
+	);
+
+	return {
+		read(): T {
+			if (status === 'pending') {
+				throw suspender; // Suspense fallback으로 이동
+			} else if (status === 'error') {
+				throw error; // ErrorBoundary fallback으로 이동
+			}
+			return result!;
+		},
+	};
+}
+
+const resourceCache = new Map<string, ReturnType<typeof createResource<any>>>();
 
 interface UseFetchParams {
 	url: string | null;
@@ -8,35 +39,23 @@ interface UseFetchParams {
 }
 
 export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
-	const [data, setData] = useState<T | null>(null);
-	const [loading, setLoading] = useState<boolean>(false);
-	const [error, setError] = useState<string | null>(null);
+	if (!url || !enabled) {
+		throw new Promise(() => {}); // Suspense에 걸리지 않도록 noop Promise
+	}
 
-	useEffect(() => {
-		if (!url) return; // url이 없으면 실행 안 함
-
-		const fetchData = async () => {
-			setLoading(true);
-			setError(null);
-
-			try {
-				const res = await fetch(url, options);
-
+	if (!resourceCache.has(url)) {
+		const fetchPromise = fetch(url, options)
+			.then((res) => {
 				if (!res.ok) {
 					throw new Error(`Fetch 실패: ${res.status}`);
 				}
+				return res.json() as Promise<ApiResponse<T>>;
+			})
+			.then((json) => json.data);
 
-				const result: ApiResponse<T> = await res.json();
-				setData(result.data);
-			} catch (err: any) {
-				setError(err.message ?? 'Unknown error');
-			} finally {
-				setLoading(false);
-			}
-		};
+		resourceCache.set(url, createResource<T>(fetchPromise));
+	}
 
-		fetchData();
-	}, [url]);
-
-	return { data, loading, error };
+	const resource = resourceCache.get(url)!;
+	return resource.read();
 }
