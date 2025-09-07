@@ -18,12 +18,12 @@ function Portfolio() {
 		data: categories,
 		loading: categoryLoading,
 		error: categoryError,
-	} = useFetch<CategoryMainType[]>('/api/main-categories');
+	} = useFetch<CategoryMainType[]>({ url: '/api/main-categories' });
 	const {
 		data: portfolioItems,
 		loading: portfolioLoading,
 		error: portfolioError,
-	} = useFetch<PortfolioItem[]>(url);
+	} = useFetch<PortfolioItem[]>({ url: url });
 	useEffect(() => {
 		setUrl(
 			selectedCategory === 'all'

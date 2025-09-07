@@ -11,27 +11,7 @@ import { useFetch } from '@/hooks/useFetch';
 function Trend() {
 	// const { ref } = useIntersectionObserver();
 	const refCallback = useIntersectionObserver();
-	// const [loading, setLoading] = useState<boolean>(true);
-	// const [error, setError] = useState<String | null>(null);
-	// const [trendItems, setTrendItems] = useState<TrendProps[]>([]);
-	// useEffect(() => {
-	// 	const fetchTrends = async () => {
-	// 		try {
-	// 			const res = await fetch('/api/trends');
-	// 			if (!res.ok) {
-	// 				throw new Error('실시간 트렌드 조회에 실패했습니다');
-	// 			}
-	// 			const result: ApiResponse<TrendProps[]> = await res.json();
-	// 			if (result) {
-	// 				setTrendItems(result.data);
-	// 			}
-	// 		} catch (err: any) {
-	// 			setError(err.messsage);
-	// 		}
-	// 	};
-	// 	fetchTrends();
-	// }, []);
-	const { data: trendItems, loading, error } = useFetch<TrendProps[]>('/api/trends');
+	const { data: trendItems, loading, error } = useFetch<TrendProps[]>({ url: '/api/trends' });
 
 	return (
 		<>

@@ -4,7 +4,11 @@ import { categoryStyles } from './styles';
 import { useEffect, useState } from 'react';
 import { useFetch } from '@/hooks/useFetch';
 function Category() {
-	const { data: categories, loading, error } = useFetch<CategoryProps[]>('/api/categories');
+	const {
+		data: categories,
+		loading,
+		error,
+	} = useFetch<CategoryProps[]>({ url: '/api/categories' });
 	return (
 		<>
 			<div className={categoryStyles.categoryContainer}>
