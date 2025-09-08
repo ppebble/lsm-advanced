@@ -13,6 +13,8 @@
 /dist/*
 /.vite              # Vite 캐시
 
+*.env
+
 # 운영체제/에디터 별 설정
 .idea/
 .vscode/
