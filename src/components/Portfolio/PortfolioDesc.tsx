@@ -7,7 +7,7 @@ interface PortfolioProps {
 	isActive: boolean;
 }
 
-export const PortfolioDesc = ({ title, desc, isActive }: PortfolioProps) => {
+export const PortfolioDesc = ({ id, title, desc, isActive }: PortfolioProps) => {
 	return (
 		<div className={portfolioStyles.descCard(isActive)}>
 			<p className={portfolioStyles.title}>{title}</p>
