@@ -7,9 +7,9 @@ interface ViteTypeOptions {
 }
 
 interface ImportMetaEnv {
-	readonly VITE_APP_TITLE: string;
+	readonly VITE_REACT_APP_BASE_NAME: string;
 	readonly VITE_REACT_APP_ENV: string;
-	readonly VITE_TEST_URL1: string;
+	readonly API_BASE_URL: string;
 	// 다른 환경 변수들에 대한 타입 정의...
 }
 
