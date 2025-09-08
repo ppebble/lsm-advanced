@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/fonts.css';
-import { worker } from '../mocks/browser';
 import { BrowserRouter } from 'react-router-dom';
+
+import App from './App';
+
+import './styles/fonts.css';
 
 async function enableMocking() {
 	if (process.env.NODE_ENV !== 'development') {
@@ -14,9 +15,14 @@ async function enableMocking() {
 	return worker.start();
 }
 enableMocking().then(() => {
-	ReactDOM.createRoot(document.getElementById('root')!).render(
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>,
-	);
+	const rootElement = document.getElementById('root');
+	if (rootElement) {
+		ReactDOM.createRoot(rootElement).render(
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>,
+		);
+	} else {
+		console.error('Root element not found');
+	}
 });

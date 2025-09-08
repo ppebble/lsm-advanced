@@ -1,10 +1,12 @@
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 import { HomeIcon, MagnifyingGlassIcon, UserIcon } from '@heroicons/react/24/outline';
 import { Link, Outlet } from 'react-router-dom';
+
+import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
+
 import { navigationStyles } from './styles';
 
-function Navigation() {
+const Navigation = () => {
 	const menuItems = [
 		{ id: 'works', label: '작업물 탐색' },
 		{ id: 'companies', label: '업체 검색' },
@@ -91,6 +93,6 @@ function Navigation() {
 			<Outlet />
 		</>
 	);
-}
+};
 
 export default Navigation;

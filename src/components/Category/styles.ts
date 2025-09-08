@@ -1,4 +1,4 @@
-import { CategoryProps } from '@/assets/data/type';
+import type { CategoryProps } from '@/assets/data/type';
 import { css } from 'styled-system/css';
 
 export const categoryStyles = {
