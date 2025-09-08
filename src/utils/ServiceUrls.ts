@@ -1,4 +1,4 @@
-export const BASE_URL = import.meta.env.API_BASE_URL;
+export const BASE_URL = '/api/';
 export const SERVICE_URLS = {
 	banners: `${BASE_URL}banners`,
 	categories: `${BASE_URL}categories`,
