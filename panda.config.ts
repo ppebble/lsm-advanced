@@ -4,6 +4,12 @@ export default defineConfig({
 	outdir: 'styled-system',
 	include: ['./src/**/*.{ts,tsx}'],
 	theme: {
+		keyframes: {
+			pulse: {
+				'0%, 100%': { opacity: '1' },
+				'50%': { opacity: '0.4' },
+			},
+		},
 		extend: {
 			tokens: {
 				colors: {
