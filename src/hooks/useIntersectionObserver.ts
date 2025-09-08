@@ -21,7 +21,6 @@ export const useIntersectionObserver = () => {
 		);
 
 		return () => {
-			console.log('delete');
 			observerRef.current?.disconnect();
 		};
 	}, []);

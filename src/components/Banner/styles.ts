@@ -1,5 +1,4 @@
 import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
 
 export const bannerStyles = {
 	mainImage: css({

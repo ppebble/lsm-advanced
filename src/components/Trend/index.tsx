@@ -1,15 +1,13 @@
-import { css } from 'styled-system/css';
-import { flex } from 'styled-system/patterns';
-import { Link, useNavigate } from 'react-router-dom';
-import { trendPatterns, trendStyles } from './styles';
-import { trends } from '@/assets/data/psudoData';
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { useEffect, useState } from 'react';
-import { ApiResponse, TrendProps } from '@/assets/data/type';
-import { useFetch } from '@/hooks/useFetch';
+import { Link } from 'react-router-dom';
 
-function Trend() {
-	// const { ref } = useIntersectionObserver();
+import type { TrendProps } from '@/assets/data/type';
+import { useFetch } from '@/hooks/useFetch';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { css } from 'styled-system/css';
+
+import { trendPatterns, trendStyles } from './styles';
+
+const Trend = () => {
 	const refCallback = useIntersectionObserver();
 	const trendItems = useFetch<TrendProps[]>({ url: '/api/trends' });
 
@@ -50,12 +48,12 @@ function Trend() {
 			</div>
 
 			<div className={trendPatterns.flexCenter}>
-				<Link className={trendStyles.moreButton} to={'/trends'}>
+				<Link className={trendStyles.moreButton} to='/trends'>
 					더 많은 사례 보기 →
 				</Link>
 			</div>
 		</>
 	);
-}
+};
 
 export default Trend;

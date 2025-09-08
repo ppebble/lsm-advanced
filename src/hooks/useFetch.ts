@@ -1,5 +1,6 @@
-import { ApiResponse } from '@/assets/data/type';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import type { ApiResponse } from '@/assets/data/type';
 
 interface UseFetchParams {
 	url: string | null;
@@ -36,7 +37,7 @@ export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
 		};
 
 		fetchData();
-	}, [url]);
+	}, [url, options, enabled]);
 
 	return { data, loading, error };
 }

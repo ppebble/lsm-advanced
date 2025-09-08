@@ -1,5 +1,7 @@
-import { BannerItems } from '@/assets/data/type';
 import { useRef, useState } from 'react';
+
+import type { BannerItems } from '@/assets/data/type';
+
 import { bannerStyles } from './styles';
 
 type SliderProps = {
@@ -7,7 +9,7 @@ type SliderProps = {
 };
 const TRANSITION_MS = 500;
 
-function Slider({ bannerItems }: SliderProps) {
+const Slider = ({ bannerItems }: SliderProps) => {
 	const slides = bannerItems;
 	const [current, setCurrent] = useState(0);
 	const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
@@ -20,12 +22,12 @@ function Slider({ bannerItems }: SliderProps) {
 
 	const getViewportWidth = () => viewportRef.current?.clientWidth ?? 0;
 
-	const next = () => {
+	const handleNext = () => {
 		setIsTransitionEnabled(true);
 		setCurrent((prev) => (prev >= slides.length - 1 ? 0 : prev + 1));
 	};
 
-	const prev = () => {
+	const handlePrev = () => {
 		setIsTransitionEnabled(true);
 		setCurrent((prev) => (prev <= 0 ? slides.length - 1 : prev - 1));
 	};
@@ -47,13 +49,19 @@ function Slider({ bannerItems }: SliderProps) {
 	const onPointerUp = (e: React.PointerEvent) => {
 		try {
 			(e.currentTarget as Element).releasePointerCapture(e.pointerId);
-		} catch {}
+		} catch (err) {
+			console.error(err);
+		}
 		setIsDragging(false);
 
 		const threshold = Math.max(50, getViewportWidth() * 0.15);
 
 		if (Math.abs(dragDelta) > threshold) {
-			dragDelta < 0 ? next() : prev();
+			if (dragDelta < 0) {
+				handleNext();
+			} else {
+				handlePrev();
+			}
 		}
 
 		setDragDelta(0);
@@ -81,15 +89,15 @@ function Slider({ bannerItems }: SliderProps) {
 							isDragging || !isTransitionEnabled ? 'none' : `transform ${TRANSITION_MS}ms ease`,
 					}}
 				>
-					{slides.map((item, index) => (
+					{slides.map((item) => (
 						<div
-							key={`${item.id}-${index}`}
+							key={`${item.id}`}
 							// className={bannerStyles.slideContainer({ total: slides.length })}
 							className={bannerStyles.slideContainer}
 						>
 							<img
 								src={item.images}
-								alt={'Loading . . .'}
+								alt='Loading . . .'
 								className={bannerStyles.slideImage}
 								draggable={false}
 							/>
@@ -98,10 +106,18 @@ function Slider({ bannerItems }: SliderProps) {
 				</div>
 			</div>
 
-			<button className={bannerStyles.arrowBtn({ side: 'left' })} onClick={prev}>
+			<button
+				type='button'
+				className={bannerStyles.arrowBtn({ side: 'left' })}
+				onClick={handlePrev}
+			>
 				◀
 			</button>
-			<button className={bannerStyles.arrowBtn({ side: 'right' })} onClick={next}>
+			<button
+				type='button'
+				className={bannerStyles.arrowBtn({ side: 'right' })}
+				onClick={handleNext}
+			>
 				▶
 			</button>
 
@@ -110,6 +126,6 @@ function Slider({ bannerItems }: SliderProps) {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Slider;

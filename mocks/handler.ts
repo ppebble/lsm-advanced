@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { http, HttpResponse, delay } from 'msw';
+
 import { categories } from '@/assets/data/categories';
 import { bannerItems, mainCategory, portfolioItems, trends } from '@/assets/data/psudoData';
-import { http, HttpResponse, delay } from 'msw';
 
 export const handlers = [
 	// 1. 포트폴리오 목록 조회
@@ -42,7 +45,7 @@ export const handlers = [
 
 		return HttpResponse.json({
 			success: true,
-			data: data,
+			data,
 			total: data.length,
 		});
 	}),

@@ -1,6 +1,4 @@
-import { Archive, Bath, Blinds, CookingPot, Grid2x2Plus, LampFloor, Sofa } from 'lucide-react';
-import { CategoryProps } from './type';
-import { categoryStyles } from '@/components/Category/styles';
+import type { CategoryProps } from './type';
 
 export const categories: CategoryProps[] = [
 	{

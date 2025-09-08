@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { css } from 'styled-system/css';
-import { categoryStyles } from './styles';
-import { CategoryProps } from '@/assets/data/type';
-import { categoryIconMap } from '@/assets/data/icons';
 
-function CategoryItem({ category }: { category: CategoryProps }) {
+import { categoryIconMap } from '@/assets/data/icons';
+import type { CategoryProps } from '@/assets/data/type';
+import { css } from 'styled-system/css';
+
+import { categoryStyles } from './styles';
+
+const CategoryItem = ({ category }: { category: CategoryProps }) => {
 	const Icon = categoryIconMap[category.icon ?? ''];
 	const [isActive, setIsActive] = useState(false);
 	return (
@@ -66,5 +68,5 @@ function CategoryItem({ category }: { category: CategoryProps }) {
 			</div>
 		</div>
 	);
-}
+};
 export default CategoryItem;
