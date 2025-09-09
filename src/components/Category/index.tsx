@@ -1,22 +1,28 @@
-import { ApiResponse, CategoryProps } from '@/assets/data/type';
+import { ErrorBoundary, Suspense } from '@suspensive/react';
+
+import type { CategoryProps } from '@/assets/data/type';
+import { useFetch } from '@/hooks/useFetch';
+import { SERVICE_URLS } from '@/utils/ServiceUrls';
+
+import { ErrorFallback, LoadingFallback } from '../common/fallback';
+
 import CategoryItem from './CategoryItem';
 import { categoryStyles } from './styles';
-import { useEffect, useState } from 'react';
-import { useFetch } from '@/hooks/useFetch';
-function Category() {
-	const {
-		data: categories,
-		loading,
-		error,
-	} = useFetch<CategoryProps[]>({ url: '/api/categories' });
+
+const Category = () => {
+	const categories = useFetch<CategoryProps[]>({ url: SERVICE_URLS.categories });
 	return (
-		<>
-			<div className={categoryStyles.categoryContainer}>
-				{categories &&
-					categories.map((category) => <CategoryItem key={category.id} category={category} />)}
-			</div>
-		</>
+		<div className={categoryStyles.categoryContainer}>
+			<ErrorBoundary fallback={ErrorFallback}>
+				<Suspense fallback={<LoadingFallback />}>
+					{categories.data &&
+						categories.data.map((category: CategoryProps) => (
+							<CategoryItem key={category.id} category={category} />
+						))}
+				</Suspense>
+			</ErrorBoundary>
+		</div>
 	);
-}
+};
 
 export default Category;

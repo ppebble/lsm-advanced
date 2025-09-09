@@ -9,6 +9,8 @@
 		"airbnb-typescript",
 		"airbnb/hooks",
 		"plugin:react/recommended",
+		"prettier",
+		"plugin:prettier/recommended",
 		"plugin:react-hooks/recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:import/recommended",
@@ -24,7 +26,7 @@
 		},
 		"project": "./tsconfig.json"
 	},
-	"plugins": ["react", "@typescript-eslint", "import", "react-hooks", "prettier"],
+	"plugins": ["react", "@typescript-eslint", "import", "react-hooks", "prettier", "@typescript-eslint/eslint-plugin"],
 	"settings": {
 		"react": {
 			"version": "detect"
@@ -47,7 +49,7 @@
 			}
 		}
 	},
-	"ignorePatterns": ["build/", "dist/", "node_modules/", "*.config.js", "*.d.ts", "vite-env.d.ts"],
+	"ignorePatterns": ["build/", "dist/", "node_modules/", "*.config.js", "*.d.ts", "vite-env.d.ts", "public/mockServiceWorker.js"],
 	"rules": {
 		// React 관련
 		"react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],

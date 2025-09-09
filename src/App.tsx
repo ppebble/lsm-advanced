@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Navigation from './components/Navigation';
 
-function App() {
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+
+const App = () => {
 	return (
 		<Routes>
 			<Route element={<Navigation />}>
@@ -10,6 +11,6 @@ function App() {
 			</Route>
 		</Routes>
 	);
-}
+};
 
 export default App;

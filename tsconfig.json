@@ -27,6 +27,11 @@
 		"jsx": "react-jsx",
 		"ignoreDeprecations": "6.0"
 	},
-	"include": ["src"],
+	"include": [
+		"src",
+		"panda.config.ts",
+		"vite.config.ts",
+		"public/mockServiceWorker.js",
+	],
 	"exclude": ["node_modules", "build", "dist"]
 }

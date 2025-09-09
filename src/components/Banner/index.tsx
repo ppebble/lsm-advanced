@@ -1,13 +1,22 @@
-import { useRef, useState } from 'react';
-import { css } from 'styled-system/css';
-import { bannerStyles } from './styles';
-import { BannerItems } from '@/assets/data/type';
+import { ErrorBoundary, Suspense } from '@suspensive/react';
+
+import type { BannerItems } from '@/assets/data/type';
 import { useFetch } from '@/hooks/useFetch';
+import { SERVICE_URLS } from '@/utils/ServiceUrls';
+
+import { ErrorFallback, LoadingFallback } from '../common/fallback';
+
 import Slider from './Slider';
 
-function Banner() {
-	const { data: bannerItems, loading, error } = useFetch<BannerItems[]>({ url: '/api/banners' });
+const Banner = () => {
+	const bannerItems = useFetch<BannerItems[]>({ url: SERVICE_URLS.banners });
 
-	return <>{bannerItems && <Slider bannerItems={bannerItems} />}</>;
-}
+	return (
+		<ErrorBoundary fallback={ErrorFallback}>
+			<Suspense fallback={<LoadingFallback />}>
+				{bannerItems.data && <Slider bannerItems={bannerItems.data} />}
+			</Suspense>
+		</ErrorBoundary>
+	);
+};
 export default Banner;

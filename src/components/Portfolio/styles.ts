@@ -40,13 +40,16 @@ export const portfolioStyles = {
 		border: '1px solid white',
 		_hover: { transition: 'transform 0.4s ease', transform: 'scale(1.02)' },
 	}),
-	image: css({
-		borderRadius: 'xl',
-		border: '1px solid white',
-		height: '100%',
-		width: '100%',
-		objectFit: 'cover',
-	}),
+	image: (isLoading: boolean) =>
+		css({
+			borderRadius: 'xl',
+			border: '1px solid white',
+			height: '100%',
+			width: '100%',
+			objectFit: 'cover',
+			opacity: isLoading ? 0 : 1,
+			transition: 'opacity 0.3s ease',
+		}),
 	descContainer: css({
 		position: 'absolute',
 		top: 0,

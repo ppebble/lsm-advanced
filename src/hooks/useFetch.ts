@@ -1,5 +1,7 @@
-import { ApiResponse } from '@/assets/data/type';
+/* eslint-disable @typescript-eslint/no-throw-literal */
 import { useEffect, useState } from 'react';
+
+import type { ApiResponse } from '@/assets/data/type';
 
 interface UseFetchParams {
 	url: string | null;
@@ -9,19 +11,17 @@ interface UseFetchParams {
 
 export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
 	const [data, setData] = useState<T | null>(null);
-	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
+	const [promise, setPromise] = useState<Promise<void> | null>(null);
 
 	useEffect(() => {
-		if (!url) return; // url이 없으면 실행 안 함
+		if (!url || !enabled) return;
 
 		const fetchData = async () => {
-			setLoading(true);
 			setError(null);
 
 			try {
 				const res = await fetch(url, options);
-
 				if (!res.ok) {
 					throw new Error(`Fetch 실패: ${res.status}`);
 				}
@@ -29,14 +29,19 @@ export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
 				const result: ApiResponse<T> = await res.json();
 				setData(result.data);
 			} catch (err: any) {
-				setError(err.message ?? 'Unknown error');
-			} finally {
-				setLoading(false);
+				setError(err);
 			}
 		};
 
-		fetchData();
-	}, [url]);
+		const fetchPromise = fetchData();
+		setPromise(fetchPromise);
+	}, [url, options, enabled]);
+	if (promise && !data && !error) {
+		throw promise;
+	}
+	if (error) {
+		throw error;
+	}
 
-	return { data, loading, error };
+	return { data };
 }
