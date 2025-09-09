@@ -1,7 +1,31 @@
+import { css } from 'styled-system/css';
+
 export const LoadingFallback = () => {
-	return <div style={{ padding: '1rem' }}>⏳ 로딩 중...</div>;
+	return (
+		<div
+			className={css({
+				padding: '1rem',
+				color: 'gray.800',
+				w: '100vw',
+				bgColor: 'gray.400',
+			})}
+		>
+			⏳ 로딩 중...
+		</div>
+	);
 };
 
 export const ErrorFallback = ({ error }: { error: Error }) => {
-	return <div style={{ padding: '1rem', color: 'red' }}>⚠️ 오류 발생: {error.message}</div>;
+	return (
+		<div
+			className={css({
+				padding: '1rem',
+				color: 'red',
+				w: '100vw',
+				bgColor: 'gray.400',
+			})}
+		>
+			⚠️ 오류 발생: {error.message}
+		</div>
+	);
 };
