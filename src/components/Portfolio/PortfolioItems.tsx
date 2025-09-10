@@ -23,7 +23,7 @@ const PortfolioItems = ({ url }: PortfolioItemProps) => {
 	const portfolioItems = useFetch<PortfolioItem[]>({ url });
 	return (
 		<ErrorBoundary fallback={ErrorFallback}>
-			<Suspense fallback={<LoadingFallback />}>
+			<Suspense fallback={<Skeleton className={portfolioStyles.itemContainer} />}>
 				<div className={portfolioStyles.itemContainer}>
 					{portfolioItems.data &&
 						portfolioItems.data.map((item: PortfolioItem) => (
