@@ -10,32 +10,28 @@ const Home = () => {
 		<div
 			className={css({
 				display: 'grid',
-				gridTemplateRows: 'auto auto auto auto', // 4개 섹션 명시
+				gridTemplateRows: 'auto auto auto auto',
 				maxWidth: '100vw',
-				gap: '24px', // 섹션 간 간격 고정
+				gap: '24px',
 				overflowX: 'hidden',
 				bgColor: 'gray.50',
 			})}
 		>
-			{/* 메인 배너 섹션 */}
-			<section
+			{/* <section
 				className={css({
-					// mt: { base: '60px', md: '80px' },
 					height: { base: '300px', md: '500px' },
 				})}
 			>
 				<Banner />
 			</section>
-			{/* 트렌드 섹션 ( 추가 ) */}
 			<section
 				className={flex({
 					flexDirection: 'column',
-					position: 'relative', // 자식 요소 제어용
+					position: 'relative',
 				})}
 			>
 				<Trend />
 			</section>
-			{/* 카테고리 섹션 */}
 			<section
 				className={flex({
 					height: '240px',
@@ -45,13 +41,10 @@ const Home = () => {
 				})}
 			>
 				<Category />
-			</section>
-			{/* 작업물 탭폴더 섹션 */}
+			</section> */}
 			<section>
 				<Portfolio />
 			</section>
-
-			{/* 푸터 섹션 */}
 		</div>
 	);
 };
