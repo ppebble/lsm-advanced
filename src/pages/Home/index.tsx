@@ -24,7 +24,7 @@ const Home = () => {
 			>
 				<Banner />
 			</section>
-			<section
+			{/* <section
 				className={flex({
 					flexDirection: 'column',
 					position: 'relative',
@@ -41,7 +41,7 @@ const Home = () => {
 				})}
 			>
 				<Category />
-			</section>
+			</section> */}
 			<section>
 				<Portfolio />
 			</section>
