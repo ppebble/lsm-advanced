@@ -1,11 +1,10 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 
 /**
  * lazy loading을 위한  IntersectionOberserver 훅
  * usage :: 사용해야 하는 img 태그에 ref={refCallback} 과 data-src 속성 추가
  * @returns ref 콜백 함수
  */
-
 export const useIntersectionObserver = () => {
 	const observerRef = useRef<IntersectionObserver | null>(null);
 
