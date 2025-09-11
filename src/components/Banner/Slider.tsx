@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 
 import type { BannerItems } from '@/assets/data/type';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 import { bannerStyles } from './styles';
 
@@ -10,6 +11,8 @@ type SliderProps = {
 const TRANSITION_MS = 500;
 
 const Slider = ({ bannerItems }: SliderProps) => {
+	const refCallback = useIntersectionObserver();
+
 	const slides = bannerItems;
 	const [current, setCurrent] = useState(0);
 	const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
@@ -96,8 +99,9 @@ const Slider = ({ bannerItems }: SliderProps) => {
 							className={bannerStyles.slideContainer}
 						>
 							<img
-								src={item.images}
-								alt='Loading . . .'
+								ref={refCallback}
+								data-src={item.images}
+								alt={item.id}
 								className={bannerStyles.slideImage}
 								draggable={false}
 							/>

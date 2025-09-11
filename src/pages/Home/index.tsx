@@ -17,7 +17,7 @@ const Home = () => {
 				bgColor: 'gray.50',
 			})}
 		>
-			{/* <section
+			<section
 				className={css({
 					height: { base: '300px', md: '500px' },
 				})}
@@ -41,7 +41,7 @@ const Home = () => {
 				})}
 			>
 				<Category />
-			</section> */}
+			</section>
 			<section>
 				<Portfolio />
 			</section>
