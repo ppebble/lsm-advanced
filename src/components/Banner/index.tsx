@@ -4,19 +4,13 @@ import type { BannerItems } from '@/assets/data/type';
 import { useFetch } from '@/hooks/useFetch';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 
-import { ErrorFallback, LoadingFallback } from '../common/fallback';
+import { ErrorFallback } from '../common/fallback';
+import { Skeleton } from '../common/skeleton';
 
 import Slider from './Slider';
+import { bannerStyles } from './styles';
 
 const Banner = () => {
-	const bannerItems = useFetch<BannerItems[]>({ url: SERVICE_URLS.banners });
-
-	return (
-		<ErrorBoundary fallback={ErrorFallback}>
-			<Suspense fallback={<LoadingFallback />}>
-				{bannerItems.data && <Slider bannerItems={bannerItems.data} />}
-			</Suspense>
-		</ErrorBoundary>
-	);
+	return <Slider />;
 };
 export default Banner;
