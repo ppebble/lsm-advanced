@@ -31,7 +31,7 @@ const Home = () => {
 				})}
 			>
 				<Trend />
-			</section>
+			</section> */}
 			<section
 				className={flex({
 					height: '240px',
@@ -41,7 +41,7 @@ const Home = () => {
 				})}
 			>
 				<Category />
-			</section> */}
+			</section>
 			<section>
 				<Portfolio />
 			</section>

@@ -17,7 +17,6 @@ const CategoryItem = ({ category }: { category: CategoryProps }) => {
 			onMouseLeave={() => setIsActive(false)}
 		>
 			<div className={categoryStyles.cardContainer}>
-				{/* 카테고리 카드 (앞면) */}
 				<div className={categoryStyles.card}>
 					<div className={categoryStyles.mainIcon}>
 						{Icon && <Icon className={categoryStyles.icon} />}
@@ -33,7 +32,6 @@ const CategoryItem = ({ category }: { category: CategoryProps }) => {
 						{category.name}
 					</span>
 				</div>
-				{/* 드롭다운 (뒷면) */}
 				{isActive && category.subCategories && (
 					<div className={categoryStyles.dropdown({ isActive, category })}>
 						<Link to={category.route} className={categoryStyles.main}>
