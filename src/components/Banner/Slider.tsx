@@ -5,6 +5,7 @@ import type { BannerItems } from '@/assets/data/type';
 import { useFetch } from '@/hooks/useFetch';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
+import { css } from 'styled-system/css';
 
 import { ErrorFallback } from '../common/fallback';
 import { Skeleton } from '../common/skeleton';
@@ -26,6 +27,8 @@ const Slider = () => {
 
 	const viewportRef = useRef<HTMLDivElement | null>(null);
 	const dragStartX = useRef(0);
+
+	const [isLoading, setIsLoading] = useState(true);
 
 	const getViewportWidth = () => viewportRef.current?.clientWidth ?? 0;
 
@@ -103,9 +106,18 @@ const Slider = () => {
 									// className={bannerStyles.slideContainer({ total: slides.length })}
 									className={bannerStyles.slideContainer}
 								>
+									{isLoading && (
+										<Skeleton
+											className={css({
+												position: 'absolute',
+												inset: 0,
+											})}
+										/>
+									)}
 									<img
 										ref={refCallback}
 										// data-src={item.images}
+										onLoad={() => setIsLoading(false)}
 										src={item.images}
 										alt={item.id}
 										className={bannerStyles.slideImage}
