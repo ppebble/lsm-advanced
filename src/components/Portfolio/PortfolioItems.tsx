@@ -7,7 +7,7 @@ import { useFetch } from '@/hooks/useFetch';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { css } from 'styled-system/css';
 
-import { ErrorFallback, LoadingFallback } from '../common/fallback';
+import { ErrorFallback } from '../common/fallback';
 import { Skeleton } from '../common/skeleton';
 
 import { PortfolioDesc } from './PortfolioDesc';

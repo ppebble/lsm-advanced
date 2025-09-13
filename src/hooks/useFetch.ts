@@ -37,7 +37,7 @@ export function useFetch<T>({ url, options, enabled = true }: UseFetchParams) {
 		setPromise(fetchPromise);
 	}, [url, options, enabled]);
 	if (promise && !data && !error) {
-		throw promise;
+		throw new Promise(() => {});
 	}
 	if (error) {
 		throw error;

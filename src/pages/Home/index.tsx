@@ -17,14 +17,14 @@ const Home = () => {
 				bgColor: 'gray.50',
 			})}
 		>
-			{/* <section
+			<section
 				className={css({
 					height: { base: '300px', md: '500px' },
 				})}
 			>
 				<Banner />
 			</section>
-			<section
+			{/* <section
 				className={flex({
 					flexDirection: 'column',
 					position: 'relative',
