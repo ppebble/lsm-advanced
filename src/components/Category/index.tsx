@@ -4,7 +4,8 @@ import type { CategoryProps } from '@/assets/data/type';
 import { useFetch } from '@/hooks/useFetch';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 
-import { ErrorFallback, LoadingFallback } from '../common/fallback';
+import { ErrorFallback } from '../common/fallback';
+import { Skeleton } from '../common/skeleton';
 
 import CategoryItem from './CategoryItem';
 import { categoryStyles } from './styles';
@@ -14,12 +15,15 @@ const Category = () => {
 	return (
 		<div className={categoryStyles.categoryContainer}>
 			<ErrorBoundary fallback={ErrorFallback}>
-				<Suspense fallback={<LoadingFallback />}>
-					{categories.data &&
-						categories.data.map((category: CategoryProps) => (
+				{categories.data &&
+					categories.data.map((category: CategoryProps) => (
+						<Suspense
+							key={category.id}
+							fallback={<Skeleton className={categoryStyles.cardContainer} />}
+						>
 							<CategoryItem key={category.id} category={category} />
-						))}
-				</Suspense>
+						</Suspense>
+					))}
 			</ErrorBoundary>
 		</div>
 	);

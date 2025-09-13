@@ -1,16 +1,24 @@
+import { ErrorBoundary, Suspense } from '@suspensive/react';
 import { useRef, useState } from 'react';
 
 import type { BannerItems } from '@/assets/data/type';
+import { useFetch } from '@/hooks/useFetch';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { SERVICE_URLS } from '@/utils/ServiceUrls';
+import { css } from 'styled-system/css';
+
+import { ErrorFallback } from '../common/fallback';
+import { Skeleton } from '../common/skeleton';
 
 import { bannerStyles } from './styles';
 
-type SliderProps = {
-	bannerItems: BannerItems[];
-};
 const TRANSITION_MS = 500;
 
-const Slider = ({ bannerItems }: SliderProps) => {
-	const slides = bannerItems;
+const Slider = () => {
+	const refCallback = useIntersectionObserver();
+	const bannerItems = useFetch<BannerItems[]>({ url: SERVICE_URLS.banners });
+
+	const slides = bannerItems.data || [];
 	const [current, setCurrent] = useState(0);
 	const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
 
@@ -19,6 +27,8 @@ const Slider = ({ bannerItems }: SliderProps) => {
 
 	const viewportRef = useRef<HTMLDivElement | null>(null);
 	const dragStartX = useRef(0);
+
+	const [isLoading, setIsLoading] = useState(true);
 
 	const getViewportWidth = () => viewportRef.current?.clientWidth ?? 0;
 
@@ -69,62 +79,76 @@ const Slider = ({ bannerItems }: SliderProps) => {
 	};
 
 	return (
-		<div className={bannerStyles.mainImage}>
-			{/* 슬라이드 */}
-			<div
-				ref={viewportRef}
-				style={{ width: '100%', height: '100%' }}
-				onPointerDown={onPointerDown}
-				onPointerMove={onPointerMove}
-				onPointerUp={onPointerUp}
-				onPointerCancel={onPointerUp}
-			>
-				<div
-					ref={null}
-					style={{
-						display: 'flex',
-						width: `${slides.length * 100}%`,
-						transform: `translateX(calc(${-current * 100}% + ${dragDelta}px))`,
-						transition:
-							isDragging || !isTransitionEnabled ? 'none' : `transform ${TRANSITION_MS}ms ease`,
-					}}
-				>
-					{slides.map((item) => (
+		<ErrorBoundary fallback={ErrorFallback}>
+			<Suspense fallback={<Skeleton className={bannerStyles.mainImage} />}>
+				<div className={bannerStyles.mainImage}>
+					<div
+						ref={viewportRef}
+						style={{ width: '100%', height: '100%' }}
+						onPointerDown={onPointerDown}
+						onPointerMove={onPointerMove}
+						onPointerUp={onPointerUp}
+						onPointerCancel={onPointerUp}
+					>
 						<div
-							key={`${item.id}`}
-							// className={bannerStyles.slideContainer({ total: slides.length })}
-							className={bannerStyles.slideContainer}
+							ref={null}
+							style={{
+								display: 'flex',
+								width: `${slides.length * 100}%`,
+								transform: `translateX(calc(${-current * 100}% + ${dragDelta}px))`,
+								transition:
+									isDragging || !isTransitionEnabled ? 'none' : `transform ${TRANSITION_MS}ms ease`,
+							}}
 						>
-							<img
-								src={item.images}
-								alt='Loading . . .'
-								className={bannerStyles.slideImage}
-								draggable={false}
-							/>
+							{slides.map((item) => (
+								<div
+									key={`${item.id}`}
+									// className={bannerStyles.slideContainer({ total: slides.length })}
+									className={bannerStyles.slideContainer}
+								>
+									{isLoading && (
+										<Skeleton
+											className={css({
+												position: 'absolute',
+												inset: 0,
+											})}
+										/>
+									)}
+									<img
+										ref={refCallback}
+										data-src={item.images}
+										onLoad={() => setIsLoading(false)}
+										// src={item.images}
+										alt={item.id}
+										className={bannerStyles.slideImage}
+										draggable={false}
+									/>
+								</div>
+							))}
 						</div>
-					))}
+					</div>
+
+					<button
+						type='button'
+						className={bannerStyles.arrowBtn({ side: 'left' })}
+						onClick={handlePrev}
+					>
+						◀
+					</button>
+					<button
+						type='button'
+						className={bannerStyles.arrowBtn({ side: 'right' })}
+						onClick={handleNext}
+					>
+						▶
+					</button>
+
+					<div className={bannerStyles.counter}>
+						{current + 1} / {slides.length}
+					</div>
 				</div>
-			</div>
-
-			<button
-				type='button'
-				className={bannerStyles.arrowBtn({ side: 'left' })}
-				onClick={handlePrev}
-			>
-				◀
-			</button>
-			<button
-				type='button'
-				className={bannerStyles.arrowBtn({ side: 'right' })}
-				onClick={handleNext}
-			>
-				▶
-			</button>
-
-			<div className={bannerStyles.counter}>
-				{current + 1} / {slides.length}
-			</div>
-		</div>
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 

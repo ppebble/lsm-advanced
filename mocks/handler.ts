@@ -28,7 +28,7 @@ export const handlers = [
 		const url = new URL(request.url);
 		const category = url.searchParams.get('category');
 
-		await delay(Math.random() * 1 + 30000);
+		await delay(Math.random() * 1 + 100);
 
 		const filteredItems =
 			category && category !== 'all'

@@ -7,7 +7,7 @@ import { useFetch } from '@/hooks/useFetch';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { css } from 'styled-system/css';
 
-import { ErrorFallback, LoadingFallback } from '../common/fallback';
+import { ErrorFallback } from '../common/fallback';
 import { Skeleton } from '../common/skeleton';
 
 import { PortfolioDesc } from './PortfolioDesc';
@@ -23,7 +23,7 @@ const PortfolioItems = ({ url }: PortfolioItemProps) => {
 	const portfolioItems = useFetch<PortfolioItem[]>({ url });
 	return (
 		<ErrorBoundary fallback={ErrorFallback}>
-			<Suspense fallback={<LoadingFallback />}>
+			<Suspense fallback={<Skeleton className={portfolioStyles.itemContainer} />}>
 				<div className={portfolioStyles.itemContainer}>
 					{portfolioItems.data &&
 						portfolioItems.data.map((item: PortfolioItem) => (

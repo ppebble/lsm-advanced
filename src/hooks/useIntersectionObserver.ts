@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 
 /**
  * lazy loading을 위한  IntersectionOberserver 훅
@@ -8,35 +8,32 @@ import { useEffect, useRef, useCallback } from 'react';
 export const useIntersectionObserver = () => {
 	const observerRef = useRef<IntersectionObserver | null>(null);
 
-	useEffect(() => {
-		observerRef.current = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						const img = entry.target as HTMLImageElement;
-						const src = img.getAttribute('data-src');
-						if (src) {
-							img.src = src;
-							observerRef.current?.unobserve(img);
-						}
-					}
-				});
-			},
-			{ threshold: 0.1, rootMargin: '50px 0px' },
-		);
-
-		return () => {
-			observerRef.current?.disconnect();
-		};
-	}, []);
-
-	// useCallback을 사용해 ref 콜백 반환
 	const observe = useCallback((el: HTMLImageElement | null) => {
-		if (el && observerRef.current) {
-			const src = el.getAttribute('data-src');
-			if (src && !el.src) {
-				observerRef.current.observe(el);
-			}
+		if (!el) return;
+
+		if (!observerRef.current) {
+			observerRef.current = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							const img = entry.target as HTMLImageElement;
+							const dataSrc = img.getAttribute('data-src');
+							if (dataSrc) {
+								img.src = dataSrc;
+								img.removeAttribute('data-src');
+								observerRef.current?.unobserve(img);
+							}
+						}
+					});
+				},
+				{ threshold: 0.1, rootMargin: '50px 0px' },
+			);
+		}
+
+		const dataSrc = el.getAttribute('data-src');
+		const srcAttr = el.getAttribute('src');
+		if (dataSrc && (!srcAttr || srcAttr === '' || srcAttr.startsWith('data:'))) {
+			observerRef.current.observe(el);
 		}
 	}, []);
 
