@@ -1,4 +1,5 @@
 import { ErrorBoundary, Suspense } from '@suspensive/react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { TrendProps } from '@/assets/data/type';
@@ -8,27 +9,31 @@ import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
 
 import { ErrorFallback, LoadingFallback } from '../common/fallback';
+import { Skeleton } from '../common/skeleton';
 
 import { trendPatterns, trendStyles } from './styles';
 
 const Trend = () => {
 	const refCallback = useIntersectionObserver();
 	const trendItems = useFetch<TrendProps[]>({ url: SERVICE_URLS.trends });
+	const [isLoading, setIsLoading] = useState(true);
 
 	return (
 		<>
 			<h2 className={trendStyles.title}>🏆 실시간 인기 시공 사례</h2>
 
 			<ErrorBoundary fallback={ErrorFallback}>
-				<Suspense fallback={<LoadingFallback />}>
-					<div className={trendStyles.gridContainer}>
-						{trendItems.data &&
-							trendItems.data.map((item) => (
+				<div className={trendStyles.gridContainer}>
+					{trendItems.data &&
+						trendItems.data.map((item) => (
+							<Suspense key={item.id} fallback={<Skeleton className={trendStyles.card} />}>
 								<div key={item.id} className={trendStyles.card}>
+									{isLoading && <Skeleton className={trendStyles.image} />}
 									<img
 										ref={refCallback}
 										data-src={item.img}
 										className={trendStyles.image}
+										onLoad={() => setIsLoading(false)}
 										alt='Loading . . .'
 									/>
 									<div className={css({ p: '4' })}>
@@ -52,15 +57,15 @@ const Trend = () => {
 										</div>
 									</div>
 								</div>
-							))}
-					</div>
+							</Suspense>
+						))}
+				</div>
 
-					<div className={trendPatterns.flexCenter}>
-						<Link className={trendStyles.moreButton} to='/trends'>
-							더 많은 사례 보기 →
-						</Link>
-					</div>
-				</Suspense>
+				<div className={trendPatterns.flexCenter}>
+					<Link className={trendStyles.moreButton} to='/trends'>
+						더 많은 사례 보기 →
+					</Link>
+				</div>
 			</ErrorBoundary>
 		</>
 	);

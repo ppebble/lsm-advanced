@@ -30,7 +30,7 @@ export const trendStyles = {
 		height: '400px',
 		mx: { base: '0, 6px', md: 'auto' },
 		overflowX: 'hidden',
-		overflowY: { base: 'auto', '2xl': 'hidden' },
+		overflowY: { base: 'auto', '2xl': 'auto' },
 		scrollbar: 'hidden',
 		WebkitOverflowScrolling: 'touch',
 		scrollSnapType: 'none',
