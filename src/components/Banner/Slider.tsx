@@ -116,9 +116,9 @@ const Slider = () => {
 									)}
 									<img
 										ref={refCallback}
-										// data-src={item.images}
+										data-src={item.images}
 										onLoad={() => setIsLoading(false)}
-										src={item.images}
+										// src={item.images}
 										alt={item.id}
 										className={bannerStyles.slideImage}
 										draggable={false}
