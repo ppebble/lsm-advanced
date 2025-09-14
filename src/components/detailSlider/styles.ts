@@ -11,6 +11,7 @@ export const detailSliderStyles = {
 		width: { base: '100vw', md: '80vw' },
 		marginX: 'auto',
 		pt: '1.5rem',
+		mb: '2rem',
 	}),
 	slideContainer: css({
 		flex: '0 0 100%',
