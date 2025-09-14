@@ -125,7 +125,7 @@ const DetailSlider = ({ imageDatas }: DetailSliderProps) => {
 					</div>
 
 					<button
-						type='button'
+						// type='button'
 						className={detailSliderStyles.arrowBtn({ side: 'left' })}
 						onClick={handlePrev}
 					>
