@@ -1,22 +1,22 @@
-import { detailPageStyles } from '@/pages/detailItem/styles';
+import { detailSidebarStyles } from './styles';
 
 const Relate = () => {
 	return (
-		<div className={detailPageStyles.relatedContent}>
-			<h3 className={detailPageStyles.relatedTitle}>비슷한 인테리어</h3>
-			<div className={detailPageStyles.relatedList}>
-				<div className={detailPageStyles.relatedItem}>
-					<div className={detailPageStyles.relatedImage} />
-					<div className={detailPageStyles.relatedContentInfo}>
-						<p className={detailPageStyles.relatedContentTitle}>소형 주방 공간 활용법</p>
-						<p className={detailPageStyles.relatedContentViews}>n,nnnn views</p>
+		<div className={detailSidebarStyles.relatedContent}>
+			<h3 className={detailSidebarStyles.relatedTitle}>비슷한 인테리어</h3>
+			<div className={detailSidebarStyles.relatedList}>
+				<div className={detailSidebarStyles.relatedItem}>
+					<div className={detailSidebarStyles.relatedImage} />
+					<div className={detailSidebarStyles.relatedContentInfo}>
+						<p className={detailSidebarStyles.relatedContentTitle}>소형 주방 공간 활용법</p>
+						<p className={detailSidebarStyles.relatedContentViews}>n,nnnn views</p>
 					</div>
 				</div>
-				<div className={detailPageStyles.relatedItem}>
-					<div className={detailPageStyles.relatedImage} />
-					<div className={detailPageStyles.relatedContentInfo}>
-						<p className={detailPageStyles.relatedContentTitle}>원룸 수납 아이디어</p>
-						<p className={detailPageStyles.relatedContentViews}>987 views</p>
+				<div className={detailSidebarStyles.relatedItem}>
+					<div className={detailSidebarStyles.relatedImage} />
+					<div className={detailSidebarStyles.relatedContentInfo}>
+						<p className={detailSidebarStyles.relatedContentTitle}>원룸 수납 아이디어</p>
+						<p className={detailSidebarStyles.relatedContentViews}>987 views</p>
 					</div>
 				</div>
 			</div>
