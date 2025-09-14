@@ -51,7 +51,7 @@ const Trend = () => {
 											<span className={css({ color: 'amber.600', fontWeight: 'bold' })}>
 												♥ {item.likes}
 											</span>
-											<Link className={trendStyles.detailButton} to={`/trend/${item.id}`}>
+											<Link className={trendStyles.detailButton} to={`/work/${item.id}`}>
 												상세보기
 											</Link>
 										</div>
