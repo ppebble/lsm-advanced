@@ -8,7 +8,7 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
 
-import { ErrorFallback, LoadingFallback } from '../common/fallback';
+import { ErrorFallback } from '../common/fallback';
 import { Skeleton } from '../common/skeleton';
 
 import { trendPatterns, trendStyles } from './styles';

@@ -132,7 +132,7 @@ const DetailSlider = ({ imageDatas }: DetailSliderProps) => {
 						◀
 					</button>
 					<button
-						// type='button'
+						type='button'
 						className={detailSliderStyles.arrowBtn({ side: 'right' })}
 						onClick={handleNext}
 					>
