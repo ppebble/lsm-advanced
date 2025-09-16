@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import type { TrendProps } from '@/assets/data/type';
 import { useFetch } from '@/hooks/useFetch';
+import { useFetchQuery } from '@/hooks/useFetchQuery';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { useSuspenseFetchQuery } from '@/hooks/useSuspenseFetchQuery';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
 
@@ -15,8 +17,12 @@ import { trendPatterns, trendStyles } from './styles';
 
 const Trend = () => {
 	const refCallback = useIntersectionObserver();
-	const trendItems = useFetch<TrendProps[]>({ url: SERVICE_URLS.trends });
+	// const trendItems = useFetch<TrendProps[]>({ url: SERVICE_URLS.trends });
+	const trendQuery = useSuspenseFetchQuery<TrendProps[]>({
+		url: SERVICE_URLS.trends,
+	});
 	const [isLoading, setIsLoading] = useState(true);
+	const trendItems = trendQuery.data;
 
 	return (
 		<>
@@ -24,8 +30,8 @@ const Trend = () => {
 
 			<ErrorBoundary fallback={ErrorFallback}>
 				<div className={trendStyles.gridContainer}>
-					{trendItems.data &&
-						trendItems.data.map((item) => (
+					{trendItems &&
+						trendItems.map((item) => (
 							<Suspense key={item.id} fallback={<Skeleton className={trendStyles.card} />}>
 								<div key={item.id} className={trendStyles.card}>
 									{isLoading && <Skeleton className={trendStyles.image} />}
