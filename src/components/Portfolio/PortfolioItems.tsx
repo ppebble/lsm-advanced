@@ -70,12 +70,7 @@ const PortfolioItems = ({ url }: PortfolioItemProps) => {
 											transition: 'opacity 0.3s ease',
 										})} desc`}
 									>
-										<PortfolioDesc
-											id={item.id}
-											desc={item.description}
-											title={item.title}
-											isActive
-										/>
+										<PortfolioDesc desc={item.description} title={item.title} isActive />
 									</div>
 								</Link>
 							</div>
