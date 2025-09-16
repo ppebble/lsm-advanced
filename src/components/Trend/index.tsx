@@ -16,12 +16,10 @@ import { trendPatterns, trendStyles } from './styles';
 const Trend = () => {
 	const refCallback = useIntersectionObserver();
 	// const trendItems = useFetch<TrendProps[]>({ url: SERVICE_URLS.trends });
-	const trendQuery = useSuspenseFetchQuery<TrendProps[]>({
+	const { data: trendItems } = useSuspenseFetchQuery<TrendProps[]>({
 		url: SERVICE_URLS.trends,
 	});
 	const [isLoading, setIsLoading] = useState(true);
-	const trendItems = trendQuery.data;
-
 	return (
 		<>
 			<h2 className={trendStyles.title}>🏆 실시간 인기 시공 사례</h2>
