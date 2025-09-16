@@ -1,12 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
-interface UseFetchQueryParams {
+interface UseSuspenseFetchQueryParams {
 	url: string;
 	enabled?: boolean;
 }
 
-export function useFetchQuery<TData>({ url, enabled = true }: UseFetchQueryParams) {
-	return useQuery<TData, Error>({
+export function useSuspenseFetchQuery<TData>({ url }: UseSuspenseFetchQueryParams) {
+	return useSuspenseQuery<TData, Error>({
 		queryKey: [url],
 		queryFn: async () => {
 			const res = await fetch(url);
@@ -14,6 +14,5 @@ export function useFetchQuery<TData>({ url, enabled = true }: UseFetchQueryParam
 			const result = await res.json();
 			return result.data;
 		},
-		enabled,
 	});
 }
