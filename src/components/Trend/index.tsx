@@ -3,10 +3,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { TrendProps } from '@/assets/data/type';
-import { useFetch } from '@/hooks/useFetch';
-import { useFetchQuery } from '@/hooks/useFetchQuery';
+import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { useSuspenseFetchQuery } from '@/hooks/useSuspenseFetchQuery';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
 
