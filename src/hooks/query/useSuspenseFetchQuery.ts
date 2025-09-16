@@ -1,18 +1,18 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { fetcher } from '@/utils/FeachResult';
+
 interface UseSuspenseFetchQueryParams {
 	url: string;
 	enabled?: boolean;
 }
 
-export function useSuspenseFetchQuery<TData>({ url }: UseSuspenseFetchQueryParams) {
-	return useSuspenseQuery<TData, Error>({
+export function useSuspenseFetchQuery<T>({ url }: UseSuspenseFetchQueryParams) {
+	const query = useSuspenseQuery<T, Error>({
 		queryKey: [url],
-		queryFn: async () => {
-			const res = await fetch(url);
-			if (!res.ok) throw new Error(`Fetch 실패: ${res.status}`);
-			const result = await res.json();
-			return result.data;
-		},
+		queryFn: () => fetcher<T>(url),
 	});
+
+	const { data, ...rest } = query;
+	return { data, ...rest };
 }

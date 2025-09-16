@@ -1,19 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { fetcher } from '@/utils/FeachResult';
+
 interface UseFetchQueryParams {
 	url: string;
 	enabled?: boolean;
 }
 
-export function useFetchQuery<TData>({ url, enabled = true }: UseFetchQueryParams) {
-	return useQuery<TData, Error>({
+export function useFetchQuery<T>({ url, enabled = true }: UseFetchQueryParams) {
+	const query = useQuery<T, Error>({
 		queryKey: [url],
-		queryFn: async () => {
-			const res = await fetch(url);
-			if (!res.ok) throw new Error(`Fetch 실패: ${res.status}`);
-			const result = await res.json();
-			return result.data;
-		},
+		queryFn: () => fetcher<T>(url),
 		enabled,
 	});
+
+	const { data, ...rest } = query;
+	return { data, ...rest };
 }
