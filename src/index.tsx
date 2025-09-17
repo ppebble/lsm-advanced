@@ -8,13 +8,11 @@ import App from './App';
 
 import './styles/fonts.css';
 
-// QueryClient 생성
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			throwOnError: true,
-
-			retry: false, // 선택: 개발 중엔 자동 재시도 끄면 디버깅 편해요
+			retry: false,
 		},
 	},
 });

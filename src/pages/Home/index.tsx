@@ -1,7 +1,13 @@
+import { ErrorBoundary, Suspense } from '@suspensive/react';
+
 import Banner from '@/components/Banner';
+import { bannerStyles } from '@/components/Banner/styles';
 import Category from '@/components/Category';
+import { ErrorFallback } from '@/components/common/fallback';
+import { Skeleton } from '@/components/common/skeleton';
 import Portfolio from '@/components/Portfolio';
 import Trend from '@/components/Trend';
+import { trendStyles } from '@/components/Trend/styles';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
@@ -17,22 +23,31 @@ const Home = () => {
 				bgColor: 'gray.50',
 			})}
 		>
-			<section
-				className={css({
-					height: { base: '300px', md: '500px' },
-				})}
-			>
-				<Banner />
-			</section>
-			<section
-				className={flex({
-					flexDirection: 'column',
-					position: 'relative',
-				})}
-			>
-				<Trend />
-			</section>
-			<section
+			<ErrorBoundary fallback={ErrorFallback}>
+				<Suspense fallback={<Skeleton className={bannerStyles.mainImage} />}>
+					<section
+						className={css({
+							height: { base: '300px', md: '500px' },
+						})}
+					>
+						<Banner />
+					</section>
+				</Suspense>
+			</ErrorBoundary>
+			<ErrorBoundary fallback={ErrorFallback}>
+				<Suspense fallback={<Skeleton className={trendStyles.card} />}>
+					<section
+						className={flex({
+							flexDirection: 'column',
+							position: 'relative',
+						})}
+					>
+						<Trend />
+					</section>
+				</Suspense>
+			</ErrorBoundary>
+
+			{/* <section
 				className={flex({
 					height: '240px',
 					py: { base: '12', md: '20' },
@@ -44,7 +59,7 @@ const Home = () => {
 			</section>
 			<section>
 				<Portfolio />
-			</section>
+			</section> */}
 		</div>
 	);
 };

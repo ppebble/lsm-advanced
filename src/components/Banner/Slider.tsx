@@ -79,76 +79,72 @@ const Slider = () => {
 	};
 
 	return (
-		<ErrorBoundary fallback={ErrorFallback}>
-			<Suspense fallback={<Skeleton className={bannerStyles.mainImage} />}>
-				<div className={bannerStyles.mainImage}>
-					<div
-						ref={viewportRef}
-						style={{ width: '100%', height: '100%' }}
-						onPointerDown={onPointerDown}
-						onPointerMove={onPointerMove}
-						onPointerUp={onPointerUp}
-						onPointerCancel={onPointerUp}
-					>
+		<div className={bannerStyles.mainImage}>
+			<div
+				ref={viewportRef}
+				style={{ width: '100%', height: '100%' }}
+				onPointerDown={onPointerDown}
+				onPointerMove={onPointerMove}
+				onPointerUp={onPointerUp}
+				onPointerCancel={onPointerUp}
+			>
+				<div
+					ref={null}
+					style={{
+						display: 'flex',
+						width: `${slides.length * 100}%`,
+						transform: `translateX(calc(${-current * 100}% + ${dragDelta}px))`,
+						transition:
+							isDragging || !isTransitionEnabled ? 'none' : `transform ${TRANSITION_MS}ms ease`,
+					}}
+				>
+					{slides.map((item) => (
 						<div
-							ref={null}
-							style={{
-								display: 'flex',
-								width: `${slides.length * 100}%`,
-								transform: `translateX(calc(${-current * 100}% + ${dragDelta}px))`,
-								transition:
-									isDragging || !isTransitionEnabled ? 'none' : `transform ${TRANSITION_MS}ms ease`,
-							}}
+							key={`${item.id}`}
+							// className={bannerStyles.slideContainer({ total: slides.length })}
+							className={bannerStyles.slideContainer}
 						>
-							{slides.map((item) => (
-								<div
-									key={`${item.id}`}
-									// className={bannerStyles.slideContainer({ total: slides.length })}
-									className={bannerStyles.slideContainer}
-								>
-									{isLoading && (
-										<Skeleton
-											className={css({
-												position: 'absolute',
-												inset: 0,
-											})}
-										/>
-									)}
-									<img
-										ref={refCallback}
-										data-src={item.images}
-										onLoad={() => setIsLoading(false)}
-										// src={item.images}
-										alt={item.id}
-										className={bannerStyles.slideImage}
-										draggable={false}
-									/>
-								</div>
-							))}
+							{isLoading && (
+								<Skeleton
+									className={css({
+										position: 'absolute',
+										inset: 0,
+									})}
+								/>
+							)}
+							<img
+								ref={refCallback}
+								data-src={item.images}
+								onLoad={() => setIsLoading(false)}
+								// src={item.images}
+								alt={item.id}
+								className={bannerStyles.slideImage}
+								draggable={false}
+							/>
 						</div>
-					</div>
-
-					<button
-						type='button'
-						className={bannerStyles.arrowBtn({ side: 'left' })}
-						onClick={handlePrev}
-					>
-						◀
-					</button>
-					<button
-						type='button'
-						className={bannerStyles.arrowBtn({ side: 'right' })}
-						onClick={handleNext}
-					>
-						▶
-					</button>
-
-					<div className={bannerStyles.counter}>
-						{current + 1} / {slides.length}
-					</div>
+					))}
 				</div>
-			</Suspense>
-		</ErrorBoundary>
+			</div>
+
+			<button
+				type='button'
+				className={bannerStyles.arrowBtn({ side: 'left' })}
+				onClick={handlePrev}
+			>
+				◀
+			</button>
+			<button
+				type='button'
+				className={bannerStyles.arrowBtn({ side: 'right' })}
+				onClick={handleNext}
+			>
+				▶
+			</button>
+
+			<div className={bannerStyles.counter}>
+				{current + 1} / {slides.length}
+			</div>
+		</div>
 	);
 };
 

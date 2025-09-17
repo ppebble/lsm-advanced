@@ -112,7 +112,7 @@ export const handlers = [
 	}),
 	// 6. 배너 이미지
 	http.get('/api/banners', async () => {
-		await delay(200);
+		await delay(10000);
 
 		return HttpResponse.json({
 			success: true,
