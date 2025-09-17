@@ -3,7 +3,7 @@ import { Suspense, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { PortfolioItem } from '@/assets/data/type';
-import { useFetch } from '@/hooks/useFetch';
+import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { css } from 'styled-system/css';
 
@@ -20,13 +20,13 @@ interface PortfolioItemProps {
 const PortfolioItems = ({ url }: PortfolioItemProps) => {
 	const refCallback = useIntersectionObserver();
 	const [isLoading, setIsLoading] = useState(true);
-	const portfolioItems = useFetch<PortfolioItem[]>({ url });
+	const { data: portfolioItems } = useSuspenseFetchQuery<PortfolioItem[]>({ url });
 	return (
 		<ErrorBoundary fallback={ErrorFallback}>
 			<Suspense fallback={<Skeleton className={portfolioStyles.itemContainer} />}>
 				<div className={portfolioStyles.itemContainer}>
-					{portfolioItems.data &&
-						portfolioItems.data.map((item: PortfolioItem) => (
+					{portfolioItems &&
+						portfolioItems.map((item: PortfolioItem) => (
 							<div
 								key={item.id}
 								className={css({

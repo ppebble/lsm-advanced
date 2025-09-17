@@ -15,7 +15,6 @@ import { trendPatterns, trendStyles } from './styles';
 
 const Trend = () => {
 	const refCallback = useIntersectionObserver();
-	// const trendItems = useFetch<TrendProps[]>({ url: SERVICE_URLS.trends });
 	const { data: trendItems } = useSuspenseFetchQuery<TrendProps[]>({
 		url: SERVICE_URLS.trends,
 	});
