@@ -1,5 +1,6 @@
 import path from 'path';
 
+import pandaPostcss from '@pandacss/dev/postcss';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
@@ -21,19 +22,18 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'styled-system': '/styled-system', // 절대 경로 추가
-			'styled-system/patterns': './styled-system/patterns',
-			'@/components': path.resolve(__dirname, './src/components'),
-			'@/pages': path.resolve(__dirname, './src/pages'),
-			'@': '/src',
-			'@assets': '/src/assets',
-			'@assets/img': '/src/assets/img',
+			'@': path.resolve(__dirname, './src'),
+			'@components': path.resolve(__dirname, './src/components'),
+			'@pages': path.resolve(__dirname, './src/pages'),
+			'@assets': path.resolve(__dirname, './src/assets'),
+			'@assets/img': path.resolve(__dirname, './src/assets/img'),
+			'styled-system': path.resolve(__dirname, './styled-system'),
+			'styled-system/patterns': path.resolve(__dirname, './styled-system/patterns'),
 		},
 	},
 	css: {
 		postcss: {
-			// eslint-disable-next-line global-require
-			plugins: [require('@pandacss/dev/postcss')],
+			plugins: [pandaPostcss],
 		},
 	},
 	server: {
