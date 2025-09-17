@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetcher } from '@/utils/FeachResult';
+import { fetcher } from '@/utils/FetchResult';
 
 interface UseFetchQueryParams {
 	url: string;

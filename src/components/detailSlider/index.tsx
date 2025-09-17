@@ -80,71 +80,67 @@ const DetailSlider = ({ imageDatas }: DetailSliderProps) => {
 	};
 
 	return (
-		<ErrorBoundary fallback={ErrorFallback}>
-			<Suspense fallback={<Skeleton className={detailSliderStyles.mainImage} />}>
-				<div className={detailSliderStyles.mainImage}>
-					<div
-						ref={viewportRef}
-						style={{ width: '100%', height: '100%' }}
-						onPointerDown={onPointerDown}
-						onPointerMove={onPointerMove}
-						onPointerUp={onPointerUp}
-						onPointerCancel={onPointerUp}
-					>
-						<div
-							ref={null}
-							style={{
-								display: 'flex',
-								width: `${slides.length * 100}%`,
-								transform: `translateX(calc(${-current * 100}% + ${dragDelta}px))`,
-								transition:
-									isDragging || !isTransitionEnabled ? 'none' : `transform ${TRANSITION_MS}ms ease`,
-							}}
-						>
-							{slides.map((item) => (
-								<div key={`${item.id}`} className={detailSliderStyles.slideContainer}>
-									{isLoading && (
-										<Skeleton
-											className={css({
-												position: 'absolute',
-												inset: 0,
-											})}
-										/>
-									)}
-									<img
-										ref={refCallback}
-										data-src={item.url}
-										onLoad={() => setIsLoading(false)}
-										alt={item.id}
-										className={detailSliderStyles.slideImage}
-										draggable={false}
-									/>
-								</div>
-							))}
+		<div className={detailSliderStyles.mainImage}>
+			<div
+				ref={viewportRef}
+				style={{ width: '100%', height: '100%' }}
+				onPointerDown={onPointerDown}
+				onPointerMove={onPointerMove}
+				onPointerUp={onPointerUp}
+				onPointerCancel={onPointerUp}
+			>
+				<div
+					ref={null}
+					style={{
+						display: 'flex',
+						width: `${slides.length * 100}%`,
+						transform: `translateX(calc(${-current * 100}% + ${dragDelta}px))`,
+						transition:
+							isDragging || !isTransitionEnabled ? 'none' : `transform ${TRANSITION_MS}ms ease`,
+					}}
+				>
+					{slides.map((item) => (
+						<div key={`${item.id}`} className={detailSliderStyles.slideContainer}>
+							{isLoading && (
+								<Skeleton
+									className={css({
+										position: 'absolute',
+										inset: 0,
+									})}
+								/>
+							)}
+							<img
+								ref={refCallback}
+								data-src={item.url}
+								onLoad={() => setIsLoading(false)}
+								alt={item.id}
+								className={detailSliderStyles.slideImage}
+								draggable={false}
+							/>
 						</div>
-					</div>
-
-					<button
-						type='button'
-						className={detailSliderStyles.arrowBtn({ side: 'left' })}
-						onClick={handlePrev}
-					>
-						◀
-					</button>
-					<button
-						type='button'
-						className={detailSliderStyles.arrowBtn({ side: 'right' })}
-						onClick={handleNext}
-					>
-						▶
-					</button>
-
-					<div className={detailSliderStyles.counter}>
-						{current + 1} / {slides.length}
-					</div>
+					))}
 				</div>
-			</Suspense>
-		</ErrorBoundary>
+			</div>
+
+			<button
+				type='button'
+				className={detailSliderStyles.arrowBtn({ side: 'left' })}
+				onClick={handlePrev}
+			>
+				◀
+			</button>
+			<button
+				type='button'
+				className={detailSliderStyles.arrowBtn({ side: 'right' })}
+				onClick={handleNext}
+			>
+				▶
+			</button>
+
+			<div className={detailSliderStyles.counter}>
+				{current + 1} / {slides.length}
+			</div>
+		</div>
 	);
 };
 
