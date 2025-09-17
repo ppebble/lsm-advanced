@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { fetcher } from '@/utils/FeachResult';
+import { fetcher } from '@/utils/FetchResult';
 
 interface UseSuspenseFetchQueryParams {
 	url: string;
