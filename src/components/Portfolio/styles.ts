@@ -6,6 +6,7 @@ export const portfolioStyles = {
 		py: { base: '8', md: '16' },
 		width: '95vw',
 		px: { base: '4', md: '6' },
+		minH: '350px',
 	}),
 	mainContainer: css({
 		borderBottom: '1px solid token(colors.gray.200)',
