@@ -1,4 +1,3 @@
-import { ErrorBoundary, Suspense } from '@suspensive/react';
 import { useRef, useState } from 'react';
 
 import type { BannerItems } from '@/assets/data/type';
@@ -7,7 +6,6 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
 
-import { ErrorFallback } from '../common/fallback';
 import { Skeleton } from '../common/skeleton';
 
 import { bannerStyles } from './styles';
@@ -99,11 +97,7 @@ const Slider = () => {
 					}}
 				>
 					{slides.map((item) => (
-						<div
-							key={`${item.id}`}
-							// className={bannerStyles.slideContainer({ total: slides.length })}
-							className={bannerStyles.slideContainer}
-						>
+						<div key={`${item.id}`} className={bannerStyles.slideContainer}>
 							{isLoading && (
 								<Skeleton
 									className={css({
@@ -116,7 +110,6 @@ const Slider = () => {
 								ref={refCallback}
 								data-src={item.images}
 								onLoad={() => setIsLoading(false)}
-								// src={item.images}
 								alt={item.id}
 								className={bannerStyles.slideImage}
 								draggable={false}

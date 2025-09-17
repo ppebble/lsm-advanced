@@ -4,6 +4,7 @@ import { css } from 'styled-system/css';
 export const categoryStyles = {
 	categoryContainer: css({
 		display: { base: 'none', md: 'grid' },
+		minH: '240px',
 		gridTemplateColumns: {
 			base: 'repeat(auto-fit, minmax(100px, 1fr))', // 모바일: 더 작은 최소값
 			md: 'repeat(auto-fit, minmax(120px, 1fr))', // 태블릿
