@@ -2,7 +2,6 @@ import { ErrorBoundary, Suspense } from '@suspensive/react';
 
 import type { CategoryMainType } from '@/assets/data/type';
 import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
-import { useFetch } from '@/hooks/useFetch';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 
 import { ErrorFallback } from '../common/fallback';
@@ -15,7 +14,6 @@ interface CategoryTabFolderProps {
 }
 
 const CategoryTabFolder = ({ onCategoryChange }: CategoryTabFolderProps) => {
-	// const categories = useFetch<CategoryMainType[]>({ url: SERVICE_URLS.mainCategories });
 	const { data: categories } = useSuspenseFetchQuery<CategoryMainType[]>({
 		url: SERVICE_URLS.mainCategories,
 	});

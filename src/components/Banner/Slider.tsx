@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 
 import type { BannerItems } from '@/assets/data/type';
 import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
-import { useFetch } from '@/hooks/useFetch';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
