@@ -2,7 +2,7 @@ import { ErrorBoundary, Suspense } from '@suspensive/react';
 import { useRef, useState } from 'react';
 
 import type { BannerItems } from '@/assets/data/type';
-import { useFetch } from '@/hooks/useFetch';
+import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
@@ -16,9 +16,9 @@ const TRANSITION_MS = 500;
 
 const Slider = () => {
 	const refCallback = useIntersectionObserver();
-	const bannerItems = useFetch<BannerItems[]>({ url: SERVICE_URLS.banners });
+	const { data: bannerItems } = useSuspenseFetchQuery<BannerItems[]>({ url: SERVICE_URLS.banners });
 
-	const slides = bannerItems.data || [];
+	const slides = bannerItems || [];
 	const [current, setCurrent] = useState(0);
 	const [isTransitionEnabled, setIsTransitionEnabled] = useState(true);
 

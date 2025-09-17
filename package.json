@@ -2,6 +2,7 @@
   "name": "lsm-advanced",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@pandacss/dev": "^1.0.1",

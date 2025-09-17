@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { TrendProps } from '@/assets/data/type';
-import { useFetch } from '@/hooks/useFetch';
+import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
@@ -15,17 +15,18 @@ import { trendPatterns, trendStyles } from './styles';
 
 const Trend = () => {
 	const refCallback = useIntersectionObserver();
-	const trendItems = useFetch<TrendProps[]>({ url: SERVICE_URLS.trends });
+	const { data: trendItems } = useSuspenseFetchQuery<TrendProps[]>({
+		url: SERVICE_URLS.trends,
+	});
 	const [isLoading, setIsLoading] = useState(true);
-
 	return (
 		<>
 			<h2 className={trendStyles.title}>🏆 실시간 인기 시공 사례</h2>
 
 			<ErrorBoundary fallback={ErrorFallback}>
 				<div className={trendStyles.gridContainer}>
-					{trendItems.data &&
-						trendItems.data.map((item) => (
+					{trendItems &&
+						trendItems.map((item) => (
 							<Suspense key={item.id} fallback={<Skeleton className={trendStyles.card} />}>
 								<div key={item.id} className={trendStyles.card}>
 									{isLoading && <Skeleton className={trendStyles.image} />}

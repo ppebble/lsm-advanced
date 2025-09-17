@@ -11,7 +11,7 @@ export const handlers = [
 		const url = new URL(request.url);
 		const category = url.searchParams.get('category');
 
-		await delay(Math.random() * 1 + 100);
+		await delay(200);
 
 		const filteredItems =
 			category && category !== 'all'
@@ -28,7 +28,7 @@ export const handlers = [
 		const url = new URL(request.url);
 		const category = url.searchParams.get('category');
 
-		await delay(Math.random() * 1 + 100);
+		await delay(200);
 
 		const filteredItems =
 			category && category !== 'all'
@@ -50,7 +50,7 @@ export const handlers = [
 
 	// 2. 특정 포트폴리오 상세 조회
 	http.get('/api/portfolio/:id', async ({ params }) => {
-		await delay(800);
+		await delay(200);
 
 		const { id } = params;
 		const item = portfolioItems.find((item) => item.id === id);
@@ -77,7 +77,7 @@ export const handlers = [
 
 	// 4. 좋아요 증가
 	http.post('/api/portfolio/:id/like', async ({ params }) => {
-		await delay(300);
+		await delay(200);
 
 		const { id } = params;
 		const item = portfolioItems.find((item) => item.id === id);
