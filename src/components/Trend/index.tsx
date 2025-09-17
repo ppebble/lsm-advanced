@@ -1,4 +1,3 @@
-import { ErrorBoundary, Suspense } from '@suspensive/react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +7,6 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 import { css } from 'styled-system/css';
 
-import { ErrorFallback } from '../common/fallback';
 import { Skeleton } from '../common/skeleton';
 
 import { trendPatterns, trendStyles } from './styles';
@@ -22,7 +20,6 @@ const Trend = () => {
 	return (
 		<>
 			<h2 className={trendStyles.title}>🏆 실시간 인기 시공 사례</h2>
-
 			<div className={trendStyles.gridContainer}>
 				{trendItems &&
 					trendItems.map((item) => (
