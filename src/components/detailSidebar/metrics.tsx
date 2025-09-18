@@ -37,15 +37,15 @@ const Metrics = ({ data }: MetricsProps) => {
 		const action = currentState ? METRIC_ACTION.DEC : METRIC_ACTION.INC;
 		if (metricType === METRIC_TYPE.LIKE) {
 			setIsLiked(!currentState);
-			postMetric({
-				itemId: data.id,
-				metricType,
-				action,
-			});
 		}
 		if (metricType === METRIC_TYPE.SAVE) {
 			setIsSaved(!currentState);
 		}
+		postMetric({
+			itemId: data.id,
+			metricType,
+			action,
+		});
 	};
 
 	return (
