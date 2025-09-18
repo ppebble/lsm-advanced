@@ -75,21 +75,70 @@ export const handlers = [
 		});
 	}),
 
-	// 4. 좋아요 증가
-	http.post('/api/portfolio/:id/like', async ({ params }) => {
+	// 4.메트릭 업데이트
+	http.post('/api/metric/:id', async ({ params, request }) => {
 		await delay(200);
 
 		const { id } = params;
+		const body = await request.json();
+		const { metricType, action } = body as {
+			metricType: string;
+			action: 'inc' | 'dec';
+		};
+
 		const item = portfolioItems.find((item) => item.id === id);
 
-		if (item && item.metrics) {
-			item.metrics.likes += 1;
+		if (!item || !item.metrics) {
+			return HttpResponse.json({ success: false, message: 'Item not found' }, { status: 404 });
+		}
+		let newCount = 0;
+
+		// metricType에 따라 분기 처리
+		if (metricType === 'like') {
+			if (action === 'inc') {
+				newCount = item.metrics.likes + 1;
+			} else if (action === 'dec' && item.metrics.likes > 0) {
+				newCount = item.metrics.likes - 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount,
+			});
 		}
 
-		return HttpResponse.json({
-			success: true,
-			newLikes: item?.metrics.likes,
-		});
+		if (metricType === 'save') {
+			if (action === 'inc') {
+				newCount = item.metrics.saves + 1;
+			} else if (action === 'dec' && item.metrics.saves > 0) {
+				newCount = item.metrics.saves - 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount,
+			});
+		}
+
+		if (metricType === 'share') {
+			if (action === 'inc') {
+				newCount = item.metrics.shares + 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount,
+			});
+		}
+
+		if (metricType === 'view') {
+			if (action === 'inc') {
+				newCount = item.metrics.views + 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount,
+			});
+		}
+
+		return HttpResponse.json({ success: false, message: 'Unknown metric type' }, { status: 400 });
 	}),
 
 	// 5. 메인카테고리 목록

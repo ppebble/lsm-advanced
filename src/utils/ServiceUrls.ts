@@ -6,4 +6,5 @@ export const SERVICE_URLS = {
 	portfolioThumbnails: `${BASE_URL}portfolio/thumbnails`,
 	portfolioItem: (id: string) => `${BASE_URL}portfolio/${id}`,
 	trends: `${BASE_URL}trends`,
+	metricUpdate: (id: string) => `${BASE_URL}metric/${id}`,
 };
