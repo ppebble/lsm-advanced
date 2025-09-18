@@ -75,21 +75,69 @@ export const handlers = [
 		});
 	}),
 
-	// 4. 좋아요 증가
-	http.post('/api/portfolio/:id/like', async ({ params }) => {
+	// 4.메트릭 업데이트
+	http.post('/api/portfolio/:id/metrics', async ({ params, request }) => {
 		await delay(200);
 
 		const { id } = params;
+		const body = await request.json();
+		const { metricType, action } = body as {
+			metricType: string;
+			action: 'increment' | 'decrement';
+		};
+
 		const item = portfolioItems.find((item) => item.id === id);
 
-		if (item && item.metrics) {
-			item.metrics.likes += 1;
+		if (!item || !item.metrics) {
+			return HttpResponse.json({ success: false, message: 'Item not found' }, { status: 404 });
 		}
 
-		return HttpResponse.json({
-			success: true,
-			newLikes: item?.metrics.likes,
-		});
+		// metricType에 따라 분기 처리
+		if (metricType === 'like') {
+			if (action === 'increment') {
+				item.metrics.likes += 1;
+			} else if (action === 'decrement' && item.metrics.likes > 0) {
+				item.metrics.likes -= 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount: item.metrics.likes,
+			});
+		}
+
+		if (metricType === 'save') {
+			if (action === 'increment') {
+				item.metrics.saves += 1;
+			} else if (action === 'decrement' && item.metrics.saves > 0) {
+				item.metrics.saves -= 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount: item.metrics.saves,
+			});
+		}
+
+		if (metricType === 'share') {
+			if (action === 'increment') {
+				item.metrics.shares += 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount: item.metrics.shares,
+			});
+		}
+
+		if (metricType === 'view') {
+			if (action === 'increment') {
+				item.metrics.views += 1;
+			}
+			return HttpResponse.json({
+				success: true,
+				newCount: item.metrics.views,
+			});
+		}
+
+		return HttpResponse.json({ success: false, message: 'Unknown metric type' }, { status: 400 });
 	}),
 
 	// 5. 메인카테고리 목록
