@@ -83,7 +83,7 @@ export const handlers = [
 		const body = await request.json();
 		const { metricType, action } = body as {
 			metricType: string;
-			action: 'increment' | 'decrement';
+			action: 'inc' | 'dec';
 		};
 
 		const item = portfolioItems.find((item) => item.id === id);
@@ -91,49 +91,50 @@ export const handlers = [
 		if (!item || !item.metrics) {
 			return HttpResponse.json({ success: false, message: 'Item not found' }, { status: 404 });
 		}
+		let newCount = 0;
 
 		// metricType에 따라 분기 처리
 		if (metricType === 'like') {
-			if (action === 'increment') {
-				item.metrics.likes += 1;
-			} else if (action === 'decrement' && item.metrics.likes > 0) {
-				item.metrics.likes -= 1;
+			if (action === 'inc') {
+				newCount = item.metrics.likes + 1;
+			} else if (action === 'dec' && item.metrics.likes > 0) {
+				newCount = item.metrics.likes - 1;
 			}
 			return HttpResponse.json({
 				success: true,
-				newCount: item.metrics.likes,
+				newCount,
 			});
 		}
 
 		if (metricType === 'save') {
-			if (action === 'increment') {
-				item.metrics.saves += 1;
-			} else if (action === 'decrement' && item.metrics.saves > 0) {
-				item.metrics.saves -= 1;
+			if (action === 'inc') {
+				newCount = item.metrics.saves + 1;
+			} else if (action === 'dec' && item.metrics.saves > 0) {
+				newCount = item.metrics.saves - 1;
 			}
 			return HttpResponse.json({
 				success: true,
-				newCount: item.metrics.saves,
+				newCount,
 			});
 		}
 
 		if (metricType === 'share') {
-			if (action === 'increment') {
-				item.metrics.shares += 1;
+			if (action === 'inc') {
+				newCount = item.metrics.shares + 1;
 			}
 			return HttpResponse.json({
 				success: true,
-				newCount: item.metrics.shares,
+				newCount,
 			});
 		}
 
 		if (metricType === 'view') {
-			if (action === 'increment') {
-				item.metrics.views += 1;
+			if (action === 'inc') {
+				newCount = item.metrics.views + 1;
 			}
 			return HttpResponse.json({
 				success: true,
-				newCount: item.metrics.views,
+				newCount,
 			});
 		}
 
