@@ -2,16 +2,51 @@ import { Bookmark, Calendar, Eye, Heart, Share } from 'lucide-react';
 import { useState } from 'react';
 
 import type { PortfolioItem } from '@/assets/data/type';
+import { usePostMutation } from '@/hooks/query/usePostMutation';
+import { SERVICE_URLS } from '@/utils/ServiceUrls';
 
+import { METRIC_ACTION, METRIC_TYPE, type MetricAction, type MetricType } from './meticConst';
 import { detailSidebarStyles } from './styles';
 
 interface MetricsProps {
 	data: PortfolioItem | null;
 }
 
+interface MetricsParams {
+	itemId: string;
+	metricType: MetricType;
+	action: MetricAction;
+}
+
+interface MetricsResponse {
+	success: boolean;
+	newCount: number;
+}
+
 const Metrics = ({ data }: MetricsProps) => {
 	const [isLiked, setIsLiked] = useState(false);
 	const [isSaved, setIsSaved] = useState(false);
+
+	const { mutate: postMetric } = usePostMutation<MetricsResponse, MetricsParams>({
+		url: SERVICE_URLS.metricUpdate(data?.id || ''),
+	});
+
+	const handleMeticsClick = (metricType: MetricType, currentState: boolean) => {
+		if (!data) return;
+
+		const action = currentState ? METRIC_ACTION.DEC : METRIC_ACTION.INC;
+		if (metricType === METRIC_TYPE.LIKE) {
+			setIsLiked(!currentState);
+			postMetric({
+				itemId: data.id,
+				metricType,
+				action,
+			});
+		}
+		if (metricType === METRIC_TYPE.SAVE) {
+			setIsSaved(!currentState);
+		}
+	};
 
 	return (
 		<div className={detailSidebarStyles.metricsCard}>
@@ -20,7 +55,7 @@ const Metrics = ({ data }: MetricsProps) => {
 					<div className={detailSidebarStyles.metricsButtons}>
 						<button
 							type='button'
-							onClick={() => setIsLiked(!isLiked)}
+							onClick={() => handleMeticsClick(METRIC_TYPE.LIKE, isLiked)}
 							className={detailSidebarStyles.metricButton}
 							style={{ color: isLiked ? '#ef4444' : '#6b7280' }}
 						>
@@ -41,7 +76,7 @@ const Metrics = ({ data }: MetricsProps) => {
 						</button>
 						<button
 							type='button'
-							onClick={() => setIsSaved(!isSaved)}
+							onClick={() => handleMeticsClick(METRIC_TYPE.SAVE, isSaved)}
 							className={detailSidebarStyles.metricButton}
 							style={{ color: isSaved ? '#3b82f6' : '#6b7280' }}
 						>
