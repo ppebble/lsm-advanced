@@ -76,7 +76,7 @@ export const handlers = [
 	}),
 
 	// 4.메트릭 업데이트
-	http.post('/api/portfolio/:id/metrics', async ({ params, request }) => {
+	http.post('/api/metric/:id', async ({ params, request }) => {
 		await delay(200);
 
 		const { id } = params;
