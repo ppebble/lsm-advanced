@@ -2,10 +2,13 @@ import path from 'path';
 
 import pandaPostcss from '@pandacss/dev/postcss';
 import react from '@vitejs/plugin-react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { visualizer } from 'rollup-plugin-visualizer';
+import type { PluginOption } from 'vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [react()],
+	plugins: [react(), visualizer() as PluginOption],
 	build: {
 		outDir: 'dist',
 		assetsInlineLimit: 0,

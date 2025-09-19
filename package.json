@@ -78,6 +78,7 @@
     "lint-staged": "^16.1.5",
     "msw": "^2.10.5",
     "prettier": "^3.2.5",
+    "rollup-plugin-visualizer": "^6.0.3",
     "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "typescript": "^5.4.0",
