@@ -94,3 +94,28 @@ export type InteriorStyle =
 	| 'natural'
 	| 'classic'
 	| 'contemporary';
+
+/**
+ * 업체 타입
+ */
+export interface Company {
+	id: string;
+	name: string;
+	logo: string;
+	rating: number;
+	reviewCount: number;
+	portfolioCount: number;
+	categories: string[];
+	tags: string[];
+	recentWork: {
+		id: string;
+		title: string;
+		description: string;
+		images: Array<{
+			id: string;
+			url: string;
+			alt: string;
+			isPrimary: boolean;
+		}>;
+	};
+}
