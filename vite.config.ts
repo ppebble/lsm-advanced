@@ -1,4 +1,5 @@
 import path from 'path';
+import { gzip } from 'zlib';
 
 import pandaPostcss from '@pandacss/dev/postcss';
 import react from '@vitejs/plugin-react';
@@ -8,7 +9,13 @@ import type { PluginOption } from 'vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [react(), visualizer() as PluginOption],
+	plugins: [
+		react(),
+		visualizer({
+			open: true,
+			gzipSize: true,
+		}) as PluginOption,
+	],
 	build: {
 		outDir: 'dist',
 		assetsInlineLimit: 0,
