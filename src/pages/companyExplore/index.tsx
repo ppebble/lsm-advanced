@@ -1,8 +1,8 @@
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Star } from 'lucide-react';
 import { useState } from 'react';
 
-import { companies } from '@/assets/data/psudoData';
-import type { CategoryMainType } from '@/assets/data/type';
+// import { companies } from '@/assets/data/psudoData';
+import type { CategoryMainType, Company } from '@/assets/data/type';
 import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 
@@ -11,6 +11,9 @@ import { companyExplorerStyles } from './style';
 const CompanyExplorer = () => {
 	const { data: categories } = useSuspenseFetchQuery<CategoryMainType[]>({
 		url: SERVICE_URLS.mainCategories,
+	});
+	const { data: companies } = useSuspenseFetchQuery<Company[]>({
+		url: SERVICE_URLS.companies,
 	});
 	const [currentIndex, setCurrentIndex] = useState(0);
 
