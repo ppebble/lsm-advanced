@@ -36,3 +36,4 @@ jobs:
       run: |
         aws s3 rm --recursive s3://interior-hub
         aws s3 cp ./dist s3://interior-hub/ --recursive
+        aws cloudfront create-invalidation --distribution-id E17FI5R48HWT2T --paths "/*"
