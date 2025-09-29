@@ -7,4 +7,5 @@ export const SERVICE_URLS = {
 	portfolioItem: (id: string) => `${BASE_URL}portfolio/${id}`,
 	trends: `${BASE_URL}trends`,
 	metricUpdate: (id: string) => `${BASE_URL}metric/${id}`,
+	companies: `${BASE_URL}companies`,
 };

@@ -15,6 +15,10 @@ import batch_kc04 from '@assets/img/batch_kc04.webp';
 import batch_kc05 from '@assets/img/batch_kc05.webp';
 import batch_lr01 from '@assets/img/batch_lr01.webp';
 import batch_lr02 from '@assets/img/batch_lr02.webp';
+import logo1 from '@assets/img/logo1.webp';
+import logo2 from '@assets/img/logo2.webp';
+import logo3 from '@assets/img/logo3.webp';
+import logo4 from '@assets/img/logo4.webp';
 
 import type {
 	CategoryMainType,
@@ -22,7 +26,57 @@ import type {
 	PortfolioItem,
 	TrendProps,
 	BannerItems,
+	Company,
 } from './type';
+
+export const companies: Company[] = [
+	{
+		id: 'co-123',
+		name: '공간연구소',
+		logo: logo1,
+		rating: 4.8,
+		reviewCount: 127,
+		portfolioCount: 23,
+		categories: ['bed', 'living'],
+		tags: ['소형평수', '수납최적화', '원룸', '미니멀'],
+		recentWork: {
+			id: 'bed-002',
+			title: '소형 원룸 공간 활용 침실 리모델링',
+			description: '6평 원룸의 공간 최적화를 통한 수납과 휴식 공간 조성',
+			images: [
+				{
+					id: 'img-1',
+					url: batch_bed03,
+					alt: '리모델링 후 침실 전경',
+					isPrimary: true,
+				},
+			],
+		},
+	},
+	{
+		id: 'co-124',
+		name: '디자인하우스',
+		logo: logo3,
+		rating: 4.7,
+		reviewCount: 98,
+		portfolioCount: 21,
+		categories: ['kitchen', 'living'],
+		tags: ['소형평수', '수납최적화', '원룸', '미니멀'],
+		recentWork: {
+			id: 'bath-001',
+			title: '모던한 주방 리모델링',
+			description: '현대적인 디자인의 효율적인 주방 공간 구현',
+			images: [
+				{
+					id: 'img-1',
+					url: batch_kc01,
+					alt: '리모델링 후 주방 전경',
+					isPrimary: true,
+				},
+			],
+		},
+	},
+];
 
 export const portfolioItems: PortfolioItem[] = [
 	{
@@ -49,7 +103,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['합판', '스테인리스', 'LED 조명'],
 		},
 		metrics: { likes: 245, views: 1245, shares: 34, saves: 89 },
-		company: { id: 'co-123', name: '공간연구소', logo: batch_lr02, rating: 4.8, reviewCount: 127 },
+		company: { id: 'co-123', name: '공간연구소', logo: logo1, rating: 4.8, reviewCount: 127 },
 		createdAt: '2024-01-15',
 		tags: ['소형평수', '수납최적화', '원룸'],
 	},
@@ -77,7 +131,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['합판', '스테인리스', 'LED 조명'],
 		},
 		metrics: { likes: 245, views: 1245, shares: 34, saves: 89 },
-		company: { id: 'co-123', name: '공간연구소', logo: batch_lr02, rating: 4.8, reviewCount: 127 },
+		company: { id: 'co-123', name: '공간연구소', logo: logo2, rating: 4.8, reviewCount: 127 },
 		createdAt: '2024-01-15',
 		tags: ['소형평수', '수납최적화', '원룸'],
 	},
@@ -111,7 +165,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['인조대리석', '스테인리스', 'LED 조명'],
 		},
 		metrics: { likes: 312, views: 1560, shares: 42, saves: 102 },
-		company: { id: 'co-124', name: '디자인하우스', logo: batch_lr01, rating: 4.7, reviewCount: 98 },
+		company: { id: 'co-124', name: '디자인하우스', logo: logo3, rating: 4.7, reviewCount: 98 },
 		createdAt: '2024-02-10',
 		tags: ['주방', '모던', '대리석'],
 	},
@@ -136,7 +190,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-125',
 			name: '프리미엄인테리어',
-			logo: batch_id01,
+			logo: logo1,
 			rating: 4.9,
 			reviewCount: 203,
 		},
@@ -167,7 +221,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['타일', '스톤', '방수 마감재'],
 		},
 		metrics: { likes: 389, views: 1780, shares: 54, saves: 123 },
-		company: { id: 'co-126', name: '바스룸', logo: batch_id02, rating: 4.6, reviewCount: 87 },
+		company: { id: 'co-126', name: '바스룸', logo: logo3, rating: 4.6, reviewCount: 87 },
 		createdAt: '2024-02-20',
 		tags: ['욕실', '스파', '힐링'],
 	},
@@ -198,7 +252,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-127',
 			name: '인더스트리얼디자인',
-			logo: batch_id03,
+			logo: logo4,
 			rating: 4.5,
 			reviewCount: 76,
 		},
@@ -226,7 +280,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-128',
 			name: '파스텔인테리어',
-			logo: batch_kc05,
+			logo: logo1,
 			rating: 4.7,
 			reviewCount: 112,
 		},
@@ -254,7 +308,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-129',
 			name: '오픈스페이스',
-			logo: batch_lr01,
+			logo: logo1,
 			rating: 4.8,
 			reviewCount: 156,
 		},
@@ -282,7 +336,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-130',
 			name: '내추럴하우스',
-			logo: batch_bed02,
+			logo: logo2,
 			rating: 4.6,
 			reviewCount: 94,
 		},
@@ -307,7 +361,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['중고가구', '빈티지소재', '레트로 조명'],
 		},
 		metrics: { likes: 298, views: 1420, shares: 41, saves: 103 },
-		company: { id: 'co-131', name: '빈티지디자인', logo: batch_id01, rating: 4.5, reviewCount: 82 },
+		company: { id: 'co-131', name: '빈티지디자인', logo: logo3, rating: 4.5, reviewCount: 82 },
 		createdAt: '2024-03-15',
 		tags: ['빈티지', '레트로', '중고가구'],
 	},
@@ -332,7 +386,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-132',
 			name: '미니멀리즘',
-			logo: batch_bath02,
+			logo: logo4,
 			rating: 4.7,
 			reviewCount: 107,
 		},
@@ -360,7 +414,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-133',
 			name: '럭셔리인테리어',
-			logo: batch_kc01,
+			logo: logo2,
 			rating: 4.9,
 			reviewCount: 234,
 		},
@@ -388,7 +442,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-134',
 			name: '컴팩트디자인',
-			logo: batch_bed02,
+			logo: logo1,
 			rating: 4.4,
 			reviewCount: 63,
 		},
@@ -416,7 +470,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-135',
 			name: '패밀리인테리어',
-			logo: batch_lr02,
+			logo: logo2,
 			rating: 4.7,
 			reviewCount: 128,
 		},
@@ -441,7 +495,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['타일', '수납장', '가족용 설비'],
 		},
 		metrics: { likes: 345, views: 1560, shares: 48, saves: 118 },
-		company: { id: 'co-136', name: '바스패밀리', logo: batch_bath01, rating: 4.6, reviewCount: 91 },
+		company: { id: 'co-136', name: '바스패밀리', logo: logo2, rating: 4.6, reviewCount: 91 },
 		createdAt: '2024-04-10',
 		tags: ['패밀리', '욕실', '수납'],
 	},
@@ -466,7 +520,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-137',
 			name: '로맨틱디자인',
-			logo: batch_id02,
+			logo: logo2,
 			rating: 4.7,
 			reviewCount: 115,
 		},
@@ -491,7 +545,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['카운터', '바식테이블', '오픈형 구조'],
 		},
 		metrics: { likes: 412, views: 1870, shares: 58, saves: 145 },
-		company: { id: 'co-138', name: '오픈키친', logo: batch_kc04, rating: 4.8, reviewCount: 142 },
+		company: { id: 'co-138', name: '오픈키친', logo: logo2, rating: 4.8, reviewCount: 142 },
 		createdAt: '2024-04-20',
 		tags: ['오픈형', '주방', '카운터'],
 	},
@@ -513,7 +567,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['단색 벽지', '심플 가구', '기본 조명'],
 		},
 		metrics: { likes: 234, views: 1120, shares: 32, saves: 82 },
-		company: { id: 'co-139', name: '심플리티', logo: batch_bed03, rating: 4.5, reviewCount: 78 },
+		company: { id: 'co-139', name: '심플리티', logo: logo3, rating: 4.5, reviewCount: 78 },
 		createdAt: '2024-04-25',
 		tags: ['심플', '간결', '단색'],
 	},
@@ -544,7 +598,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-140',
 			name: '스칸디하우스',
-			logo: batch_lr01,
+			logo: logo2,
 			rating: 4.8,
 			reviewCount: 156,
 		},
@@ -572,7 +626,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-141',
 			name: '프리미엄바스',
-			logo: batch_bath02,
+			logo: logo4,
 			rating: 4.9,
 			reviewCount: 187,
 		},
@@ -600,7 +654,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-142',
 			name: '미디어인테리어',
-			logo: batch_id03,
+			logo: logo3,
 			rating: 4.8,
 			reviewCount: 167,
 		},
@@ -628,7 +682,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-143',
 			name: '아일랜드키친',
-			logo: batch_kc03,
+			logo: logo1,
 			rating: 4.9,
 			reviewCount: 198,
 		},
@@ -656,7 +710,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-144',
 			name: '키즈인테리어',
-			logo: batch_bed01,
+			logo: logo2,
 			rating: 4.7,
 			reviewCount: 123,
 		},
@@ -684,7 +738,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-145',
 			name: '멀티스페이스',
-			logo: batch_lr02,
+			logo: logo2,
 			rating: 4.9,
 			reviewCount: 212,
 		},
@@ -712,7 +766,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-146',
 			name: '디럭스바스',
-			logo: batch_bath01,
+			logo: logo3,
 			rating: 4.9,
 			reviewCount: 195,
 		},
@@ -740,7 +794,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-147',
 			name: '홈오피스디자인',
-			logo: batch_id01,
+			logo: logo4,
 			rating: 4.7,
 			reviewCount: 134,
 		},
@@ -765,7 +819,7 @@ export const portfolioItems: PortfolioItem[] = [
 			materials: ['바 카운터', '스툴', '바 형식 설비'],
 		},
 		metrics: { likes: 423, views: 1950, shares: 62, saves: 156 },
-		company: { id: 'co-148', name: '바키친', logo: batch_kc02, rating: 4.8, reviewCount: 145 },
+		company: { id: 'co-148', name: '바키친', logo: logo1, rating: 4.8, reviewCount: 145 },
 		createdAt: '2024-06-10',
 		tags: ['바형', '카운터', '스툴'],
 	},
@@ -790,7 +844,7 @@ export const portfolioItems: PortfolioItem[] = [
 		company: {
 			id: 'co-149',
 			name: '게스트하우스',
-			logo: batch_bed02,
+			logo: logo2,
 			rating: 4.6,
 			reviewCount: 87,
 		},

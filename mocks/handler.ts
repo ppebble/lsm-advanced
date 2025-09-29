@@ -168,4 +168,53 @@ export const handlers = [
 			data: bannerItems,
 		});
 	}),
+	// 7. 업체 목록
+	http.get('/api/companies', async ({ request }) => {
+		const url = new URL(request.url);
+		const category = url.searchParams.get('category');
+		const tag = url.searchParams.get('tag');
+		await delay(200);
+
+		const companyMap = new Map();
+
+		portfolioItems.forEach((item) => {
+			if (!companyMap.has(item.company.id)) {
+				companyMap.set(item.company.id, {
+					...item.company,
+					portfolioCount: 1,
+					categories: [item.category],
+					tags: [...item.tags],
+					recentWork: item, // 가장 최근 작업물
+				});
+			} else {
+				const existing = companyMap.get(item.company.id);
+				existing.portfolioCount += 1;
+				if (!existing.categories.includes(item.category)) {
+					existing.categories.push(item.category);
+				}
+				item.tags.forEach((tag) => {
+					if (!existing.tags.includes(tag)) {
+						existing.tags.push(tag);
+					}
+				});
+			}
+		});
+
+		let companies = Array.from(companyMap.values());
+
+		// 필터링
+		if (category) {
+			companies = companies.filter((company) => company.categories.includes(category));
+		}
+
+		if (tag) {
+			companies = companies.filter((company) => company.tags.some((t: string) => t.includes(tag)));
+		}
+
+		return HttpResponse.json({
+			success: true,
+			data: companies,
+			total: companies.length,
+		});
+	}),
 ];
