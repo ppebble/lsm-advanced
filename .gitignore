@@ -5,6 +5,7 @@
 /build
 .DS_Store
 *.log
+.husky
 
 
 # 빌드 출력물 (Vite/PandaCSS)
@@ -13,9 +14,13 @@
 /dist/*
 /.vite              # Vite 캐시
 
+*.env
+
 # 운영체제/에디터 별 설정
 .idea/
 .vscode/
 ## Panda
 styled-system
 styled-system-studio
+# rollup-visualizer
+stats.html

@@ -1,0 +1,85 @@
+/* Thin - 100 */
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('/fonts/noto-sans/NotoSans-Thin.woff2') format('woff2');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+AC00-D7A3; /* 한글 범위 */
+}
+
+/* Light - 300 */
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('/fonts/noto-sans/NotoSans-Light.woff2') format('woff2');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+AC00-D7A3;
+}
+
+/* DemiLight - 350? (보통 300과 400 사이) */
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('/fonts/noto-sans/NotoSans-Demilight.woff2') format('woff2');
+	font-weight: 350;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+AC00-D7A3;
+}
+
+/* Regular - 400 */
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('/fonts/noto-sans/NotoSans-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+AC00-D7A3;
+}
+
+/* Medium - 500 */
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('/fonts/noto-sans/NotoSans-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+AC00-D7A3;
+}
+
+/* Bold - 700 */
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('/fonts/noto-sans/NotoSans-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+AC00-D7A3;
+}
+
+/* Black - 900 */
+@font-face {
+	font-family: 'Noto Sans KR';
+	src: url('/fonts/noto-sans/NotoSans-Black.woff2') format('woff2');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+	unicode-range: U+AC00-D7A3;
+}
+
+/* CSS 변수 정의 */
+:root {
+	--font-noto-sans-kr: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* 폰트 로딩 상태 관리 */
+.fonts-loading body {
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	visibility: hidden;
+}
+
+.fonts-loaded body {
+	font-family: var(--font-noto-sans-kr);
+	visibility: visible;
+}

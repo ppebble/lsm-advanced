@@ -1,0 +1,16 @@
+import { portfolioStyles } from './styles';
+
+interface PortfolioProps {
+	title: string;
+	desc: string;
+	isActive: boolean;
+}
+
+export const PortfolioDesc = ({ title, desc, isActive }: PortfolioProps) => {
+	return (
+		<div className={portfolioStyles.descCard(isActive)}>
+			<p className={portfolioStyles.title}>{title}</p>
+			<p className={portfolioStyles.desc}>{desc}</p>
+		</div>
+	);
+};

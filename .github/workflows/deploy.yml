@@ -1,0 +1,39 @@
+name: GitHub Actions Deploy to S3
+
+# main branch에 push 될 때 마다 실행
+on:
+  push:
+    branches:
+      - main
+
+# Workflow는 여러개의 job으로 구성되고, 하나의 job은 여러개의 step으로 구성된다.
+jobs:
+  Deploy-Job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Github Repo 불러오기
+      uses: actions/checkout@v4
+
+    #의존성 설치
+    - name: install dependencies
+      run : npm install
+
+    #- name: Debug directory
+    #  run: ls
+
+    - name: build
+      run: npm run build
+
+    - name: AWS IAM config
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY}}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        aws-region: ap-northeast-2
+    
+    - name: S3 Deploy(Clear && Upload)
+      run: |
+        aws s3 rm --recursive s3://interior-hub
+        aws s3 cp ./dist s3://interior-hub/ --recursive
+        aws cloudfront create-invalidation --distribution-id E17FI5R48HWT2T --paths "/*"

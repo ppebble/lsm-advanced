@@ -1,17 +1,18 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Navigation from './components/Navigation';
+import { Route, Routes } from 'react-router-dom';
 
-function App() {
+import Navigation from './components/Navigation';
+import DetailItem from './pages/detailItem';
+import Home from './pages/Home';
+
+const App = () => {
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route element={<Navigation />}>
-					<Route path='/' element={<Home />} />
-				</Route>
-			</Routes>
-		</BrowserRouter>
+		<Routes>
+			<Route element={<Navigation />}>
+				<Route path='/' element={<Home />} />
+				<Route path='/work/:id' element={<DetailItem />} />
+			</Route>
+		</Routes>
 	);
-}
+};
 
 export default App;
