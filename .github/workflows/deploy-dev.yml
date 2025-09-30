@@ -1,11 +1,10 @@
-name: GitHub Actions Deploy to S3
+name: GitHub Actions Deploy to S3 DEV
 
 # main branch에 push 될 때 마다 실행
 on:
   push:
     branches:
-      - main
-      - dev 
+      - dev
 
 # Workflow는 여러개의 job으로 구성되고, 하나의 job은 여러개의 step으로 구성된다.
 jobs:
@@ -35,6 +34,6 @@ jobs:
     
     - name: S3 Deploy(Clear && Upload)
       run: |
-        aws s3 rm --recursive s3://interior-hub
-        aws s3 cp ./dist s3://interior-hub/ --recursive
-        aws cloudfront create-invalidation --distribution-id E17FI5R48HWT2T --paths "/*"
+        aws s3 rm --recursive s3://dev-interior-hub
+        aws s3 cp ./dist s3://dev-interior-hub/ --recursive
+        aws cloudfront create-invalidation --distribution-id E2273C184EUT38 --paths "/*"
