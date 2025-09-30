@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - dev
+      - dev 
 
 # Workflow는 여러개의 job으로 구성되고, 하나의 job은 여러개의 step으로 구성된다.
 jobs:
