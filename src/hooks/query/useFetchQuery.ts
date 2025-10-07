@@ -15,7 +15,12 @@ interface UseFetchQueryParams<TData, TError = Error>
  * @example
  * const { data: anyData, isLoading } = useFetchQuery<AnyType>({
  * url : ANY_URL,
+ * ...options
  * });
+ *
+ * @optional
+ * enabled, select ... 등 useQueryOptions 사용 가능
+ *
  */
 export function useFetchQuery<TData>({ url, ...options }: UseFetchQueryParams<TData>) {
 	const query = useQuery<TData, Error>({
