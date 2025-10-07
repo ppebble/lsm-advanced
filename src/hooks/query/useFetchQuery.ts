@@ -1,12 +1,12 @@
+import type { UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
 import { fetcher } from '@/utils/FetchResult';
 
-interface UseFetchQueryParams {
+interface UseFetchQueryParams<TData, TError = Error>
+	extends Omit<UseQueryOptions<TData, TError>, 'queryKey' | 'queryFn'> {
 	url: string;
-	enabled?: boolean;
 }
-
 /**
  *
  * @returns T - query 결과에 대한 타입
@@ -17,11 +17,11 @@ interface UseFetchQueryParams {
  * url : ANY_URL,
  * });
  */
-export function useFetchQuery<T>({ url, enabled = true }: UseFetchQueryParams) {
-	const query = useQuery<T, Error>({
+export function useFetchQuery<TData>({ url, ...options }: UseFetchQueryParams<TData>) {
+	const query = useQuery<TData, Error>({
 		queryKey: [url],
-		queryFn: () => fetcher<T>(url),
-		enabled,
+		queryFn: () => fetcher<TData>(url),
+		...options,
 	});
 
 	const { data, ...rest } = query;
