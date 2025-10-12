@@ -3,11 +3,9 @@ import { ErrorBoundary, Suspense } from '@suspensive/react';
 import Banner from '@/components/Banner';
 import { bannerStyles } from '@/components/Banner/styles';
 import Category from '@/components/Category';
-import { categoryStyles } from '@/components/Category/styles';
 import { ErrorFallback } from '@/components/common/fallback';
 import { Skeleton } from '@/components/common/skeleton';
 import Portfolio from '@/components/Portfolio';
-import { portfolioStyles } from '@/components/Portfolio/styles';
 import Trend from '@/components/Trend';
 import { trendStyles } from '@/components/Trend/styles';
 import { css } from 'styled-system/css';
@@ -49,18 +47,16 @@ const Home = () => {
 				</Suspense>
 			</ErrorBoundary>
 			<ErrorBoundary fallback={ErrorFallback}>
-				<Suspense fallback={<Skeleton className={categoryStyles.categoryContainer} />}>
-					<section
-						className={flex({
-							height: '240px',
-							py: { base: '12', md: '20' },
-							px: { base: '4', md: '6' },
-							justifyContent: 'center',
-						})}
-					>
-						<Category />
-					</section>
-				</Suspense>
+				<section
+					className={flex({
+						height: '240px',
+						py: { base: '12', md: '20' },
+						px: { base: '4', md: '6' },
+						justifyContent: 'center',
+					})}
+				>
+					<Category />
+				</section>
 			</ErrorBoundary>
 			<ErrorBoundary fallback={ErrorFallback}>
 				<section>
