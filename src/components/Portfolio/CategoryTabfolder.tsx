@@ -1,7 +1,7 @@
 import { ErrorBoundary, Suspense } from '@suspensive/react';
 
 import type { CategoryMainType } from '@/assets/data/type';
-import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
+import { useFetchQuery } from '@/hooks/query/useFetchQuery';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
 
 import { ErrorFallback } from '../common/fallback';
@@ -14,28 +14,26 @@ interface CategoryTabFolderProps {
 }
 
 const CategoryTabFolder = ({ onCategoryChange }: CategoryTabFolderProps) => {
-	const { data: categories } = useSuspenseFetchQuery<CategoryMainType[]>({
+	const { data: categories } = useFetchQuery<CategoryMainType[]>({
 		url: SERVICE_URLS.mainCategories,
 	});
 	return (
 		<ErrorBoundary fallback={ErrorFallback}>
-			<Suspense fallback={<Skeleton className={portfolioStyles.mainContainer} />}>
-				<div className={portfolioStyles.mainContainer}>
-					{categories &&
-						categories.map((tab: CategoryMainType) => {
-							return (
-								<button
-									type='button'
-									key={tab}
-									onClick={() => onCategoryChange(tab)}
-									className={portfolioStyles.tabfolderContainer}
-								>
-									{tab}
-								</button>
-							);
-						})}
-				</div>
-			</Suspense>
+			<div className={portfolioStyles.mainContainer}>
+				{categories &&
+					categories.map((tab: CategoryMainType) => {
+						return (
+							<button
+								type='button'
+								key={tab}
+								onClick={() => onCategoryChange(tab)}
+								className={portfolioStyles.tabfolderContainer}
+							>
+								{tab}
+							</button>
+						);
+					})}
+			</div>
 		</ErrorBoundary>
 	);
 };

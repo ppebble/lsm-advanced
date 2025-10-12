@@ -63,11 +63,9 @@ const Home = () => {
 				</Suspense>
 			</ErrorBoundary>
 			<ErrorBoundary fallback={ErrorFallback}>
-				<Suspense fallback={<Skeleton className={portfolioStyles.container} />}>
-					<section>
-						<Portfolio />
-					</section>
-				</Suspense>
+				<section>
+					<Portfolio />
+				</section>
 			</ErrorBoundary>
 		</div>
 	);
