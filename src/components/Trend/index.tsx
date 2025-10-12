@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { TrendProps } from '@/assets/data/type';
+import { useFetchQuery } from '@/hooks/query/useFetchQuery';
 import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { SERVICE_URLS } from '@/utils/ServiceUrls';
@@ -13,8 +14,12 @@ import { trendPatterns, trendStyles } from './styles';
 
 const Trend = () => {
 	const refCallback = useIntersectionObserver();
-	const { data: trendItems } = useSuspenseFetchQuery<TrendProps[]>({
+	// const { data: trendItems } = useSuspenseFetchQuery<TrendProps[]>({
+	// 	url: SERVICE_URLS.trends,
+	// });
+	const { data: trendItems } = useFetchQuery<TrendProps[]>({
 		url: SERVICE_URLS.trends,
+		enabled: true,
 	});
 	const [isLoading, setIsLoading] = useState(true);
 	return (

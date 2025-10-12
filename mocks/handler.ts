@@ -11,7 +11,7 @@ export const handlers = [
 		const url = new URL(request.url);
 		const category = url.searchParams.get('category');
 
-		await delay(200);
+		await delay(20000);
 
 		const filteredItems =
 			category && category !== 'all'
@@ -28,7 +28,7 @@ export const handlers = [
 		const url = new URL(request.url);
 		const category = url.searchParams.get('category');
 
-		await delay(200);
+		await delay(20000);
 
 		const filteredItems =
 			category && category !== 'all'
@@ -50,7 +50,7 @@ export const handlers = [
 
 	// 2. 특정 포트폴리오 상세 조회
 	http.get('/api/portfolio/:id', async ({ params }) => {
-		await delay(200);
+		await delay(20000);
 
 		const { id } = params;
 		const item = portfolioItems.find((item) => item.id === id);
@@ -67,7 +67,7 @@ export const handlers = [
 
 	// 3. 트렌드 목록 조회
 	http.get('/api/trends', async () => {
-		await delay(200);
+		await delay(20000);
 
 		return HttpResponse.json({
 			success: true,
@@ -77,7 +77,7 @@ export const handlers = [
 
 	// 4.메트릭 업데이트
 	http.post('/api/metric/:id', async ({ params, request }) => {
-		await delay(200);
+		await delay(20000);
 
 		const { id } = params;
 		const body = await request.json();
@@ -143,7 +143,7 @@ export const handlers = [
 
 	// 5. 메인카테고리 목록
 	http.get('/api/main-categories', async () => {
-		await delay(200);
+		await delay(20000);
 
 		return HttpResponse.json({
 			success: true,
@@ -152,7 +152,7 @@ export const handlers = [
 	}),
 	// 5. 전체카테고리 목록
 	http.get('/api/categories', async () => {
-		await delay(200);
+		await delay(20000);
 
 		return HttpResponse.json({
 			success: true,
@@ -161,7 +161,7 @@ export const handlers = [
 	}),
 	// 6. 배너 이미지
 	http.get('/api/banners', async () => {
-		await delay(200);
+		await delay(20000);
 
 		return HttpResponse.json({
 			success: true,
