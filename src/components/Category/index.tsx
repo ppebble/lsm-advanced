@@ -15,7 +15,7 @@ const Category = () => {
 		url: SERVICE_URLS.categories,
 	});
 	const skeletonIds = useMemo(() => {
-		return Array.from({ length: 8 }, () => `skeleton-${crypto.randomUUID()}`);
+		return Array.from({ length: 7 }, () => `skeleton-${crypto.randomUUID()}`);
 	}, []);
 
 	return (
