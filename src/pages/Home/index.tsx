@@ -35,16 +35,14 @@ const Home = () => {
 				</Suspense>
 			</ErrorBoundary>
 			<ErrorBoundary fallback={ErrorFallback}>
-				<Suspense fallback={<Skeleton className={trendStyles.card} />}>
-					<section
-						className={flex({
-							flexDirection: 'column',
-							position: 'relative',
-						})}
-					>
-						<Trend />
-					</section>
-				</Suspense>
+				<section
+					className={flex({
+						flexDirection: 'column',
+						position: 'relative',
+					})}
+				>
+					<Trend />
+				</section>
 			</ErrorBoundary>
 			<ErrorBoundary fallback={ErrorFallback}>
 				<section
