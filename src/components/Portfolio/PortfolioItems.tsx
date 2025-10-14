@@ -1,9 +1,9 @@
 import { ErrorBoundary } from '@suspensive/react';
-import { Suspense, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { PortfolioItem } from '@/assets/data/type';
-import { useSuspenseFetchQuery } from '@/hooks/query/useSuspenseFetchQuery';
+import { useFetchQuery } from '@/hooks/query/useFetchQuery';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { css } from 'styled-system/css';
 
@@ -19,13 +19,43 @@ interface PortfolioItemProps {
 
 const PortfolioItems = ({ url }: PortfolioItemProps) => {
 	const refCallback = useIntersectionObserver();
-	const [isLoading, setIsLoading] = useState(true);
-	const { data: portfolioItems } = useSuspenseFetchQuery<PortfolioItem[]>({ url });
+	const [isImgLoading, setIsImgLoading] = useState(true);
+
+	const { data: portfolioItems, isLoading } = useFetchQuery<PortfolioItem[]>({ url });
+
+	const skeletonIds = useMemo(() => {
+		return Array.from({ length: 8 }, () => `skeleton-${crypto.randomUUID()}`);
+	}, []);
+	// useEffect(() => {
+	// 	setIsLoading(false);
+	// }, [portfolioItems]);
 	return (
 		<ErrorBoundary fallback={ErrorFallback}>
-			<Suspense fallback={<Skeleton className={portfolioStyles.itemContainer} />}>
-				<div className={portfolioStyles.itemContainer}>
-					{portfolioItems &&
+			<div className={portfolioStyles.itemContainer}>
+				{isLoading
+					? Array.from({ length: 8 }).map((_, index) => (
+							<div
+								key={skeletonIds[index]}
+								className={css({
+									position: 'relative',
+									overflow: 'hidden',
+									borderRadius: 'xl',
+									height: '300px',
+								})}
+							>
+								<div className={css({ position: 'relative', height: '100%', width: '100%' })}>
+									<Skeleton
+										className={css({
+											position: 'absolute',
+											inset: 0,
+											height: '100%',
+											width: '100%',
+										})}
+									/>
+								</div>
+							</div>
+						))
+					: portfolioItems &&
 						portfolioItems.map((item: PortfolioItem) => (
 							<div
 								key={item.id}
@@ -46,7 +76,7 @@ const PortfolioItems = ({ url }: PortfolioItemProps) => {
 							>
 								<Link to={`/work/${item.id}`}>
 									<div className={css({ position: 'relative', height: '100%', width: '100%' })}>
-										{isLoading && (
+										{isImgLoading && (
 											<Skeleton
 												className={css({
 													position: 'absolute',
@@ -56,7 +86,7 @@ const PortfolioItems = ({ url }: PortfolioItemProps) => {
 										)}
 										<img
 											ref={refCallback}
-											onLoad={() => setIsLoading(false)}
+											onLoad={() => setIsImgLoading(false)}
 											data-src={item.images}
 											alt={item.title}
 											className={portfolioStyles.image(isLoading)}
@@ -75,8 +105,7 @@ const PortfolioItems = ({ url }: PortfolioItemProps) => {
 								</Link>
 							</div>
 						))}
-				</div>
-			</Suspense>
+			</div>
 		</ErrorBoundary>
 	);
 };
