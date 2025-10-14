@@ -19,6 +19,7 @@ const Trend = () => {
 	// });
 	const { data: trendItems, isLoading } = useFetchQuery<TrendProps[]>({
 		url: SERVICE_URLS.trends,
+		enabled: true,
 	});
 	const [isImgLoading, setIsImgLoading] = useState(true);
 

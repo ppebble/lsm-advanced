@@ -23,7 +23,7 @@ export const detailSliderStyles = {
 	slideImage: css({
 		width: '80vw',
 		height: { base: '300px', md: '500px' },
-		// objectFit: 'cover',
+		objectFit: 'contain',
 		userSelect: 'none',
 		pointerEvents: 'auto',
 		WebkitUserSelect: 'none',
